@@ -1,0 +1,31 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue2 Component Demo</title>
+    <script src="https://unpkg.com/vue@2.2.6 "></script>
+</head>
+
+<body>
+    <div id="app">
+        <task></task>
+        <task></task>
+    </div>
+</body>
+<script>
+    Vue.component('task', {
+        template: '<li>task</li>',
+    })
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+</script>
+
+</html>

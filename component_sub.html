@@ -1,0 +1,44 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue2 Sub component Demo</title>
+    <script src="https://unpkg.com/vue@2.2.6 "></script>
+</head>
+
+<body>
+    <div id="app">
+        <task-list></task-list>
+    </div>
+</body>
+<script>
+    Vue.component('task-list', {
+        template: `<div>
+                    <task v-for="t in tasks" :key="t.task">{{t.task}}</task>
+                  </div>`,
+        data() {
+            return {
+                tasks:[
+                    {task:"go to store", complete:true},
+                    {task:"go to work", complete:true},
+                    {task:"go to office", complete:true},
+                ]
+            };
+        }
+    });
+    Vue.component("task",{
+        template:"<li><slot></slot></li>"
+    });
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+</script>
+
+</html>
