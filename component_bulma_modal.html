@@ -1,0 +1,48 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue2 Sub component Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.css">
+    <style type="text/css">
+        body {
+            padding-top: 40px;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@2.2.6 "></script>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <modal v-if="showModal" @close="showModal=false">
+            <p> Use $emit to nofity parent component or root </p>
+        </modal>
+        <button @click="showModal = true">Show modal</button>
+    </div>
+</body>
+<script>
+    Vue.component('modal', {
+        props: ['title', 'body'],
+        template: `<div class="modal is-active">
+                    <div class="modal-background"></div>
+                    <div class="modal-content">
+                        <div class="box">
+                          <slot></slot>
+                        </div>
+                    </div>
+                    <button class="modal-close" @click="$emit('close')"></button>
+                    </div>`
+    });
+
+    var app = new Vue({
+        el: '#app',
+        data:{
+            showModal: false
+        }
+    })
+</script>
+
+</html>
