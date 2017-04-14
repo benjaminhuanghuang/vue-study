@@ -1,0 +1,51 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello Vue2</title>
+    <script src="https://unpkg.com/vue@2.2.6 "></script>
+    <style type="text/css">
+        .color-red{
+            color:red;
+        }
+        .is-loading{
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li>Bind class</li>
+            <li>Bind style when value is true </li>
+        </ul> 
+    </div>
+    <div id="app">
+        <button v-bind:title="title" @click="toggleClass">Hover over me</button>
+
+        <h1 :class="className">Hello</h1>
+
+        <h1 :class="{'is-loading':isLoading}">If or False</h1>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            title: 'Description of the button',
+            className : 'color-red',
+            isLoading : false,
+        },
+        methods:{
+            toggleClass(){
+                this.isLoading = !this.isLoading;
+            }
+        }
+    })
+</script>
+
+</html>

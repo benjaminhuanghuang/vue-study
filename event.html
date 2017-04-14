@@ -11,7 +11,8 @@
 
 <body>
     <ul>
-        <li> How to use evnet listener </li>
+        <li> How to use evnet listener: click, keyUp </li>
+        <li> @ = v-on: </li>
     </ul>
     <div id="app">
         <ul>
@@ -21,8 +22,8 @@
         <ul>
             <li v-for="name in names" v-text="name"></li>
         </ul>
-        <input id="input" type="text" v-model="newName">
-        <button v-on:click="addName">Add name</button>
+        <input id="input" type="text" v-model="newName" v-on:keyUp="addName">
+        <button @click="addName">Add name</button>
     </div>
 </body>
 <script>
