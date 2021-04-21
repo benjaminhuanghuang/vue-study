@@ -1,0 +1,49 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+  <div id="app">
+
+  </div>
+</body>
+<script>
+  Vue.createApp({
+    data() {
+      return {
+        message: "0000",
+        content: "asdasdsd",
+        isShow: true,
+      }
+    },
+    methods: {
+      onBtnClick() {
+        this.message = "On"
+      },
+      offBtnClick() {
+        this.message = "Off"
+      },
+      toggleBtnClick() {
+        this.isShow = !this.isShow;
+      }
+    },
+    template: `
+      <div>
+      <div> {{message}}</div>
+      <button v-on:Click="onBtnClick"> On </button>
+      <button v-on:Click="offBtnClick"> Off</button>
+
+      <div v-if="isShow">{{content}}</div>
+      <button v-on:Click="toggleBtnClick"> toggle</button>
+      </div>  
+    `
+  }).mount("#app")
+</script>
+
+</html>

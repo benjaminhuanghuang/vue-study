@@ -1,0 +1,40 @@
+<!DOCTYPE >
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Vue2 List</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+
+  <body>
+    <div id="app">
+    </div>
+  </body>
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          list: ["Joe", "Mary", "Jane"],
+          inputVal:""
+        };
+      },
+      methods: {
+        handleAdd() {
+          this.list.push(this.inputVal);
+          this.inputVal = "";
+        },
+      },
+      template: `
+      <div>
+      <input v-model="inputVal">
+      <button v-on:Click="handleAdd"> Add </button>
+      <ul>
+        <li v-for="(item, index) of list"> [{{index}}]{{item}}</li>
+      </ul>
+      </div>  
+    `,
+    }).mount("#app");
+  </script>
+</html>
