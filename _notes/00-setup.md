@@ -1,13 +1,15 @@
-## Install
-```
-    $ npm install -g vue-cli    # Vue 2
 
-    $ npm install -g @vue/cli   # Vue 3
-    $ yarn global add @vue/cli    
-```
 
-## Create project
+## Create project using Vue CLI
 ```
+  npm install -g vue-cli    # Vue 2
+
+  npm install -g @vue/cli   # Vue 3
+  yarn global add @vue/cli 
+
+
+  vue -V
+
   vue create <proj-name>
   vue create .             # Vue 3
   
@@ -16,10 +18,20 @@
   vue init                 # Vue 2
 ```
 
-## Create project using UI - Vue 3   
+## Create project using Vite
 ```
-   vue ui
+  npm i -g create-vite-app
+  create-vite-app <proj>
+  
+  or
+
+  npm init vite-app <proj>
+  
+  nmp install
+  npm run dev
 ```
+
+
 ## Run
 ```
     $ npm run dev    
