@@ -1,30 +1,42 @@
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="index.css">
   <script src="https://unpkg.com/vue@next"></script>
 </head>
+
 <body>
+  <p>
+    Demonstrate attribute bind, class bind
+  </p>
   <div id="app">
-    {{message}}
-    <img v-bind:src="imageSource", v-bind:alt="imageAlt"/>
+    <span :class="messageClasses">
+      {{message}}
+    </span>
+    <img v-bind:src="imageSource" , v-bind:alt="imageAlt" />
   </div>
 </body>
 <script>
   const App = {
     data() {
       return {
+        messageClasses: {
+          better: true  // use class 'better' or not
+        },
         message: 'Hello',
-        imageSource:'',
-        imageAlt:'This is a pic'
+        imageSource: '',
+        imageAlt: 'This is a pic'
       }
     },
-    template: '<div> Hello Div</div>'
+    //template: '<div> Hello Div</div>'
   }
 
   const app = Vue.createApp(App);
   app.mount("#app");
 </script>
+
 </html>

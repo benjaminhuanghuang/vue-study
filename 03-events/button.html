@@ -1,0 +1,43 @@
+<html>
+
+<head>
+  <style>
+    .container {
+      padding: 10px;
+      background-color: red;
+    }
+  </style>
+</head>
+<div id="app">
+  <!-- stop, capture, once, .capture.stop -->
+  <div class="container" v-on:click.capture.stop="outerClick">
+    <button v-on:click="handleClick">Collect coins</button>
+  </div>
+  <div>
+    Coins {{coins}}
+  </div>
+</div>
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+  const App = {
+    data() {
+      return {
+        coins: 0
+      }
+    },
+    methods: {
+      handleClick(e) {
+        console.log(this.coinis)
+        this.coins++;
+      },
+      outerClick(e) {
+        console.log('outer click');
+      }
+    }
+  }
+
+  const app = Vue.createApp(App);
+  app.mount("#app");
+</script>
+
+</html>
