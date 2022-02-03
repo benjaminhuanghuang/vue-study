@@ -8,16 +8,23 @@
 </head>
 <body>
   <div id="app">
-
+    {{message}}
+    <img v-bind:src="imageSource", v-bind:alt="imageAlt"/>
   </div>
 </body>
 <script>
-  const app = Vue.createApp({
-    template: '<div> Hello</div>'
-  });
+  const App = {
+    data() {
+      return {
+        message: 'Hello',
+        imageSource:'',
+        imageAlt:'This is a pic'
+      }
+    },
+    template: '<div> Hello Div</div>'
+  }
 
+  const app = Vue.createApp(App);
   app.mount("#app");
-
-  
 </script>
 </html>
