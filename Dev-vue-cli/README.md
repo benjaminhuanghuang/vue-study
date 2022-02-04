@@ -1,7 +1,7 @@
 
-# Vue Setup
+# Vue project Setup
 
-## Create project using Vue CLI
+## Install Vue CLI
 ```
   npm install -g vue-cli    # Vue 2
 
@@ -10,7 +10,10 @@
 
 
   vue -V
-
+  vue --version
+```
+## Create project
+```
   vue create <proj-name>
   vue create .             # Vue 3
   
@@ -18,20 +21,6 @@
 
   vue init                 # Vue 2
 ```
-
-## Create project using Vite
-```
-  npm i -g create-vite-app
-  create-vite-app <proj>
-  
-  or
-
-  npm init vite-app <proj>
-  
-  nmp install
-  npm run dev
-```
-
 
 ## Run
 ```

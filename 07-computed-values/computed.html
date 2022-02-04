@@ -1,0 +1,66 @@
+<html>
+
+<head>
+  <style>
+    .container {
+      padding: 10px;
+      background-color: red;
+    }
+  </style>
+</head>
+<div id="app">
+  <h2>Shipping</h2>
+  <div>
+    <input type="text" placeholder="name" v-model="name">
+  </div>
+  <div>
+    <input type="text" placeholder="address" v-model="address">
+  </div>
+  <div>
+    <input type="text" placeholder="city" v-model="city">
+  </div>
+  <div>
+    <input type="text" placeholder="country" v-model="country">
+  </div>
+
+  <h3>Address sticker</h3>
+  <div class="container">
+   computed:  {{fullAddress}}
+  </div>
+
+  <div class="calculator">
+    <h2>Calculator</h2>
+    <input type="number" v-model="lhs" type="text"> + <input type="number" v-model="rhs" type="text">
+    Sum (computed) {{sum}}
+  </div>
+</div>
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+  const App = {
+    data() {
+      return {
+        name: '',
+        address: '',
+        city: '',
+        country: '',
+        lhs: 0,
+        rhs: 0
+      }
+    },
+    computed: {
+      sum() {
+        return parseInt(this.lhs) + parseInt(this.rhs);
+      },
+      fullAddress() {
+        return `
+      ${this.name}, ${this.address}, ${this.city.toUpperCase()}, ${this.country.toUpperCase()} 
+      `
+      }
+    }
+  }
+
+  const app = Vue.createApp(App);
+  app.mount("#app");
+</script>
+
+</html>
