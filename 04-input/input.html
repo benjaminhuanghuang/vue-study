@@ -1,0 +1,51 @@
+<html>
+
+<head>
+  <style>
+    .container {
+      padding: 10px;
+      background-color: red;
+    }
+  </style>
+</head>
+<div id="app">
+  <div class="rows">
+    <div class="row">
+      {{title}}
+      <input v-model="person.name" placeholder="a name">
+      Value of name {{person.name}}
+    </div>
+    <div class="row">
+      <select v-model="selectedType">
+        <option value="">Select a shipping type</option>
+        <option v-for="type in shippingTypes" :key="type.name" :title="type.name" :value="type.name" >{{type.name}}
+        </option>
+      </select>
+      Selected shipping type {{selectedType}}
+    </div>
+  </div>
+</div>
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+  const App = {
+    data() {
+      return {
+        person: {
+          name: 'chris'
+        },
+        selectedType: '',
+        shippingTypes: [{
+          name: 'normal'
+        },
+        {
+          name: 'express'
+        }]
+      }
+    }
+  }
+
+  const app = Vue.createApp(App);
+  app.mount("#app");
+</script>
+
+</html>
