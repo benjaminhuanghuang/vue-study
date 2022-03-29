@@ -1,4 +1,9 @@
+## Courses
+- Vue.js: Testing and Debugging [Linkedin]
+  - https://www.linkedin.com/learning/vue-js-testing-and-debugging/testing-vue-applications?resume=false&u=2099546
+  - https://github.com/LinkedInLearning/vue-js-testing-and-debugging-2399300
 
+- https://github.com/alexjoverm/vue-testing-series/
 
 ## Book
 - Testing Vue.js Applications - Edd Yerburgh - 2018.12
