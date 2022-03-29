@@ -12,5 +12,6 @@ test("Render Home", async () => {
 
   await fireEvent.click(loginButton);
 
+  // check the error message
   getByText("Please enter your email and password");
 });
