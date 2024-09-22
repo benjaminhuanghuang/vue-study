@@ -10,14 +10,20 @@
 <body>
     <div id="app">
         <h1>{{ message }}</h1>
+        <button @click="changeMessage">Change Message</button>
     </div>
-    
     <script>
         const app = Vue.createApp({
             data() {
                 return {
-                    message: 'Hello Vue!'
+                    message: 'Hello Vue!!!'
                 }
+            },
+            methods: {
+                changeMessage() {
+                    console.log('changeMessage');
+                    this.message = 'Hi!'
+                },
             }
         })
 
