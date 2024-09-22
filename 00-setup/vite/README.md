@@ -1,4 +1,6 @@
 
+Hot-reloading, TypeScript support
+
 ## Create project using Vite
 ```
   npm i -g create-vite-app
