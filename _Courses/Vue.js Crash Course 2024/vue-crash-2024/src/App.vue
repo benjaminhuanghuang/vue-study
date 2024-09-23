@@ -1,20 +1,21 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+<script>
+export default {
+  data() {
+    return {
+      title: 'Vue.js Crash Course 2024',
+      showCourses: true,
+      courses: [
+        { id: 1, title: 'Course 1' },
+        { id: 2, title: 'Course 2' },
+        { id: 3, title: 'Course 3' },
+        { id: 4, title: 'Course 4' }
+      ]
+    }
+  }
+};
 </script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <h1>{{ title }}</h1>
 </template>
 
 <style scoped>
