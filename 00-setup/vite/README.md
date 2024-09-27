@@ -3,22 +3,9 @@ Hot-reloading, TypeScript support
 
 ## Create project using Vite
 ```
-  npm i -g create-vite-app
-  create-vite-app <proj>
-  
-  or
-
-  npm init vite-app <proj>
+  npm create vite@latest
   
   nmp install
   npm run dev
 ```
 
-
-## Run
-```
-    $ npm run dev    
-
-    npm run serve            # Vue 3        
-```
-    

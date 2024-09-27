@@ -1,6 +1,5 @@
 
-# Vue project Setup
-NO Longer recommended
+# Vue project Setup [NO Longer recommended!!]
 
 ## Install Vue CLI
 ```
