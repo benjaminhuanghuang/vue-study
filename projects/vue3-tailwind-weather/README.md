@@ -8,5 +8,5 @@ https://github.com/johnkomarnicki/net_ninja_vue_3_weather_app
 
 ## Setup
 ```
-npm create vite@latest vue3_weather_app
+npm init vite@latest vue3_weather_app
 ```
