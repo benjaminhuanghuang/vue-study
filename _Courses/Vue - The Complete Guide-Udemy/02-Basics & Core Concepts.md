@@ -93,3 +93,27 @@ Not used directly in template
 Allows you to run any code in reaction to some changed data (e.g. send Http request etc.)
 Use for any non-data update you want to make
 
+
+## Dynamic Styling
+```js
+// inline
+<div :style="{borderColor: isSelected ? 'red': '#ccc'}"/>
+
+<div :style="isSelected ? 'demo active':'demo'"/>
+<div :class="{demo: true, active: isSelected}"/>
+<div class="demo" :class="{active: isSelected}"/>
+
+// use computed 
+<div :class="boxClasses"/> 
+computed: {
+    boxClasses() {
+        return {
+            active: this.isSelected
+        }
+    }
+}
+
+// array
+<div :class="['demo', {active: isSelected}]"/>
+```
+
