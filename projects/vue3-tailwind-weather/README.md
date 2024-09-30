@@ -111,3 +111,8 @@ const getSearchResults = () => {
 
 ## 8. Async Data with Vue Suspense
 
+
+## 15. Deploy to Netlify
+
+
+
