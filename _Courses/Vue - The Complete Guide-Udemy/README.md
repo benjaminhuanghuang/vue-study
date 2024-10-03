@@ -5,6 +5,8 @@ https://www.udemy.com/course/vuejs-2-the-complete-guide/
 
 https://www.bilibili.com/video/BV1Wr4y1n7rG/?spm_id_from=333.337.search-card.all.click&vd_source=b7025abbc1efd8b7631e43fa506ade3a
 
+https://www.bilibili.com/video/BV1Ha411e7nA?p=12&spm_id_from=pageDriver&vd_source=b7025abbc1efd8b7631e43fa506ade3a
+
 ## Table of content
 Getting Started
 Basics & Core Concepts - DOM Interaction with Vue
