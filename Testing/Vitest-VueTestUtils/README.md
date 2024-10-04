@@ -1,4 +1,5 @@
-# Vue unit test tools 
+# Vue test using Vitest + Vue Test Utils
+
 https://vuejs.org/guide/scaling-up/testing.html
 
 

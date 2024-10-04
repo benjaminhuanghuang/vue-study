@@ -3,6 +3,6 @@
 
 https://vuejs.org/guide/quick-start#creating-a-vue-application
 
-```hash
+```sh
 npm create vue@latest
 ```
