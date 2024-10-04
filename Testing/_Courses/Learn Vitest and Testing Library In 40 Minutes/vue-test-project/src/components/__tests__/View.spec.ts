@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest'
 import {render, screen} from '@testing-library/vue' 
 //
 import View from '@/components/View.vue'
-import { a } from 'vitest/dist/suite-IbNSsUWN.js';
 
 describe('View', () => {
   const viewText = 'View Text';
