@@ -32,3 +32,11 @@ npm i -D @vue/test-utils
 ```js
 import { mount } from '@vue/test-utils'
 ```
+
+## Test Router
+
+
+## Testing Vuex
+https://test-utils.vuejs.org/guide/advanced/vuex.html
+
+## Mock API
