@@ -12,9 +12,18 @@ global state: Affects multiple component
 
 
 ## Install
-```
+```sh
 npm i vuex
 ```
+
+## Use
+Vuex is a plugin. Plugins are applied by calling app.use().
+In your Vue applications, usually in main.js, you install Vuex like this:
+```js
+const app = createApp(App)
+app.use(store)
+```
+
 
 ## mutations
 Function used to update data in store
