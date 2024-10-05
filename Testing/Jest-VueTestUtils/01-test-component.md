@@ -31,3 +31,11 @@ await wrapper.get('[data-test="form"]').trigger("submit");
 
 expect(wrapper.findAll('[data-test="todo"]')).toHaveLength(2);
 ```
+
+Find element
+```js
+// get will throw error when element doest not exist
+const profileLink = wrapper.get("#profile");
+// expect element does not exist.
+expect(wrapper.find('#profile').exists()).toBeTruthy();
+```

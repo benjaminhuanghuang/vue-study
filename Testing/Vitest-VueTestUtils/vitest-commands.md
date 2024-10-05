@@ -17,4 +17,6 @@
 ```sh
 npm run test:unit
 
+
+vitest -environment json -root src/
 ```
