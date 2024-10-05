@@ -1,3 +1,4 @@
+<!-- Component testing with Vitest by Maya Shavin: Vue.js Nation 2023 -->
 <template lang="">
     <div>
     <div>
