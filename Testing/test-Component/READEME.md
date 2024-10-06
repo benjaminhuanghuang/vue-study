@@ -6,7 +6,7 @@ in other words, you need to mount/render it
 Vue will create some DOM element, Jest run the tests in jsdom environment. 
 
 
-
+1. Test component is rendered
 ```js
 import { shallowMount } from '@vue/test-utils'
 
