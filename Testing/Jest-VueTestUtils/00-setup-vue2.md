@@ -16,6 +16,12 @@ For typescript
 ```sh
 npm i -D ts-jest @types/jest
 ```
+
+Use es6 mode in package.json, support "import" syntax in .js file
+```
+"type": 'module'
+```
+
 ## Config
 
 Config jest by adding a jest.config.js file in the root of your project or by adding a jest section in your package.json.

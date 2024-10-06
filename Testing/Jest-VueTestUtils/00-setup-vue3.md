@@ -18,6 +18,10 @@ For typescript
 npm i -D ts-jest @types/jest
 ```
 
+Use es6 mode in package.json, support "import" syntax in .js file
+```
+"type": 'module'
+```
 ## Config Jest
 Config jest by adding a jest.config.js file in the root of your project or by adding a jest section in your package.json.
 ```js
@@ -35,6 +39,8 @@ transform: {
 
 ## Config babel
 babel.config.cjs
+```
+```
 
 ## Reference
 - Integrating Jest Testing into an Existing Vue 3 Project with ViteJs
