@@ -8,9 +8,10 @@ import { createRequire } from "module";
 import esbuild from "esbuild";
 
 const args = minimist(process.argv.slice(2));
-const __filename = fileURLToPath(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);  // 'file:///C:/path/to/file.txt' -> 'C:/path/to/file.txt'
 // node esm module does not have __dirname
 const __dirname = dirname(__filename);
+// node esm module does not have require
 const require = createRequire(import.meta.url);
 
 // console.log(args);
