@@ -6,6 +6,7 @@ describe('Item.vue', () => {
     const item = {
       url: 10
     }
+    debugger
     const wrapper = shallowMount(Item, {
       propsData: { item }
     })
