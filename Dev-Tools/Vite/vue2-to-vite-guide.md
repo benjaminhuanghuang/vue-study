@@ -65,8 +65,6 @@ export default defineConfig({
 ```
 
 
-
-
 ## Troubleshooting
 - Remove the webpack related config, like postcss, babel, eslint. Vite supported by default or use different config
 - Vue version >= 2.7   can use ^2.6.2 in package.json
@@ -74,4 +72,4 @@ export default defineConfig({
 - Config vite.config.ts to support import file without extension name
 - Process html template variable
 - Change process.env to import.meta
-- Don't support commonjs module like "module.exports={}"
+- Don't support commonjs module like "module.exports={}". Can use "vite-plugin-commonjs" to support commonjs
