@@ -1,6 +1,6 @@
-
-# 全网最详细Vue3源码解析！
-https://www.bilibili.com/video/BV1td4y1r76e/?spm_id_from=333.337.search-card.all.click&vd_source=b7025abbc1efd8b7631e43fa506ade3a
+- 全网最详细Vue3源码解析！
+yarn + rollup
+https://www.bilibili.com/video/BV1td4y1r76e
 
 
 ## setup
@@ -24,3 +24,9 @@ add script into the package.json
 ```
 
 Add buildOptions in package.json
+
+Write scripts/build.js
+
+Create rollup.config.js
+
+

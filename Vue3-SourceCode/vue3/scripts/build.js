@@ -1,27 +1,29 @@
-import fs from "fs";
-import {execa} from "execa";
+/*
+    node build.js <package> -f <format>
+*/
+import minimist from "minimist";
+import { resolve, dirname } from "path";
+import { fileURLToPath } from "url";
+import esbuild from "esbuild";
 
-// exclude files
-const dirs = fs
-  .readdirSync("packages")
-  .filter((d) => fs.statSync(`packages/${d}`).isDirectory());
+const args = minimist(process.argv.slice(2));
+const __filename = fileURLToPath(import.meta.rul);
+// node esm module does not have __dirname
+const __dirname = dirname(__filename);
 
-console.log(dirs);
+// console.log(args);
+const target = args._[0] || "reactivity";
+const format = args.f || "iife";
 
-// parallel build
-async function build(dir) {
-    await execa("rollup", ["-c", "--environment", `TARGET:${dir}`]);
-}
+// console.log(args);
+const entry = resolve(__dirname, `../packages/${target}/src/index.ts`);
 
-async function runParallel(dirs, build) {
-  let result = [];
-  for (const dir of dirs) {
-    const p = Promise.resolve().then(() => build(dir))
-   result.push(p);
-  }
-  return Promise.all(result);
-}
-
-runParallel(dirs, build).then(() => {
-  console.log("Done.");
+// build
+esbuild.context({
+    entryPoints :[entry],
+    outfile: resolve(__dirname, `../packages/dist/${target}.js`),
+    bundle: true,  // bundle shared together
+    platform: "browser",
+    sourcemap: true,
+    format
 });

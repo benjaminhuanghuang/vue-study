@@ -1,23 +1,16 @@
 {
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "name": "vue3",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "type": "module",
+  "packageManager": "pnpm@9.12.0",
   "scripts": {
-    "build": "node scripts/build.js"
+    "build": "node scripts/build.js reactivity -f esm"
   },
   "devDependencies": {
-    "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^15.3.0",
-    "execa": "^9.4.0",
-    "rollup": "^4.24.0",
-    "rollup-plugin-typescript2": "^0.36.0",
+    "esbuild": "^0.24.0",
+    "minimist": "^1.2.8",
     "typescript": "^5.6.2"
-  },
-  "packageManager": "yarn@4.1.1"
+  }
 }
