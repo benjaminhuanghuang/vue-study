@@ -14,9 +14,13 @@ Vue will create some DOM element, Jest run the tests in jsdom environment.
 
 - Test component methods
 - Wait for the DOM to update
+- Wait promises
 - To test a function is called, make sure resource like timer is removed.
+- Test functions are called in lifecycle 
+- Mock HTTP request 
 
-- Test events
+
+- Test native DOM events and Vue custom events.
 
 
 ## Sample 
@@ -34,9 +38,6 @@ describe('Item.vue', () => {
     // Find first element
     const a = wrapper.find('a')
 
-    // check existence
-    expect(wrapper.finAll(SubComponent)).toHaveLength(data.length);
-    
     // Test rendered text
     expect(a.text()).toBe(item.title)
     
@@ -74,6 +75,40 @@ describe('Item.vue', () => {
     wrapper.vm.start()
     wrapper.vm.finish()
     expect(window.clearInterval).toHaveBeenCalledWith(123)
+  })
+
+  test("Test the sub component", async () => {
+    const Items = wrapper.findAllComponents(Item);  // Find sub component
+    expect(Items).toHaveLength(items.length);
+    // Check props on the sub component
+    Items.forEach((itemWrapper, i) => {
+      expect(itemWrapper.props().item).toEqual(items[i]);
+    });
+  });
+
+  Test("Make sure function is called in the lifecycle", () => {
+    const $bar = {
+        start: jest.fn(),
+    };
+    shallowMount(ItemList, ...);
+    expect($bar.start).toHaveBeenCalledTimes(1);
+  });
+
+  Test("Mock HTTP request", () => {
+    jest.mock("../../api/api.js");
+
+  });
+
+
+ test('awaits promises', async () => {
+    let hasResolved = false
+    Promise.resolve().then(() => {
+      hasResolved = true
+    })
+    // Waits until all pending promise callbacks have run. If
+    // you remove this line the test will fail, because the code
+    await flushPromises()
+    expect(hasResolved).toBe(true)
   })
 });
 ```

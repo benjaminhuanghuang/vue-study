@@ -3,11 +3,12 @@ import ItemList from "../ItemList.vue";
 import Item from "../../components/Item.vue";
 import flushPromises from "flush-promises";
 import { fetchListData } from "../../api/api";
-
+// when a module imports src/api/api.js, Jest will use 
+// api/__mocks__/api.js file
 jest.mock("../../api/api.js");
 
 describe("ItemList.vue", () => {
-  test("renders an Item with data for each item in window.items", async () => {
+  test("renders an Item with data for each item", async () => {
     expect.assertions(4); //expect 4 assertions to be called
 
     const mockBar = {
@@ -72,7 +73,7 @@ describe("ItemList.vue", () => {
       start: () => {},
       fail: jest.fn(),
     };
-    fetchListData.mockImplementationOnce(() => Promise.reject());
+    fetchListData.mockImplementationOnce(() => Promise.reject());  // Failed promise 
     shallowMount(ItemList, {
       global: {
         mocks: {
