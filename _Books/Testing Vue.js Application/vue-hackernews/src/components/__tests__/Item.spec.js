@@ -10,7 +10,7 @@ describe('Item.vue', () => {
     const wrapper = shallowMount(Item, {
       propsData: { item }
     })
-    expect(wrapper.text()).toContain(item.url)
+    expect(wrapper.text()).toContain(item.url.toString())
   })
 
   test('renders item.score', () => {
@@ -20,7 +20,7 @@ describe('Item.vue', () => {
     const wrapper = shallowMount(Item, {
       propsData: { item }
     })
-    expect(wrapper.text()).toContain(item.score)
+    expect(wrapper.text()).toContain(item.score.toString())
   })
 
   test('renders item.by', () => {

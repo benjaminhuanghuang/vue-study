@@ -1,18 +1,15 @@
 <template>
-  <div
-    class="progress"
-    :class="{
+  <div class="progress" :class="{
     hidden: hidden,
     error: error
-  }"
-  :style="{
+  }" :style="{
     'width': `${percent}%`
-  }"/>
+  }" />
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       hidden: true,
       percent: 0,
@@ -20,7 +17,7 @@ export default {
     }
   },
   methods: {
-    start () {
+    start() {
       this.hidden = false
       this.error = false
       this.percent = 0
@@ -28,12 +25,12 @@ export default {
         this.percent++
       }, 100)
     },
-    finish () {
+    finish() {
       this.percent = 100
       this.hidden = true
       clearInterval(this.timer)
     },
-    fail () {
+    fail() {
       this.error = true
       this.percent = 100
     }
@@ -54,9 +51,11 @@ export default {
   background-color: #ffca2b;
   z-index: 999999;
 }
+
 .hidden {
   opacity: 0;
 }
+
 .error {
   background-color: #ff0000;
 }
