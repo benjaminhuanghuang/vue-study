@@ -19,3 +19,7 @@
 - Test the interactive:
     - native DOM events 
     - Vue custom events.
+
+
+## Common cases
+    
