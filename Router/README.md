@@ -1,5 +1,9 @@
 # Vue Router
 
+routing means using the path of a URL to serve content.
+
+
+
 ```sh
 npm i vue-router 
 
