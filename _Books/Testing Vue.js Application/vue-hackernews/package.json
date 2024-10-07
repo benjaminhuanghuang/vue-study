@@ -11,7 +11,8 @@
     "test:unit:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand"
   },
   "dependencies": {
-    "vue": "^3.5.10"
+    "vue": "^3.5.10",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.25.7",
