@@ -1,10 +1,6 @@
 
 # Vuex best practice
 
-
-- Vuex is a state-management library that solves the problem of coordinating state between components.
-- Vuex uses a one-way data flow pattern to make the flow of data easy to reason about.
-
 The Vuex store is built from 
 - state: The state contains the data used to render the application
 - mutations: Mutations are used to change the store state.
