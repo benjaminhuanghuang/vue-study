@@ -35,6 +35,9 @@ describe('Item.vue', () => {
     const wrapper = shallowMount(Item, {
       propsData: { item }   // Pass props
     })
+
+    // Test component exiting
+    expect(wrapper.find(Modal).exists()).toBeFalsy()
     // Find first element
     const a = wrapper.find('a')
 
