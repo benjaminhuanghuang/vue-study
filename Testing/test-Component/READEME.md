@@ -1,26 +1,7 @@
 # Test vue component
 Vue component is just an object (or function) with a render function and some properties.
-To test that the component behaves correctly, you need to switch it on and start the render process, 
-in other words, you need to mount/render it
 
-Vue will create some DOM element, Jest run the tests in jsdom environment. 
-
-## What to test
-- Test rendered text
-- Test sub-component existence
-- Test DOM attribute
-- Test Props
-- Test CSS and inline style
-
-- Test component methods
-- Wait for the DOM to update
-- Wait promises
-- To test a function is called, make sure resource like timer is removed.
-- Test functions are called in lifecycle 
-- Mock HTTP request 
-
-
-- Test native DOM events and Vue custom events.
+To test that the component behaves correctly, you need to switch it on and start the render process, in other words, you need to mount/render it. Vue will create some DOM element, Jest run the tests in jsdom environment. 
 
 
 ## Sample 
