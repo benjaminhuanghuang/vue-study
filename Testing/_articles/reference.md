@@ -5,13 +5,6 @@
 
 - https://github.com/alexjoverm/vue-testing-series/
 
-## Book
-- Testing Vue.js Applications - Edd Yerburgh - 2018.12
-    - https://github.com/eddyerburgh/vue-hackernews
-    
-
-
-
 
 ## Code
 - https://github.com/lmiller1990/vue-testing-handbook
