@@ -1,6 +1,8 @@
 # Vue 3 + TypeScript + Vite
 
-setup
+MAKE SURE node.js > 18.
+
+Setup
 ```sh
 npm create vite@latest
 

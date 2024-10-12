@@ -1,6 +1,7 @@
-import { useMovies } from "./useMovies";
 import { createApp } from "vue";
 import { flushPromises } from "@vue/test-utils";
+//
+import { useMovies } from "./useMovies";
 
 // 1. Mock global.fetch with vi.fn()
 global.fetch = vi.fn();

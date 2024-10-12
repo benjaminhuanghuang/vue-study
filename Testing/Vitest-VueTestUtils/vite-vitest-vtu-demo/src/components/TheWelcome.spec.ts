@@ -1,6 +1,6 @@
 import { mount } from "@vue/test-utils";
   import { describe, expect, it, vi } from "vitest";
-  import TheWelcomeVue from "../TheWelcome.vue";
+  import TheWelcomeVue from "./TheWelcome.vue";
 
   describe('The Welcome', () => {
     it('Mounts properly', async () => {

@@ -1,8 +1,7 @@
 
-import { describe, it, expect, test, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
-import router from '@/router'
-import TheHeader from '../Header.vue'
+import router from '../router'
+import TheHeader from './Header.vue'
 
 function mountTheHeader() {
   const wrapper = mount(TheHeader, {

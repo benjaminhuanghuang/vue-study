@@ -1,7 +1,7 @@
 
 import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
-import TheFormVue from '../TheForm.vue';
+import TheFormVue from './TheForm.vue';
 
 function mountTheForm () {
   const wrapper = mount(TheFormVue, { props: {} })
