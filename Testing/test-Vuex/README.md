@@ -7,3 +7,7 @@ All the store parts are JavaScript functions, so the tests are relatively simple
 
 
 ## What needs to be tested
+
+
+## Reference
+https://test-utils.vuejs.org/guide/advanced/vuex.html

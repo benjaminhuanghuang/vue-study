@@ -1,5 +1,5 @@
 # Vite 
 
 ```sh
-npm create vue@latest
+npm create vite@latest
 ```

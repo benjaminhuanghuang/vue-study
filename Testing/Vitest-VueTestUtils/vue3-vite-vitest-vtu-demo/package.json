@@ -16,8 +16,6 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",
-    "@vue/runtime-core": "^3.5.12",
-    "@vue/runtime-dom": "^3.5.12",
     "@vue/test-utils": "^2.4.6",
     "jsdom": "^25.0.1",
     "typescript": "^5.5.3",
