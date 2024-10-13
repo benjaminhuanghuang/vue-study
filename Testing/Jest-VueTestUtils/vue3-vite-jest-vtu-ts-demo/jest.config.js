@@ -14,16 +14,15 @@ export default {
   },
   // Optionally, configure which files to ignore
   transformIgnorePatterns: ["/node_modules/"],
-  moduleFileExtensions: [
-      "js",
-      "ts",
-      "json",
-      // tell Jest to handle `*.vue` files
-      "vue"
-    ],
+  // tell Jest to handle following files
+  moduleFileExtensions: ["js", "ts", "json", "vue"],
 
   // Specify where to look for test files
-  testMatch: ["**/tests/**/*.spec.[jt]s?(x)", "**/__tests__/*.[jt]s?(x)", "**/*.spec.[jt]s?(x)"],
+  testMatch: [
+    "**/tests/**/*.spec.[jt]s?(x)",
+    "**/__tests__/*.[jt]s?(x)",
+    "**/*.spec.[jt]s?(x)",
+  ],
 
   // Optional, you can add moduleNameMapper to handle imports of static assets
   moduleNameMapper: {
