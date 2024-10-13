@@ -3,6 +3,7 @@
  * https://jestjs.io/docs/configuration
  */
 export default {
+  preset: "ts-jest",
   // Jest can simulate the DOM using jsdom
   testEnvironment: "jsdom",
   // Tells Jest to process .vue files using vue-jest
@@ -13,6 +14,13 @@ export default {
   },
   // Optionally, configure which files to ignore
   transformIgnorePatterns: ["/node_modules/"],
+  moduleFileExtensions: [
+      "js",
+      "ts",
+      "json",
+      // tell Jest to handle `*.vue` files
+      "vue"
+    ],
 
   // Specify where to look for test files
   testMatch: ["**/tests/**/*.spec.[jt]s?(x)", "**/__tests__/*.[jt]s?(x)", "**/*.spec.[jt]s?(x)"],

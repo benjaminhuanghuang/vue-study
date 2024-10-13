@@ -2,7 +2,7 @@ import { shallowMount } from "@vue/test-utils";
 import TodoApp from "./TodoApp.vue";
 
 describe("TodoApp.vue", () => {
-  let wrapper;
+  let wrapper: any;
 
   beforeEach(() => {
     wrapper = shallowMount(TodoApp);
