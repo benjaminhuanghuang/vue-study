@@ -1,4 +1,4 @@
-import SimpleComponent from "@/components/SimpleComponent.vue";
+import SimpleComponent from "./SimpleComponent.vue";
 import { mount } from "@vue/test-utils";
 
 describe("SimpleComponent", () => {

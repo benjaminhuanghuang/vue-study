@@ -1,5 +1,5 @@
 import { shallowMount } from "@vue/test-utils";
-import TodoApp from "@/components/TodoApp.vue";
+import TodoApp from "./TodoApp.vue";
 
 describe("TodoApp.vue", () => {
   let wrapper;

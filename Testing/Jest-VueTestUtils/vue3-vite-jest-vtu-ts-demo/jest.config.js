@@ -9,13 +9,13 @@ export default {
   transform: {
     "^.+\\.vue$": "@vue/vue3-jest",
     "^.+\\js$": "babel-jest",
-    //"^.+\\.ts$": "ts-jest", // If you're using TypeScript
+    "^.+\\.ts$": "ts-jest", // If you're using TypeScript
   },
   // Optionally, configure which files to ignore
   transformIgnorePatterns: ["/node_modules/"],
 
   // Specify where to look for test files
-  testMatch: ["**/tests/**/*.spec.[jt]s?(x)", "**/__tests__/*.[jt]s?(x)"],
+  testMatch: ["**/tests/**/*.spec.[jt]s?(x)", "**/__tests__/*.[jt]s?(x)", "**/*.spec.[jt]s?(x)"],
 
   // Optional, you can add moduleNameMapper to handle imports of static assets
   moduleNameMapper: {
