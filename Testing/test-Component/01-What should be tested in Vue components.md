@@ -3,10 +3,15 @@
 
 - Test the input: 
     - Props
+    - User action
+    - Store(Vuex, Pinia)
+    - Lifecycle function
 
 - Test the output:
     - Test rendered text, DOM attributes, CSS, inline style
     - Test sub-component existence
+    - Vue Event
+    - Function should be called
 
 - Test the behavior
     - Test component methods

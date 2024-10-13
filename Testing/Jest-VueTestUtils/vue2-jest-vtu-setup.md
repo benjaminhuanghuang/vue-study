@@ -40,7 +40,13 @@ transform: {
 
 ## Config babel
 babel.config.js
-```
+```js
+module.exports = {
+  presets: [
+    ['@babel/preset-env', {targets: {node: 'current'}}],
+    '@babel/preset-typescript',  // if you use typescript
+  ],
+};
 ```
 
 ## Reference

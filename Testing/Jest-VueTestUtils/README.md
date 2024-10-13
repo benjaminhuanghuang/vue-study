@@ -1,4 +1,4 @@
-# Vue test using Jest + Vue Test Utils
+# Vue3 testing using Jest + Vue Test Utils
 
 ## Jest
 Snapshot Testing: Jest can capture the output of components and store them as snapshots. This makes it easy to compare future outputs to ensure components behave as expected.

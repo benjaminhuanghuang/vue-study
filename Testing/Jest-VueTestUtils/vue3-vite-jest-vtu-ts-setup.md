@@ -33,17 +33,28 @@ module.exports = {
   ],
 };
 ```
-
-Modify tsconfig.js
-```js
-"lib": ["DOM", "ES6"],  
-"types": ["jest"],    
+or babel.config.json
+```json
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ],
+    "@babel/preset-typescript"
+  ]
+}
 ```
 
 Use es6 mode in package.json, support "import" syntax in .js file
 ```
 "type": 'module'
 ```
+
 ## Config Jest
 Config jest by adding a jest.config.js file in the root of your project or by adding a jest section in your package.json.
 ```js
@@ -57,21 +68,15 @@ transform: {
 "^.+\\.ts$": "ts-jest", // If you're using TypeScript
 },
 
+testMatch: ["**/tests/**/*.spec.[jt]s?(x)", "**/__tests__/*.[jt]s?(x)", "**/*.spec.[jt]s?(x)"],
 ```
 
 
-## Use @ path
-jsconfig.json
-```
-{
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-  "exclude": ["node_modules", "dist"]
-}
-```
+## Troubleshooting
+
+- Cannot find module './xxxx.vue' or its corresponding type declarations.
+
+
 
 ## Reference
 
@@ -79,3 +84,6 @@ https://jestjs.io/docs/getting-started
 
 - Integrating Jest Testing into an Existing Vue 3 Project with ViteJs
 https://dev.to/integridsolutions/integrating-jest-testing-into-an-existing-vue-3-project-with-vitejs-3m13
+
+- Vue Testing with Vue Test Utils
+https://www.youtube.com/watch?v=QIDhzBg5eWY&t=1361s
