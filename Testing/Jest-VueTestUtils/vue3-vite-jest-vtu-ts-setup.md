@@ -75,15 +75,9 @@ transform: {
 testMatch: ["**/tests/**/*.spec.[jt]s?(x)", "**/__tests__/*.[jt]s?(x)", "**/*.spec.[jt]s?(x)"],
 ```
 
-Add shims-vue.d.ts to src folder
-It serves the purpose of enabling TypeScript to understand and work with .vue files, which are single-file components in Vue.js.
-
 ## Troubleshooting
 
-- Cannot find module './xxxx.vue' or its corresponding type declarations.
-Since TypeScript cannot handle type information for .vue imports.
 
-The *.d.ts file tells TypeScript to treat .vue files as modules that export a Vue component. 
 
 
 ## Reference
