@@ -28,6 +28,7 @@ export default {
   position: relative;
   line-height: 20px;
 }
+
 .item .score {
   color: #f60;
   font-size: 1.1em;
@@ -39,16 +40,19 @@ export default {
   text-align: center;
   margin-top: -10px;
 }
+
 .item .meta,
 .item .host {
   font-size: 0.85em;
   color: #828282;
 }
+
 .item .meta a,
 .item .host a {
   color: #828282;
   text-decoration: underline;
 }
+
 .item .meta a:hover,
 .item .host a:hover {
   color: #f60;

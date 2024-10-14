@@ -1,4 +1,6 @@
-## Setup
+# Cypress
+
+Setup
 ```
   npm i -D cypress 
 ```
