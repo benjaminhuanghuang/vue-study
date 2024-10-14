@@ -17,9 +17,17 @@ jest.config.js
   },
 ```
 
-Vue component, it’s just an object (or function) with a
-render function and some properties.
+Vue component, it’s just an object (or function) with a render function and some properties.
 
+## Folder structure
+src
+  api
+  components
+  views  : top-level component, used with vue router
+
+
+
+##  Vue test API
 ```js
 import Item from '../Item.vue'
 import Vue from 'vue'
@@ -50,6 +58,8 @@ and perform actions on the instance.
 
 ## mount() with shallowMount()
 shallowMount() do not render the entire component tree like mount()
+
+The difference is that shallowMount stubs all the children of a component before it mounts it
 
 
 ## Chrome debugger
