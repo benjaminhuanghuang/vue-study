@@ -1,5 +1,22 @@
-# Vue 3 + Vite
+# Testing Vue.js Application Demo application
+Vue3 + Vite + Vuex + Jest + JS
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Setup
+```sh
+npm create vite
+
+cd vue-hackerNews
+npm i Vuex 
+npm i -D jest jest-environment-jsdom babel-jest @babel/preset-env @vue/vue3-jest
+npm i -D @vue/test-utils
+```
+
+babel.config.json
+
+jest.config.js
+
+Add script
+```json
+    "test:unit": "jest -w"
+```
