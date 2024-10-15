@@ -6,3 +6,17 @@
 3. Vue3 重写了virtual DOM
 4. Vue3 优化了template 编译
 5. Vue3 use proxy
+
+
+
+## Vue3
+change Object.defineProperty() to Proxy
+
+Rewrite Virtual DOM
+
+Fragments
+
+Tree-shaking
+
+Composition API
+
