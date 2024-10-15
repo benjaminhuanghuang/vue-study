@@ -10,9 +10,10 @@ Vuex 3.x works with Vue 2.
 
 In contrast, Pinia works with both Vue 2 and Vue 3.
 
-Finally, Pinia is the recommended state management library for Vue.
+Pinia is the recommended state management library for Vue.
 
 ## Benefit of Pinia
+- Type safe
 - Pinia offers better TypeScript support than Vuex
 - Testing utilities
 - Plugins: extend Pinia features with plugins

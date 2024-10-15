@@ -1,6 +1,7 @@
 # Vue Best Practice
 
 - Vue 3 + TypeScript + Vite 
+- Tailwind + google fount + icon
 - Pinia + Router + Auth + API calling
 - Vitest + @vue/test-utils
 - Playwright
@@ -9,6 +10,33 @@
 MAKE SURE node.js > 18.x
 ```sh
 npm inti vite@latest
+```
+
+## Tailwind + Font + Icon
+```
+npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
+
+npx tailwindcss init -p
+
+# Modify tailwind.config.js
+# Modify postcss.config.js
+# Create ./src/index.css
+# include index.css in main.js
+```
+
+```html
+<link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+/>
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+/>
+
 ```
 
 ## Pinia
