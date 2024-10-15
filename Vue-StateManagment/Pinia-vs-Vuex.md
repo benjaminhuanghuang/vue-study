@@ -12,7 +12,19 @@ In contrast, Pinia works with both Vue 2 and Vue 3.
 
 Finally, Pinia is the recommended state management library for Vue.
 
-
+## Benefit of Pinia
+- Pinia offers better TypeScript support than Vuex
+- Testing utilities
+- Plugins: extend Pinia features with plugins
+- Proper TypeScript support or autocompletion for JS users
+- Server Side Rendering Support
+- Devtools support
+    - A timeline to track actions, mutations
+    - Stores appear in components where they are used
+    T- ime travel and easier debugging
+- Hot module replacement
+    - Modify your stores without reloading your page
+    - Keep any existing state while developing
 
 ## Reference
 https://testdriven.io/blog/vue-pinia-testing/

@@ -1,6 +1,12 @@
 # Unit Testing Vue Apps: Tips, Tricks, and Best Practices
 
-https://www.youtube.com/watch?v=iD_d3jTJxxU&t=328s
+https://www.youtube.com/watch?v=iD_d3jTJxxU
+
+https://github.com/bethqiang/vueconf-2022-demo-app
+
+https://docs.google.com/presentation/d/1qr0JXF78UbXPmp0thK2uqgxRwU0kXzE0zykAPC0rQsE/edit?usp=sharing
+
+
 ## What should be test
 - Inputs: What are things uses can see/do
 - Outputs: What are the results of what the users can do.
@@ -33,6 +39,9 @@ Instead, what should the user see/do? not What sort of state does component hold
 
 
 ## How to write test
+
+
+### Scaffolding
 Write all describe/it blocks based on user behavior
     Use describe blocks for various conditions: When...
     Use it blocks to demonstrate expectations under each condition: It should...
