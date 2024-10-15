@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faHome, faUser } from '@fortawesome/free-solid-svg-icons'; // Import specific icons
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'; // Import brand icons
 
-import './index.css'
+import './tailwind.css'
 import App from './App.vue'
 
 // Add icons to the library

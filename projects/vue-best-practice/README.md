@@ -24,7 +24,7 @@ PostCSS: A tool for transforming CSS with JavaScript
 Autoprefixer is a PostCSS plugin that can be used with Tailwind CSS to automatically 
 adds any necessary vendor prefixes based on the browsers you tell it you need to support.
 
-Modify tailwind.config.js
+Modify tailwind.config.js, using google font
 
 Modify postcss.config.js
 
