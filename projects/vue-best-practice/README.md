@@ -13,7 +13,9 @@ npm inti vite@latest
 ```
 
 ## Tailwind + Font + Icon
-```
+https://v2.tailwindcss.com/docs/guides/vue-3-vite
+
+```sh
 npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
 
 npx tailwindcss init -p
@@ -23,6 +25,12 @@ npx tailwindcss init -p
 # Create ./src/index.css
 # include index.css in main.js
 ```
+PostCSS: A tool for transforming CSS with JavaScript
+Autoprefixer is a PostCSS plugin that can be used with Tailwind CSS to automatically 
+adds any necessary vendor prefixes based on the browsers you tell it you need to support.
+
+
+
 
 ```html
 <link
