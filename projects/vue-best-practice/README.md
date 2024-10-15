@@ -1,7 +1,7 @@
 # Vue Best Practice
 
 - Vue 3 + TypeScript + Vite 
-- Tailwind + google fount + icon
+- Tailwind + Google fount + Font-awesome Icon
 - Pinia + Router + Auth + API calling
 - Vitest + @vue/test-utils
 - Playwright
@@ -12,24 +12,23 @@ MAKE SURE node.js > 18.x
 npm inti vite@latest
 ```
 
-## Tailwind + Font + Icon
+## Tailwind + Google Font + Icon
 https://v2.tailwindcss.com/docs/guides/vue-3-vite
 
 ```sh
 npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
 
 npx tailwindcss init -p
-
-# Modify tailwind.config.js
-# Modify postcss.config.js
-# Create ./src/index.css
-# include index.css in main.js
 ```
 PostCSS: A tool for transforming CSS with JavaScript
 Autoprefixer is a PostCSS plugin that can be used with Tailwind CSS to automatically 
 adds any necessary vendor prefixes based on the browsers you tell it you need to support.
 
+Modify tailwind.config.js
 
+Modify postcss.config.js
+
+Create ./src/index.css, include index.css in main.js
 
 
 ```html
@@ -37,14 +36,12 @@ adds any necessary vendor prefixes based on the browsers you tell it you need to
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
       rel="stylesheet"
 />
-<link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-/>
+```
 
+Setup Font Awesome Icon
+https://docs.fontawesome.com/web/use-with/vue/add-icons
+```sh
+npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons @fortawesome/vue-fontawesome
 ```
 
 ## Pinia
