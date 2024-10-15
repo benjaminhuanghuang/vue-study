@@ -58,6 +58,10 @@ npm i vue-router
 ```
 create src/router/index.js
 
+
+Active link
+
+
 ## Pinia
 
 ```sh

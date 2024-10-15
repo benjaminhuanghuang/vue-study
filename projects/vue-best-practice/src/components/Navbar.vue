@@ -5,15 +5,15 @@
         <div class="flex justify-between h-16">
           <div class="flex">
             <!-- Logo Section -->
-            <router-link to="/" class="flex-shrink-0">
-              <img src="@/assets/logo.png" alt="Logo" class="h-8 w-8">
+            <router-link to="/" class="flex-shrink-0" active-class="font-bold underline"  exact-active-class="font-bold underline">
+              <img src="@/assets/vue.svg" alt="Logo" class="h-8 w-8">
             </router-link>
   
             <!-- Links Section -->
             <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-              <router-link to="/" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</router-link>
-              <router-link to="/about" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</router-link>
-              <router-link to="/contact" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</router-link>
+              <router-link to="/" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" active-class="font-bold underline"  exact-active-class="font-bold underline">Home</router-link>
+              <router-link to="/about" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" active-class="font-bold underline"  exact-active-class="font-bold underline">About</router-link>
+              <router-link to="/contact" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" active-class="font-bold underline"  exact-active-class="font-bold underline">Contact</router-link>
             </div>
           </div>
   
