@@ -12,9 +12,13 @@ MAKE SURE node.js > 18.x
 npm inti vite@latest
 ```
 
+create src/shims-vue.d.ts to tell TS how to handel the .vue file
+
+
 ## Tailwind + Google Font + Icon
 https://v2.tailwindcss.com/docs/guides/vue-3-vite
 
+### Tailwind
 ```sh
 npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
 
@@ -28,31 +32,36 @@ Modify tailwind.config.js, using google font
 
 Modify postcss.config.js
 
-Create ./src/index.css, include index.css in main.js
+Create ./src/tailwind.css, include tailwind.css in main.js
 
-
+### Google Font
+Use Google font
 ```html
 <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
       rel="stylesheet"
 />
 ```
+Add google font to  the fontFamily in tailwind.config.js
 
-Setup Font Awesome Icon
+### Font Awesome Icon
 https://docs.fontawesome.com/web/use-with/vue/add-icons
 ```sh
 npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons @fortawesome/vue-fontawesome
 ```
+use fontawesome in main.ts
+
+
+## Router and Navigation
+```sh
+npm i vue-router
+```
+create src/router/index.js
 
 ## Pinia
 
 ```sh
 npm i pinia 
-```
-
-## Router
-```sh
-npm i vue-router
 ```
 
 ## Vitest + @vue/test-utils 
