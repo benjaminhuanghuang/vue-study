@@ -11,6 +11,13 @@
 
 "test:application": "npm run test:application:vitest"
 
+
+"test": "vitest"    # watch mode
+
+"test": "vitest run"    # run once
+
+"coverage": "vitest run --coverage"
+
 ```
 
 

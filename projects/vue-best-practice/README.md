@@ -6,6 +6,7 @@
 - Playwright
 
 ## Init Project
+MAKE SURE node.js > 18.x
 ```sh
 npm inti vite@latest
 ```
@@ -22,26 +23,28 @@ npm i pinia
 npm i vue-router
 ```
 
-## Setup Vitest
+## Setup Vitest + @vue/test-utils 
 
 ```sh
 npm i vitest @vue/test-utils jsdom -D
 ```
 
-Enable Vitest api globally
-vite.config.ts
+Make Vitest API to be available globally when you run Vitest. 
+https://vitest.dev/config/#globals
 ```ts
+/// vite.config.ts
 /// <reference types="vitest" />
 ...
 export default defineConfig({
   ...
   test: {
     globals: true,
-    environment: 'jsdom'
+    environment: 'jsdom' // or happy-dom, otherwise you will see error "ReferenceError: document is not defined" when you run the test
   },
 });
 ```
-Tell typescript enable Vitest api globally
+
+To get TypeScript working with the vitest api globally, modify tsconfig.app.json
 ```json
 {
   "compilerOptions": {

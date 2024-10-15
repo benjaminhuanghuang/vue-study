@@ -1,45 +1,29 @@
 # Vite + Vitest + Vue Test utils Setup
 
-MAKE SURE node.js > 18.
+## Init project
+MAKE SURE node.js > 18.x
 
-Install dependency
 ```sh
-npm create vite@latest
-
-npm i -D vitest @vue/test-utils
+npm inti vite@latest
+```
+ 
+## Setup Vitest + @vue/test-utils 
+```sh
+npm i vitest @vue/test-utils jsdom -D
 ```
 
-npm Script
-```json
-"test": "vitest"    # watch mode
-
-"test": "vitest run"    # run once
-
-"coverage": "vitest run --coverage"
-```
-
-## Configuration
-Make Vitest API to be available globally when you run vitest. 
-No need to import { describe, it, test, export } from 'vitest'
-https://vitest.dev/config/#globals
-
-Modify vite.config.ts
-```js
+Enable Vitest api globally
+vite.config.ts
+```ts
 /// <reference types="vitest" />
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-
-// https://vitejs.dev/config/
+...
 export default defineConfig({
+  ...
   test: {
     globals: true,
     environment: 'jsdom' // or happy-dom, otherwise you will see error "ReferenceError: document is not defined" when you run the test
   },
-})
-```
-Need jsdom library
-```sh
-npm i jsdom -D # or happy-dom
+});
 ```
 
 To get TypeScript working with the vitest api globally, modify tsconfig.app.json
@@ -47,9 +31,13 @@ To get TypeScript working with the vitest api globally, modify tsconfig.app.json
 {
   "compilerOptions": {
     "types": ["vitest/globals"]
-  }
+  },
 }
 ```
+
+Install Extension Vitest and Vitest Runner
+Run test using the link "Run(Vitest) | Debug(Vitest)" on the test
+
 
 ## Troubleshooting
 "ReferenceError: document is not defined" when you run the test
