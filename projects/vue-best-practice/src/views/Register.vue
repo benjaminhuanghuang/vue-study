@@ -1,43 +1,44 @@
 <template>
     <form @submit.prevent="handleSubmit">
-        <h3>Sign Up</h3>
-        <div>
-            <label for="email">First Name</label>
-            <input type="text" id="firstName" />
-        </div>
-        <div>
-            <label for="email">Last Name</label>
-            <input type="text" id="lastName" />
-        </div>
+        <h3>Create an Account</h3>
         <div>
             <label for="email">Email</label>
-            <input type="email" id="email" />
+            <input type="email" id="email" v-model="email"/>
         </div>
         <div>
             <label for="password">Password</label>
-            <input type="password" id="password" />
+            <input type="password" id="password" v-model="password"/>
         </div>
-        <div>
-            <label for="confirmPassword">Confirm Password</label>
-            <input type="password" id="confirmPassword" />
-        </div>
-        <button>Sign Up</button>
+        <button @click="register">Sign Up</button>
+        <button @click="signInWithGoogle">Sign In with google</button>
     </form>
 </template>
 
 <script setup lang='ts'>
+// https://www.youtube.com/watch?v=xceR7mrrXsA
 import { ref } from 'vue';
+import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
+import { useRouter } from 'vue-router';
 
-const firstName = ref('');
-const lastName = ref('');
+
 const email = ref('');
 const password = ref('');
-const confirmPassword = ref('');
+const router = useRouter();
 
-function handleSubmit(event: Event) {
-   
-    console.log('Form submitted');
-}   
+function register() {
+   createUserWithEmailAndPassword(getAuth(), email.value, password.value)
+    .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        router.push('/product')
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+    });
+}
+
 </script>
 
 <style></style>
