@@ -26,10 +26,9 @@ const router = useRouter();
 
 function signIn() {
     const auth = getAuth();
-    signInWithEmailAndPassword(getAuth(), email.value, password.value)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            console.log(user);
+    signInWithEmailAndPassword(auth, email.value, password.value)
+        .then((data) => {
+            console.log(auth.currentUser);
             router.push('/protected')
         })
         .catch((error: any) => { 

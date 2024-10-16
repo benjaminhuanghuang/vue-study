@@ -65,7 +65,7 @@ const isLoggedIn = ref(false);
 function handleSignOut() {
   signOut(auth)
     .then(() => {
-      router.push('/login');
+      router.push('/');
     })
     .catch((error) => {
       console.log('Sign out error', error);
@@ -75,7 +75,7 @@ function handleSignOut() {
 let auth;
 onMounted(() => {
   auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
+  onAuthStateChanged(auth, (user) => { 
     isLoggedIn.value = !!user;
   });
 });

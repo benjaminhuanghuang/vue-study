@@ -24,11 +24,11 @@ const password = ref('');
 const router = useRouter();
 
 function register() {
-    createUserWithEmailAndPassword(getAuth(), email.value, password.value)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            console.log(user);
-            router.push('/product')
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email.value, password.value)
+        .then((data) => {
+            console.log(auth.currentUser);
+            router.push('/protected')
         })
         .catch((error) => {
             const errorCode = error.code;

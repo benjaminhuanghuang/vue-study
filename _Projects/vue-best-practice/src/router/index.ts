@@ -38,7 +38,7 @@ const routes = [
 ];
 
 // Create the router instance
-const router = createRouter({
+const router = createRouter({ 
   history: createWebHistory("/"), // This creates an HTML5 history mode router
   routes,
 });
@@ -49,13 +49,14 @@ const getCurrentUser = () => {
       getAuth(),
       (user) => {
         removeListener();
-        resolve(user);
+        resolve(user); 
       },
       reject
     );
   });
 };
 
+// Global navigation guard, applied to all routes
 router.beforeEach(async (to, from, next) => {
   if (to.matched.some((record) => record.meta.requireAuth)) {
     if (await getCurrentUser()) {
