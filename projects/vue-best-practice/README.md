@@ -2,7 +2,8 @@
 
 - Vue 3 + TypeScript + Vite 
 - Tailwind + Google fount + Font-awesome Icon
-- Pinia + Router + Auth + API calling
+- Axios API call
+- Pinia + Router + Auth
 - Vitest + @vue/test-utils
 - Playwright
 
@@ -61,6 +62,7 @@ create src/router/index.js
 
 Active link
 
+## Axios
 
 ## Pinia
 

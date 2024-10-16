@@ -1,4 +1,3 @@
-<!-- src/components/Navbar.vue -->
 <template>
     <nav class="bg-gray-800 text-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,6 +13,8 @@
               <router-link to="/" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" active-class="font-bold underline"  exact-active-class="font-bold underline">Home</router-link>
               <router-link to="/about" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" active-class="font-bold underline"  exact-active-class="font-bold underline">About</router-link>
               <router-link to="/contact" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" active-class="font-bold underline"  exact-active-class="font-bold underline">Contact</router-link>
+              <router-link to="/login" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" active-class="font-bold underline"  exact-active-class="font-bold underline">Login</router-link>
+              <router-link to="/register" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" active-class="font-bold underline"  exact-active-class="font-bold underline">Register</router-link>
             </div>
           </div>
   
