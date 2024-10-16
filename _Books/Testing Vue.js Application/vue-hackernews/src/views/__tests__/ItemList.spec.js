@@ -27,6 +27,7 @@ describe("ItemList.vue", () => {
       },
     });
     await flushPromises();
+    // test the sub-components 
     const Items = wrapper.findAllComponents(Item);
     expect(Items).toHaveLength(items.length);
     Items.forEach((itemWrapper, i) => {
