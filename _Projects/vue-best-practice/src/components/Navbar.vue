@@ -17,12 +17,9 @@
             <router-link to="/about"
               class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               active-class="font-bold underline" exact-active-class="font-bold underline">About</router-link>
-            <router-link to="/contact"
+            <router-link to="/signIn"
               class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              active-class="font-bold underline" exact-active-class="font-bold underline">Contact</router-link>
-            <router-link to="/login"
-              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              active-class="font-bold underline" exact-active-class="font-bold underline">Login</router-link>
+              active-class="font-bold underline" exact-active-class="font-bold underline">Sign In</router-link>
             <router-link to="/register"
               class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               active-class="font-bold underline" exact-active-class="font-bold underline">Register</router-link>
@@ -52,8 +49,8 @@
           class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</router-link>
         <router-link to="/about"
           class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</router-link>
-        <router-link to="/contact"
-          class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact</router-link>
+        <router-link to="/register"
+          class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</router-link>
       </div>
     </div>
   </nav>
@@ -61,7 +58,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { getAut, onAuthStateChanged, signOut } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import router from '../router';
 const isLoggedIn = ref(false);
 
@@ -85,5 +82,5 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* You can add additional scoped styles here */
+
 </style>

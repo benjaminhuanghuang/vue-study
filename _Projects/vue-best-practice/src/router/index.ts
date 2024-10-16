@@ -3,7 +3,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 //
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
-import Login from "../views/Login.vue";
+import SignIn from "../views/SignIn.vue";
 import Register from "../views/Register.vue";
 
 const routes = [
@@ -13,9 +13,9 @@ const routes = [
     component: Home,
   },
   {
-    path: "/login",
-    name: "Login",
-    component: Login,
+    path: "/signIn",
+    name: "SignIn",
+    component: SignIn,
   },
   {
     path: "/register",
