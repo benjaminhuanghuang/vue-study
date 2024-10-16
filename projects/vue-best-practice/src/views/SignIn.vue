@@ -25,13 +25,14 @@ const errMsg = ref('');
 const router = useRouter();
 
 function signIn() {
-    createUserWithEmailAndPassword(getAuth(), email.value, password.value)
+    const auth = getAuth();
+    signInWithEmailAndPassword(getAuth(), email.value, password.value)
         .then((userCredential) => {
             const user = userCredential.user;
             console.log(user);
-            router.push('/product')
+            router.push('/protected')
         })
-        .catch((error: any) => {
+        .catch((error: any) => { 
             errMsg.value = error.code;
         });
 }

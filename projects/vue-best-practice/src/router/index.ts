@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 //
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
-import { getAuth } from "firebase/auth";
 
 const routes = [
   {
@@ -45,21 +45,23 @@ const router = createRouter({
 
 const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
-    const removeListener = getAuth().onAuthStateChanged((user) => {
+    const removeListener = onAuthStateChanged(
       getAuth(),
-      (user)=> {
-        removeListener(),
+      (user) => {
+        removeListener();
         resolve(user);
       },
-     reject);
+      reject
+    );
   });
 };
- 
+
 router.beforeEach(async (to, from, next) => {
   if (to.matched.some((record) => record.meta.requireAuth)) {
     if (await getCurrentUser()) {
       next();
     } else {
+      alert("You must be logged in to access this page");
       next("/");
     }
   } else {
