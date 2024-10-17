@@ -15,7 +15,7 @@
 
 <script setup lang='ts'>
 import { ref } from 'vue';
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useRouter } from 'vue-router';
 
 
@@ -37,7 +37,14 @@ function signIn() {
 }
 function signInWithGoogle() {
     const provider = new GoogleAuthProvider();
-
+    signInWithPopup(getAuth(), provider)
+        .then((result) => {
+            console.log(result);
+            router.push('/protected')
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 }
 </script>
 

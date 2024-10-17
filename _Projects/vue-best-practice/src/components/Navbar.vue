@@ -17,6 +17,9 @@
             <router-link to="/about"
               class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               active-class="font-bold underline" exact-active-class="font-bold underline">About</router-link>
+            <router-link to="/protected"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              active-class="font-bold underline" exact-active-class="font-bold underline">Protected</router-link>
             <router-link to="/signIn"
               class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               active-class="font-bold underline" exact-active-class="font-bold underline">Sign In</router-link>
@@ -75,12 +78,10 @@ function handleSignOut() {
 let auth;
 onMounted(() => {
   auth = getAuth();
-  onAuthStateChanged(auth, (user) => { 
+  onAuthStateChanged(auth, (user) => {
     isLoggedIn.value = !!user;
   });
 });
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

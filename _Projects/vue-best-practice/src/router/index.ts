@@ -43,6 +43,7 @@ const router = createRouter({
   routes,
 });
 
+// Wait for the current user to be loaded. Used when the app is refreshed
 const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const removeListener = onAuthStateChanged(
@@ -59,7 +60,9 @@ const getCurrentUser = () => {
 // Global navigation guard, applied to all routes
 router.beforeEach(async (to, from, next) => {
   if (to.matched.some((record) => record.meta.requireAuth)) {
-    if (await getCurrentUser()) {
+    // Don't call getAuth().currentUser here. Firebase is not guaranteed to be loaded
+    // If use refresh the page, the user will be null and the user will be redirected to the home page
+    if (await getCurrentUser()) {  
       next();
     } else {
       alert("You must be logged in to access this page");
