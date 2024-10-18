@@ -1,5 +1,5 @@
 # Testing Vue.js Application Demo application
-Vue3 + Vite + Vuex + Jest + JS
+Vue3 + Composition API + Vite + Vuex + Jest + JS
 
 
 ## Setup

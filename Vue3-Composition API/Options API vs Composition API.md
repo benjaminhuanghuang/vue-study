@@ -73,3 +73,4 @@ Ideal for small to medium-sized components	    Ideal for large or complex compon
 Less flexible when dealing with reusable logic	Better for reusing logic via composables
 Best for simpler applications or components	    Best for complex apps with shared logic
 
+## 【Vue面试专题】Composition API和Options API有何不同？
