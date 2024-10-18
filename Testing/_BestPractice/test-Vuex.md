@@ -23,6 +23,28 @@ const app = createApp(App)
 app.use(store)
 ```
 
+
+## Create a factory method for test
+```js
+import merge from 'lodash/merge';
+
+  function createStore (overrides) {
+    const defaultStoreConfig = {
+      state: {
+        comments: {
+          a1: {
+            kids: []
+          }
+        }
+      }
+    }
+    return new Vuex.Store(
+      merge(defaultStoreConfig, overrides)
+    )
+  }
+
+```
+
 ## integration test (Component + store)
 
 Vue Test Utils provide the global.plugins mounting option to apply the Vuex
