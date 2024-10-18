@@ -14,10 +14,13 @@
   </li>
 </template>
 
-<script>
-export default {
-  props: ['item']
-}
+<script setup>
+const props = defineProps({
+  item: {
+    type: Object,
+    required: true,
+  }
+});
 </script>
 
 <style scoped>
