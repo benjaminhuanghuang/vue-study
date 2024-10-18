@@ -1,5 +1,9 @@
+# Form testing
+
+## What should be tested in Vue From
 
 
+## Fill the from and check the payload of API call
 
 ```js
 test('sends post request with email on submit', () => {
