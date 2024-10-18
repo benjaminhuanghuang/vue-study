@@ -3,8 +3,19 @@
 ## What should be tested in Vue From
 
 
-## Fill the from and check the payload of API call
+## Find element and submit 
+```js
+expect(wrapper.findAll('[data-test="todo"]')).toHaveLength(1);
 
+await wrapper.get('[data-test="new-todo"]').setValue("new task");
+await wrapper.get('[data-test="form"]').trigger("submit");
+
+// check the submit result
+expect(wrapper.findAll('[data-test="todo"]')).toHaveLength(2);
+```
+
+
+## Fill the from and check the payload of API call
 ```js
 test('sends post request with email on submit', () => {
     const axios = {

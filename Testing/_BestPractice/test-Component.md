@@ -25,13 +25,7 @@ A component contract defines how the interacts with the rest of the application.
     - sub-component existence, Props to sub-component
   - Emitted events
   - Calls to external functions
-
-
-- Test the output:
-    - Test rendered text, DOM attributes, CSS, inline style
-    - Test sub-component existence
-    - Vue Event
-    - Function should be called
+  - Error handling
 
 ## The async behavior
   - Test component methods
@@ -52,41 +46,36 @@ describe('Item.vue', () => {
     const item = {
       url: 10
     }
+    // Pass props
     const wrapper = shallowMount(Item, {
-      propsData: { item }   // Pass props
+      propsData: { item }   
     })
 
-    // Test component exiting
-    expect(wrapper.find(Modal).exists()).toBeFalsy()
-    // Find first element
-    const a = wrapper.find('a')
-    // Test rendered text
-    expect(a.text()).toBe(item.title)
-    
-    // Test attributes
-    expect(a.attributes().href).toBe(item.url)
-    // Test CSS
-    expect(wrapper.classes()).toContain('hidden')
-    expect(wrapper.classes()).not.toContain('hidden')
+    // Verify the text in component
+    expect(wrapper.text()).toMatch(msg); 
+    expect(wrapper.text()).toContain("Hello Jest");      
     // Test inline style
     expect(wrapper.element.style.width).toBe('0%')   
 
+    // Test CSS
+    expect(wrapper.classes()).toContain('hidden')
+    expect(wrapper.classes()).not.toContain('hidden')
+    expect(wrapper.get('[data-test="todo"]').classes()).toContain("completed");
     
-    // Wait for the DOM to update
-    jest.advanceTimersByTime(100) // Fast-forward time by 100 milliseconds
-    await wrapper.vm.$nextTick(); // Wait for the DOM to update!
-    expect(wrapper.element.style.width).toBe('1%')
+    // Verify the sub-elements
+    const a = wrapper.find('a')
+    // Test rendered text
+    expect(a.text()).toBe(item.title)
+    // Test attributes
+    expect(a.attributes().href).toBe(item.url)
+    
+    // Test component exiting
+    expect(wrapper.find(Modal).exists()).toBeFalsy()
+    
+    // Element existed
+    expect(wrapper.findAll('[data-test="todo"]')).toHaveLength(1);
   })
 
-  test('clears timer when finish is called', () => {
-    // Make sure a function is called
-    jest.spyOn(window, 'clearInterval')
-    setInterval.mockReturnValue(123)
-    const wrapper = shallowMount(ProgressBar)
-    wrapper.vm.start()
-    wrapper.vm.finish()
-    expect(window.clearInterval).toHaveBeenCalledWith(123)
-  })
 
   Test("Make sure function is called in the lifecycle", () => {
     const $bar = {
@@ -154,7 +143,17 @@ describe('Counter.vue', () => {
   });
 });
 ```
+## Find the elements
+```js
+// Get element by attribute
+const todo = wrapper.get('[data-test="todo"]');
+// get will throw error when element doest not exist
+const profileLink = wrapper.get("#profile");
 
+// expect element does not exist.
+expect(wrapper.find('#profile').exists()).toBeTruthy();
+
+```
 # Test Vue component
 
 Create component and check the content
@@ -172,31 +171,32 @@ expect(wrapper.text()).toMatch(msg);  //matches a regex
 expect(wrapper.text()).toContain("Hello Jest");  
 expect(todo.text()).toBe("Hello Jest");  
 
-// Element existed
-expect(wrapper.findAll('[data-test="todo"]')).toHaveLength(1);
 
-// Class
-expect(wrapper.get('[data-test="todo"]').classes()).toContain("completed");
 ```
 
-Form 
-```ts
-expect(wrapper.findAll('[data-test="todo"]')).toHaveLength(1);
 
-await wrapper.get('[data-test="new-todo"]').setValue("new task");
-await wrapper.get('[data-test="form"]').trigger("submit");
 
-expect(wrapper.findAll('[data-test="todo"]')).toHaveLength(2);
-```
 
-Find element
+## Test with timer
+Mock clearInterval method
 ```js
-// get will throw error when element doest not exist
-const profileLink = wrapper.get("#profile");
-// expect element does not exist.
-expect(wrapper.find('#profile').exists()).toBeTruthy();
-```
+test('clears timer when finish is called', () => {
+  // Make sure a function is called
+  jest.spyOn(window, 'clearInterval')
+  setInterval.mockReturnValue(123)
+  const wrapper = shallowMount(ProgressBar)
+  wrapper.vm.start()
+  wrapper.vm.finish()
+  expect(window.clearInterval).toHaveBeenCalledWith(123)
 
+
+    // Wait for the DOM to update
+  jest.advanceTimersByTime(100) // Fast-forward time by 100 milliseconds
+  await wrapper.vm.$nextTick(); // Wait for the DOM to update!
+  expect(wrapper.element.style.width).toBe('1%')
+
+})
+```
 
 ## Reference
 https://blog.canopas.com/vue-3-component-testing-with-jest-8b80a8a8946b
