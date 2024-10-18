@@ -4,7 +4,6 @@ import { createLocalVue } from '@vue/test-utils'
 import cloneDeep from 'lodash.clonedeep'
 import flushPromises from 'flush-promises'
 import Router from 'vue-router'
-import { sync } from 'vuex-router-sync'
 import storeConfig from '../store-config'
 import routerConfig from '../../router/router-config'
 import { fetchListData } from '../../api/api'
@@ -16,7 +15,6 @@ localVue.use(Vuex)
 localVue.use(Router)
 const store = new Vuex.Store(storeConfig)
 const router = new Router(routerConfig)
-sync(store, router)
 
 function createItems () {
   const arr = new Array(22)

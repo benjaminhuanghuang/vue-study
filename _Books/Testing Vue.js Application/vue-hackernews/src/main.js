@@ -1,6 +1,4 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import Router from 'vue-router'
+import Vue, { createApp } from 'vue'
 import {
   titleMixin,
   HTTPStatusMixin
@@ -20,25 +18,9 @@ Vue.mixin(HTTPStatusMixin)
 Vue.filter('timeAgo', timeAgo)
 Vue.filter('host', host)
 
-// Expose a factory function that creates a fresh set of store, router,
-// app instances on each call (which is called for each SSR request)
-export function createApp () {
-  Vue.use(Vuex)
-  Vue.use(Router)
+const app = createApp(App);
 
-  const router = new Router(routerConfig)
-  const store = new Vuex.Store(storeConfig)
+app.use(store);  // Register the store with your Vue app
+app.use(router);  // Add the router to your app
 
-  sync(store, router)
-  
-  app.use(router);  // Add the router to your app
-
-
-  const app = new Vue({
-    router,
-    store,
-    render: h => h(App)
-  })
-
-  return { app, router, store }
-}
+app.mount('#app');
