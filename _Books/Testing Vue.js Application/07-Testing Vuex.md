@@ -1,5 +1,17 @@
 # Texting Vuex
 
+## Design
+The store will fetch and store items from the Hacker News API. 
+
+Inside your application, you’ll dispatch a Vuex action that will call the Hacker News API and add the
+returned items to the store. 
+```js
+dispatch('fetchListData', { type: 'top' })
+```
+Then the ItemList component will use the store data to render the items.
+
+
+## 
 Component dispatch a Vuex action that will call the API to get data and
 use mutation to set data to the store. 
 

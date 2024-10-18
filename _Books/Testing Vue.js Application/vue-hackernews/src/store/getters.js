@@ -8,5 +8,4 @@ export default {
   maxPage (state) {
     return Math.ceil(state.items.length / 20)
   }
-
 }

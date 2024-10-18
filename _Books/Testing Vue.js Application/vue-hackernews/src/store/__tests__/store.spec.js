@@ -23,7 +23,7 @@ function createItems () {
   return arr.fill().map((item, i) => ({ id: `a${i}`, name: 'item' }))
 }
 
-describe('store-config', () => {
+describe('store', () => {
   test('calling fetchListData with the type returns top 20 displayItems from displayItems getter', async () => {
     expect.assertions(1)
     const items = createItems()

@@ -2,6 +2,13 @@
 
 Two types of events in Vew application: native DOM events and Vue custom events.
 
+Test a component emits an event when it’s provided the correct input:
+- check that a "close-modal event" is emitted when the close button is clicked
+
+examples of testing with emitted
+https://v1.test-utils.vuejs.org/api/wrapper/#emitted
+
+
 ## Testing native DOM events
 ```js
 const onClose = jest.fn();
@@ -54,6 +61,15 @@ radioInput.element.checked = true
 
 wrapper.find('input[type="radio"]').setChecked()
 
+```
+
+check that a "close-modal event" is emitted when the close button is clicked
+```js
+test('emits on-close when button is clicked', () => {
+    const wrapper = shallowMount(Modal)
+    wrapper.find('button').trigger('click')
+    expect(wrapper.emitted('close-modal')).toHaveLength(1)
+})
 ```
 
 ## jsdom limitation

@@ -1,25 +1,44 @@
-import Vue from "vue";
-import { createStore } from 'vuex';
-import App from "./App";
-import ProgressBar from "./components/ProgressBar";
-import storeConfig from './store/store-config'
+import Vue from 'vue'
+import Vuex from 'vuex'
+import Router from 'vue-router'
+import {
+  titleMixin,
+  HTTPStatusMixin
+} from './util/mixins'
+import {
+  timeAgo,
+  host
+} from './util/filters'
+
+import router from './router';  // Import the router
+import store from './store';    // Import the Vuex store
+import App from './App.vue'
+
+Vue.mixin(titleMixin)
+Vue.mixin(HTTPStatusMixin)
+
+Vue.filter('timeAgo', timeAgo)
+Vue.filter('host', host)
+
+// Expose a factory function that creates a fresh set of store, router,
+// app instances on each call (which is called for each SSR request)
+export function createApp () {
+  Vue.use(Vuex)
+  Vue.use(Router)
+
+  const router = new Router(routerConfig)
+  const store = new Vuex.Store(storeConfig)
+
+  sync(store, router)
+  
+  app.use(router);  // Add the router to your app
 
 
-// Tell Vue don't show the production tip in the console
-Vue.config.productionTip = false;
+  const app = new Vue({
+    router,
+    store,
+    render: h => h(App)
+  })
 
-const app = createApp(App);
-
-// Apply the Vuex store to the app
-const store = createStore(storeConfig)
-app.use(store);
-
-/* 
-  add a mounted ProgressBar component instance as a $bar instance property. 
-  That way, each component in the app can start the ProgressBar by calling 
-  $bar.start and stop the ProgressBar by calling $bar.finish.
-*/
-const bar = createApp(ProgressBar).mount(document.createElement('div'));
-document.body.appendChild(bar.$el);
-app.config.globalProperties.$bar = bar;
-app.mount("#app");
+  return { app, router, store }
+}
