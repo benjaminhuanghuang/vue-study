@@ -37,6 +37,19 @@ describe("HelloWorld.vue", () => {
     expect(emitted["update:visible"]).toBeTruthy()
     expect(emitted["update:visible"][0]).toEqual([false])
   })
+
+  it("emit 'count' event with correct payload", async () =>{
+    const wrapper = mount (App)
+    // trigger the emit twice
+    await wrapper. find ('button'). trigger ('click')
+    await wrapper. find( 'button'), trigger ('click')
+
+    const emitted = wrapper.emitted(); 
+    console.log(emitted)
+    
+    expect(emitted.count[0][0]).toBe(1)
+    expect(emitted.count[1][0]).toBe(2)
+  });
 })
 
 describe("ParentComponent", () => {

@@ -1,0 +1,4 @@
+- Composition API: Vue 3 introduces the Composition API as an alternative to the Options API used in Vue 2.
+- Reactivity System: Vue 3 uses a more efficient reactivity system (reactive, ref).
+- Global API Changes: Some APIs like Vue.set, Vue.delete, and the global event bus have been removed or modified.
+- Slots and v-model: There are also changes to how slots and v-model work

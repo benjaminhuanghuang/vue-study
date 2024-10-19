@@ -33,7 +33,10 @@ describe('Counter.vue', () => {
     // Check updated count after mutation
     expect(wrapper.find('p').text()).toBe('1');
   });
+```
 
+## Mock Vuex, ensure store.commit() is called correctly 
+```js
   it('dispatches increment action when button is clicked', () => {
     const mockStore = {
       state: { count: 5 },

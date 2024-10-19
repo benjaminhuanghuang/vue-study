@@ -1,0 +1,45 @@
+<html lang="en">
+
+</html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue3 playground</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Vue 3 Computed Demo</h1>
+        <p>Original Message: {{ message }}</p>
+        <p>Reversed Message (Computed): {{ reversedMessage }}</p>
+        <button @click="changeMessage">Change Message</button>
+      </div>
+    <script setup>
+        const { createApp, ref, computed } = Vue;
+        // Create the Vue app
+        createApp({
+            setup() {
+                const message = ref('Hello, Vue 3!');
+                const reversedMessage = computed(() => {
+                    return message.value.split('').reverse().join('');
+                });
+
+                // Method to change the message
+                const changeMessage = () => {
+                    message.value = 'Vue 3 is awesome!';
+                };
+
+                // Return data and methods to the template
+                return {
+                    message,
+                    reversedMessage,
+                    changeMessage
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>
