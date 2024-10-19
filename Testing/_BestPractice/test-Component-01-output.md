@@ -62,18 +62,24 @@ describe('Item.vue', () => {
     expect(wrapper.classes()).not.toContain('hidden')
     expect(wrapper.get('[data-test="todo"]').classes()).toContain("completed");
     
-    // Verify the sub-elements
+    /*--------------------------------------------
+      Find element and verify
+      - by tag
+      - by attribute
+      - by component name
+    --------------------------------------------*/
     const a = wrapper.find('a')
     // Test rendered text
     expect(a.text()).toBe(item.title)
     // Test attributes
     expect(a.attributes().href).toBe(item.url)
+    const style = wrapper.find("h1").element.style
+    expect(style.width).toBe("100px")
+    expect(style.height).toBe("50px")
     
-    // Test component exiting
-    expect(wrapper.find(Modal).exists()).toBeFalsy()
-    
-    // Element existed
     expect(wrapper.findAll('[data-test="todo"]')).toHaveLength(1);
+    
+    expect(wrapper.find(Modal).exists()).toBeFalsy()
   })
 
 
@@ -131,7 +137,7 @@ test("Test the method on component", async () => {
 
 
 
-Test component using composition api
+## Test component using composition api
 ```js
 describe('Counter.vue', () => {
   let wrapper;
@@ -177,26 +183,7 @@ expect(todo.text()).toBe("Hello Jest");
 
 
 
-## Test with timer
-Mock clearInterval method
-```js
-test('clears timer when finish is called', () => {
-  // Make sure a function is called
-  jest.spyOn(window, 'clearInterval')
-  setInterval.mockReturnValue(123)
-  const wrapper = shallowMount(ProgressBar)
-  wrapper.vm.start()
-  wrapper.vm.finish()
-  expect(window.clearInterval).toHaveBeenCalledWith(123)
 
-
-    // Wait for the DOM to update
-  jest.advanceTimersByTime(100) // Fast-forward time by 100 milliseconds
-  await wrapper.vm.$nextTick(); // Wait for the DOM to update!
-  expect(wrapper.element.style.width).toBe('1%')
-
-})
-```
 
 ## Reference
 https://blog.canopas.com/vue-3-component-testing-with-jest-8b80a8a8946b

@@ -71,10 +71,12 @@ describe("ProgressBar.vue", () => {
   test("increases width by 1% every 100ms after start call", async () => {
     const wrapper = shallowMount(ProgressBar);
     wrapper.vm.start();
+    
+    //Fast-forward timer 100ms
     jest.advanceTimersByTime(100);
     await wrapper.vm.$nextTick(); // Wait for the DOM to update
     expect(wrapper.element.style.width).toBe("1%");
-
+    
     jest.advanceTimersByTime(900);
     await wrapper.vm.$nextTick(); // Wait for the DOM to update
     expect(wrapper.element.style.width).toBe("10%");
