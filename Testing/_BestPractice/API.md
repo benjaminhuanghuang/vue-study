@@ -80,7 +80,7 @@ When we change things that are used in the template – handleClick, in this cas
         cmp.vm.handleClick = jest.fn()
         // or triggering it: const spy = spyOn(cmp.vm, 'handleClick')
         // or use setMethods
-        cmp.update() // Forces to re-render, applying changes on template. Necessary when tempalte needs to update
+        cmp.update() // Forces to re-render, applying changes on template. Necessary when template needs to update
 
         // -- Trigger the click
         const el = cmp.find('.message').trigger('click')

@@ -63,3 +63,39 @@ describe("message.vue", () => {
   });
 });
 ```
+
+## Set component state
+setChecked：设置checkbox或者radio元素的checked的值并更新v-model。
+setSelected：设置一个option元素并更新v-model。
+setValue：设置一个文本控件或select元素的值并更新v-model。
+setProps：设置包裹器的vm实例中props并更新。
+setData：设置包裹器中vm实例中的data并更新。
+
+由于Vue组件更新DOM是异步的，如果要测试组件更改数据后的DOM，需要使用$nextTick()。
+
+```js
+describe("HelloWorld.vue", () => {
+  it("change component data", () => {
+    const wrapper = shallowMount(HelloWorld)
+    const radioInput = wrapper.find('input[type="radio"]')
+    const options = wrapper.find("select").findAll("option")
+    const textInput = wrapper.find('input[type="text"]')
+    radioInput.setChecked()
+    options.at(1).setSelected()
+    textInput.setValue("txt value")
+    expect(wrapper.vm.radio).toBe(true)
+    expect(wrapper.vm.select).toBe(2)
+    expect(wrapper.vm.txt).toBe("txt value")
+
+    wrapper.setProps({
+      msg: "msg value"
+    })
+    expect(wrapper.vm.msg).toBe("msg value")
+
+    wrapper.setData({
+      foo: "foo value"
+    })
+    expect(wrapper.vm.foo).toBe("foo value")
+  })
+})
+```
