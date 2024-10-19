@@ -7,7 +7,7 @@ wrapper.isVisible() the case of v-show
 wrapper.exists() the case of v-if
 
   
-## Test the function in component
+## Call the function in component and verify the change
 ```js
  it("hide func", async () => {
     wrapper.setData({
@@ -27,3 +27,39 @@ wrapper.exists() the case of v-if
   })
 ```
 
+## Ensure the function is invoked under certain conditions
+
+Mock the method in the component
+```js
+describe("message.vue", () => {
+  it("add mocks", () => {
+    const message = {
+      success: jest.fn(),
+      warning: jest.fn(),
+      error: jest.fn(),
+      info: jest.fn()
+    }
+    const wrapper = shallowMount(Message, {
+      mocks: {
+        $message: message
+      }
+    })
+    const successBtn = wrapper.find("#success")
+    const warningBtn = wrapper.find("#warning")
+  
+    successBtn.trigger("click")
+    expect(message.success).toHaveBeenCalledTimes(1)
+
+    warningBtn.trigger("click")
+    expect(message.warning).toHaveBeenCalledTimes(1)
+  })
+
+  Test("Make sure function is called in the lifecycle", () => {
+    const $bar = {
+        start: jest.fn(),
+    };
+    shallowMount(ItemList, ...);
+    expect($bar.start).toHaveBeenCalledTimes(1);
+  });
+});
+```
