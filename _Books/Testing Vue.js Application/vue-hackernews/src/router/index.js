@@ -1,7 +1,10 @@
+import { createRouter, createWebHistory } from 'vue-router';
+//
 import ItemList from '../views/ItemList.vue'
 import ItemView from '../views/ItemView.vue'
 import UserView from '../views/UserView.vue'
 import NotFound from '../views/NotFound.vue'
+import About from '../views/About.vue'
 
 // Define the routes for the application
 const routes = [
@@ -9,7 +12,8 @@ const routes = [
   { path: '/', redirect: '/top' },
   { path: '/item/:id(\\d+)', component: ItemView },
   { path: '/user/:id', component: UserView },
-  { path: '/*', component: NotFound }
+  { path: '/*', component: NotFound },
+  { path: '/about', component: About }
 ]
 
 

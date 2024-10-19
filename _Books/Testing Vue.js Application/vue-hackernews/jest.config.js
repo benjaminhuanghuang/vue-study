@@ -15,7 +15,7 @@ export default {
   transformIgnorePatterns: ["/node_modules/"],
 
   // Specify where to look for test files
-  testMatch: ["**/tests/**/*.spec.[jt]s?(x)", "**/__tests__/*.[jt]s?(x)"],
+  testMatch: ["**/tests/**/*.spec.[jt]s?(x)", "**/*.spec.[jt]s?(x)", ],
 
   // Optional, you can add moduleNameMapper to handle imports of static assets
   moduleNameMapper: {
