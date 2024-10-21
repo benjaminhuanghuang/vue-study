@@ -1,7 +1,5 @@
 <html lang="en">
 
-</html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,30 +10,50 @@
 <body>
     <div id="app">
         <h1>Vue 3 Computed Demo</h1>
-        <p>Original Message: {{ message }}</p>
-        <p>Reversed Message (Computed): {{ reversedMessage }}</p>
+        <p style="color: red;">Computed properties are like methods. Vue will be aware of their dependencies, and only
+            re-execute them if one of the dependencies changed</p>
+        <p style="color: red;">clicking the "+" button calls a normal function (reverseMessage()), but a computed
+            property (computedMessage) is not recalculated unless its dependencies change.</p>
+        <p>Message: {{ message }}</p>
+        <p>Reversed Message (Computed): {{ computedMessage }}</p>
+        <p>Reversed Message (Function): {{ reverseMessage() }}</p>
         <button @click="changeMessage">Change Message</button>
-      </div>
+        <br />
+        <h3>Number: {{number}}</h3>
+        <button @click="add">+</button>
+    </div>
     <script setup>
         const { createApp, ref, computed } = Vue;
         // Create the Vue app
         createApp({
             setup() {
+                const number = ref(1);
                 const message = ref('Hello, Vue 3!');
-                const reversedMessage = computed(() => {
+                const computedMessage = computed(() => {
+                    console.log("compute property is called");
                     return message.value.split('').reverse().join('');
                 });
+                function reverseMessage() {
+                    console.log("function reverseMessage() is called");
+                    return message.value.split('').reverse().join('');
+                };
 
                 // Method to change the message
                 const changeMessage = () => {
                     message.value = 'Vue 3 is awesome!';
                 };
 
+                function add() {
+                    number.value++;
+                }
                 // Return data and methods to the template
                 return {
                     message,
-                    reversedMessage,
-                    changeMessage
+                    computedMessage,
+                    reverseMessage,
+                    changeMessage,
+                    number,
+                    add
                 };
             }
         }).mount('#app');
