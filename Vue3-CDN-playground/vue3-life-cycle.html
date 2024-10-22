@@ -10,43 +10,39 @@
 
 <body>
   <div id="app">
-    <h1>{{isShow}}</h1>
-    <my-component v-if="isShow" />
+    <h1>{{message}}</h1>
   </div>
 </body>
 <script>
 
-  const { createApp, ref, onBeforeMount, onMounted, onBeforeUnmount, onUpdated, onUnmounted } = Vue;
+  const { createApp, ref, onBeforeMount, onMounted, onBeforeUnmount} = Vue;
   // Define a global Vue component
   const MyComponent = {
-    template: `
+      template: `
         <div>
           <h2>{{ title }}</h2>
+          <p>This is a custom component</p>
         </div>
       `,
-    setup() {
-      const title = ref('This is MyComponent!');
+      setup() {
+        const title = ref('Hello from MyComponent!');
+        
+        // Lifecycle hook within the component
+        onMounted(() => {
+          console.log('MyComponent has been mounted');
+        });
 
-      // Lifecycle hook within the component
-      onMounted(() => {
-        console.log('MyComponent has been mounted');
-      });
-
-      onBeforeUnmount(() => {
-        console.log('MyComponent is about to be unmounted');
-      });
-      return {
-        title
-      };
-    }
-  };
+        return {
+          title
+        };
+      }
+    };
 
   // Create the Vue app
-  const app = createApp({
-
+  createApp({
     setup() {
       // Reactive data
-      const isShow = ref(true);
+      const message = ref('Hello Vue 3!');
 
       // Lifecycle Hooks
       onBeforeMount(() => {
@@ -61,12 +57,10 @@
       });
 
       return {
-        isShow
+        message
       };
     }
-  });
-  app.component('my-component', MyComponent);
-  app.mount('#app');
+  }).mount('#app');
 </script>
 
 </html>
