@@ -8,7 +8,7 @@
     </h1>
     <hr>
     <div class="row">
-      <div class="col-xs-3 col-md-3 col-lg-3 col-xl-3">
+      <div class="col-xs-3 col-md-3 col-lg-3 col-xl-3 list-group">
         <router-link active-class="active" class="list-group-item" to="/props">01.props</router-link>
         <router-link active-class="active" class="list-group-item" to="/event">02.event</router-link>
         <router-link active-class="active" class="list-group-item" to="/mitt">03.mitt</router-link>
