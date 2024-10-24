@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia';
 import router from './router';
+import emitter from './utils/emitter';
 
 import App from './App.vue'
 

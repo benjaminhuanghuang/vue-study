@@ -5,15 +5,12 @@
 </template>
 
 <script setup lang='ts'>
-    import { on } from 'events';
+import { on } from 'events';
 import { ref, defineEmits, onMounted } from 'vue';
+import emitter from '@/utils/emitter';
 
-   const emit = defineEmits(['talk']);
-
-   onMounted(() => {
-    setTimeout(() => {
-        emit('talk', 'Hello from child');
-   }, 3000);
+emitter.on('talk', () => {
+    console.log('test');
 });
 
 </script>

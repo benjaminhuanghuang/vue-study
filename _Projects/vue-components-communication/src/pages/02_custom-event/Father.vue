@@ -2,7 +2,7 @@
     <div class="father">
         <h3>Father</h3>
         
-        <Child :car = "car"/>
+        <Child @talk = "talkHadler"/>
     </div>
 </template>
 
@@ -10,7 +10,9 @@
     import Child from './Child.vue';
     import { ref } from 'vue';
 
-    let car = ref('BMW');
+    function talkHadler(message: string) {
+        console.log(message);
+    }
 
 </script>
 
