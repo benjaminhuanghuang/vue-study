@@ -1,10 +1,13 @@
 <template>
-    <Child />
+    <Sub :a="a" v-bind:="{x:100, y:200}"/>
         
 </template>
     
 <script setup lang='ts'>
-    import Child from './Child.vue';
+     import Sub from './Sub.vue';
+    import { ref } from 'vue';
+
+    let a = ref(1);
 
 </script>
     
