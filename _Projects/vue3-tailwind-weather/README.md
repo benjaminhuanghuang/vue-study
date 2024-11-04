@@ -22,14 +22,18 @@ npm i vue-router
 ```sh
 npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
 npx tailwindcss init -p
-# Modify tailwind.config.js
-# Modify postcss.config.js
-# Create ./src/index.css
-# include index.css in main.js
+
 ```
+Modify tailwind.config.js
+  Define colors and fonts
+
+Modify postcss.config.js
+
+Create ./src/index.css
+include index.css in main.js
+
 
 ## Font and icon
-
 ```html
 <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
