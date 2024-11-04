@@ -28,12 +28,12 @@ const pkg = require(resolve(__dirName, `../packages/${target}/package.json`));
 
 esbuild.context({
     entryPoints: [entry],
-    outfile: resolve(__dirName, `../packages/${target}/dist/${target}.${format}.js`),
+    outfile: resolve(__dirName, `../packages/${target}/dist/${target}.js`),
     bundle: true,  // bundle the files together
     platform: "browser",
     format,
     sourcemap: true,
-    globalName: pkg.buildOptions?.globalName
+    globalName: pkg.buildOptions?.name
 
 }).then((ctx) => {
     console.log("Build successfully");

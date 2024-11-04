@@ -1,0 +1,32 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script type="module">
+        import { reactive, effect } from './reactivity.js'
+        const obj = {
+            name: 'vue',
+            age: 30
+        }   
+        const state = reactive(obj);
+        // const state2 = reactive(state);
+        console.log(state.name, state.age);
+
+        effect(() => {
+            app.innerHTML = `Name ${state.name} Age ${state.age}`;
+        })
+
+        setTimeout(() => {
+            state.age++
+        }, 1000)
+        state.count++
+    </script>
+</body>
+
+</html>
