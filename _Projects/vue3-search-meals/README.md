@@ -13,6 +13,8 @@ https://www.themealdb.com/api.php
 ## Setup
 ```sh
 npm create vite@latest
+
+npm i vue-router vuex
 ```
 https://tailwindcss.com/docs/guides/vite
 
