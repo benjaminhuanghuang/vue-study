@@ -6,6 +6,8 @@ https://www.youtube.com/watch?v=gUsBaB5ViAo&list=PL4cUxeGkcC9hfoy8vFQ5tbXO3vY0xh
 
 https://openweathermap.org/api
 
+https://account.mapbox.com/
+
 https://github.com/johnkomarnicki/net_ninja_vue_3_weather_app
 
 
@@ -52,21 +54,29 @@ include index.css in main.js
 
 
 ## Dialog
-event
-
-
-### Teleport component
-Teleport component to another DOM level
-
 ```js
-<Teleport to ='body'>
+ <Teleport to="body">
+    <Transition name="modal-outer">
+    </Transition>
 </Teleport>
 ```
+Teleport component to another DOM level
+Transition handle the animation
 
+SiteNavigation.vue
+```js
+const modalActive = ref(null);
+const toggleModal = () => {
+  modalActive.value = !modalActive.value;
+};
+```
 
 ## Geocoding mapbox API 
-```js
+Mapbox -> docs -> Search -> Geocoding API -> Forward geocoding with search text input
 
+
+
+```js
 <input
     type="text"
     v-model="searchQuery"
@@ -81,7 +91,7 @@ const getSearchResults = () => {
     if (searchQuery.value !== "") {
       try {
         const result = await axios.get(
-          `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQuery.value}.json?access_token=${mapboxAPIKey}&types=place`
+          `https://api.mapbox.com/search/geocode/v6/forward?q=${searchQuery.value}&access_token=${mapboxAPIKey}`
         );
         mapboxSearchResults.value = result.data.features;
       } catch {
@@ -95,9 +105,9 @@ const getSearchResults = () => {
 };
 ```
 
-## 7. Route with Params
+## 7. Route to the state-city view
 
-```
+```js
   const router = useRouter();
   const previewCity = (searchResult) => {
     const [city, state] = searchResult.place_name.split(",");
@@ -105,16 +115,20 @@ const getSearchResults = () => {
       name: "cityView",
       params: { state: state.replaceAll(" ", ""), city: city },
       query: {
-        lat: searchResult.geometry.coordinates[1],
-        lng: searchResult.geometry.coordinates[0],
+        at: searchResult.properties.coordinates.latitude,
+        lng: searchResult.properties.coordinates.longitude,
         preview: true,
       },
     });
   };
 ```
 
-
 ## 8. Async Data with Vue Suspense
+Use the https://openweathermap.org/api/one-call-3
+
+```js
+https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+```
 
 
 ## 15. Deploy to Netlify

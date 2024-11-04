@@ -28,7 +28,7 @@
               class="py-2 cursor-pointer"
               @click="previewCity(searchResult)"
             >
-              {{ searchResult.place_name }}
+              {{ searchResult.properties.full_address }}
             </li>
           </template>
         </ul>
@@ -53,20 +53,18 @@
   
   const router = useRouter();
   const previewCity = (searchResult) => {
-    const [city, state] = searchResult.place_name.split(",");
+    const [city, state] = searchResult.properties.full_address.split(",");
     router.push({
       name: "cityView",
       params: { state: state.replaceAll(" ", ""), city: city },
       query: {
-        lat: searchResult.geometry.coordinates[1],
-        lng: searchResult.geometry.coordinates[0],
+        lat: searchResult.properties.coordinates.latitude,
+        lng: searchResult.properties.coordinates.longitude,
         preview: true,
       },
     });
   };
   
-  const mapboxAPIKey =
-    "pk.eyJ1Ijoiam9obmtvbWFybmlja2kiLCJhIjoiY2t5NjFzODZvMHJkaDJ1bWx6OGVieGxreSJ9.IpojdT3U3NENknF6_WhR2Q";
   const searchQuery = ref("");
   const queryTimeout = ref(null);
   const mapboxSearchResults = ref(null);
@@ -78,9 +76,10 @@
       if (searchQuery.value !== "") {
         try {
           const result = await axios.get(
-            `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQuery.value}.json?access_token=${mapboxAPIKey}&types=place`
+            `https://api.mapbox.com/search/geocode/v6/forward?q=${searchQuery.value}&access_token=${import.meta.env.VITE_MAPBOX_API_KEY}&types=place`
           );
           mapboxSearchResults.value = result.data.features;
+          console.log(mapboxSearchResults.value);
         } catch {
           searchError.value = true;
         }
