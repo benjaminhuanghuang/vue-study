@@ -101,19 +101,12 @@
           >
             <p class="flex-1">
               {{
-                new Date(day.dt * 1000).toLocaleDateString(
-                  "en-us",
-                  {
-                    weekday: "long",
-                  }
-                )
+                new Date(day.dt * 1000).toLocaleDateString("en-us",{weekday: "long"})
               }}
             </p>
             <img
               class="w-[50px] h-[50px] object-cover"
-              :src="
-                `http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`
-              "
+              :src="`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`"
               alt=""
             />
             <div class="flex gap-2 flex-1 justify-end">
@@ -123,7 +116,6 @@
           </div>
         </div>
       </div>
-  
       <div
         class="flex items-center gap-2 py-12 text-white cursor-pointer duration-150 hover:text-red-500"
         @click="removeCity"
@@ -142,7 +134,7 @@
   const getWeatherData = async () => {
     console.log(route.query.lat, route.query.lat);
     try {
-      const weatherData = await axios.get(`https://api.openweathermap.org/data/3.0/onecall?lat=${route.query.lat}&lon=${route.query.lng}&appid=${import.meta.env.VITE_OPENWEATHER_API_KEY}`);
+      const weatherData = await axios.get(`https://api.openweathermap.org/data/3.0/onecall?lat=${route.query.lat}&lon=${route.query.lng}&appid=${import.meta.env.VITE_OPENWEATHER_API_KEY}&unites=imperial`);
   
       // cal current date & time
       const localOffset = new Date().getTimezoneOffset() * 60000;

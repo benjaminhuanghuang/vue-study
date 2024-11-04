@@ -124,11 +124,24 @@ const getSearchResults = () => {
 ```
 
 ## 8. Async Data with Vue Suspense
-Use the https://openweathermap.org/api/one-call-3
+Get city weather data from the Open Weather API https://openweathermap.org/api/one-call-3
 
 ```js
 https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 ```
+CityView.vue
+```js
+<Suspense>
+  <template #default>
+    <AsyncCityView />
+  </template>
+  <template #fallback>
+    <CityViewSkeleton />
+  </template>
+</Suspense>
+```
+
+## 9.City View
 
 
 ## 15. Deploy to Netlify
