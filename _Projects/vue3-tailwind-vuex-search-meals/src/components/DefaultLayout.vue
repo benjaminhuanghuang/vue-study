@@ -7,6 +7,6 @@
     </main>
 </template>
 
-<script setup>
+<script lang="ts" setup >
 import Navbar from "../components/Navbar.vue";
 </script>
