@@ -1,13 +1,5 @@
 # Test vue component
 
-## Technical background
-Vue component is just an object (or function) with a render function and some properties.
-
-To test that the component behaves correctly, we need to mount/render it. Vue will create some DOM element.
-
-Jest/Vitest run the tests in jsdom environment. 
-
-
 ## Pass props to component and test the rendered output 
 ```js
 import { shallowMount } from '@vue/test-utils'
@@ -94,6 +86,7 @@ describe('Counter.vue', () => {
   });
 });
 ```
+
 ## Find the elements
 ```js
 // Get element by attribute
@@ -105,8 +98,8 @@ const profileLink = wrapper.get("#profile");
 expect(wrapper.find('#profile').exists()).toBeTruthy();
 
 ```
-# Test Vue component
 
+## Test Vue component
 Create component and check the content
 
 ```js
@@ -125,31 +118,4 @@ expect(todo.text()).toBe("Hello Jest");
 
 ```
 
-
-
-
-
-
 ## Reference
-https://blog.canopas.com/vue-3-component-testing-with-jest-8b80a8a8946b
-
-2. What to test in a component test?
-A Vue.js component typically includes the following to be tested:
-
-Properties (props): Testing how the component behaves when passed different props, and how it handles missing or invalid props.
-
-Data: Testing how the component behaves when the data is changed and how it responds to different states.
-
-Computed properties: Testing how the component behaves when computed properties are updated, and how they depend on other properties and data.
-
-Methods: Testing how the component behaves when its methods are called, and how they interact with the component’s state and props.
-
-Events: Testing how the component behaves when it emits events, and how it responds to events emitted by its child components.
-
-DOM: Testing how the component renders, and how it updates the DOM when its state or props change.
-
-Lifecycle hooks: Testing how the component behaves when its lifecycle hooks are called, and how it interacts with the Vue.js instance.
-
-Integration: Testing how the component interacts with other components, services, and/or libraries, it can be optional though.
-
-Error handling: Testing how the component handles errors, and how it behaves when it encounters unexpected situations.

@@ -1,4 +1,12 @@
-# What should be tested in Vue components
+
+## Technical background
+Vue component is just an object (or function) with a render function and some properties.
+
+To test that the component behaves correctly, we need to mount/render it. Vue will create some DOM element.
+
+Jest/Vitest run the tests in jsdom environment. 
+
+## What should be tested in Vue components
 
 Test the component contract. 
 Component contract is the interface the component has with the outside
@@ -6,7 +14,6 @@ Component contract is an agreement between the component and the outside
 A component contract defines how the interacts with the rest of the application. 
 
 Avoid testing the implementation details and make it easy to refactor the component
-
 
 ## Input: Data or actions received by the component
   - Props
