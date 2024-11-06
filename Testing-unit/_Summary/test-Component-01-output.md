@@ -7,35 +7,6 @@ To test that the component behaves correctly, we need to mount/render it. Vue wi
 
 Jest/Vitest run the tests in jsdom environment. 
 
-## What should be tested in Vue components
-Based on the contract of the component. 
-
-A component contract defines how the interacts with the rest of the application. 
-
-- Input: Data or actions received by the component
-  - Props
-  - User interactions (like button clicks)
-  - Vue events
-  - Data from a Vuex/Pinia store
-  - Lifecycle hooks
-
-- Output: The result or effects produced by the component based on its input
-  - Rendered DOM nodes
-    - Rendered text, DOM attributes, CSS, inline style
-    - sub-component existence, Props to sub-component
-  - Emitted events
-  - Calls to external functions
-  - Error handling
-
-## The async behavior
-  - Test component methods
-  - Test event
-  - Wait for the DOM to update
-  - Wait promises
-  - To test a function is called, make sure resource like timer is removed.
-  - Test functions are called in lifecycle 
-  - Mock HTTP request 
-
 
 ## Pass props to component and test the rendered output 
 ```js
