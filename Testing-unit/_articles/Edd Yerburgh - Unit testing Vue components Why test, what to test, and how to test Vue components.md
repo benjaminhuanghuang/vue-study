@@ -14,13 +14,13 @@ Unit test benefits
 
    
 ## Input
-- User action
+- User action(like button click)
 - Props
 - Store
 
 ## Output
 - Rendered output
-- Vue events
+- Emit Vue events
 - Function calls
 
 

@@ -1,5 +1,11 @@
 
 ## Technical background
+
+Unit testing is the process of running tests against the smallest parts of an application
+(units). Normally the units you test are functions.
+
+In Vue apps, components are also units to test (more on those later).
+
 Vue component is just an object (or function) with a render function and some properties.
 
 To test that the component behaves correctly, we need to mount/render it. Vue will create some DOM element.
@@ -23,8 +29,8 @@ Avoid testing the implementation details and make it easy to refactor the compon
   - Lifecycle hooks
 
 ## Output: The result or effects produced by the component based on its input
-  - Rendered DOM nodes
-    - Rendered text, DOM attributes, CSS, inline style
+  - Rendered 
+    - DOM nodes, text, DOM attributes, CSS, inline style
     - sub-component existence, Props to sub-component
   - Emitted events
   - Function calls to external functions
