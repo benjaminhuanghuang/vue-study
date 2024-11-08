@@ -1,5 +1,8 @@
 # Vue Router
 
+When a single-page web app grows large, you might decide to split the UI into different views. 
+You can use Vue Router to add client-side routing to handle navigation between views `without causing a page reload`.
+
 routing means using the path of a URL to serve content.
 
 

@@ -1,4 +1,6 @@
 ## Debug tests in chrome debugger
+From Testing Vue.js Application ch2.4
+
 add script
 ```json
 "test:unit:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand"

@@ -17,6 +17,16 @@ npm i -D @vue/test-utils
 babel.config.json
 
 jest.config.js
+```js
+  // Tells Jest to process .vue files using vue-jest
+  transform: {
+    "^.+\\.vue$": "@vue/vue3-jest",
+    "^.+\\js$": "babel-jest",
+    //"^.+\\.ts$": "ts-jest", // If you're using TypeScript
+  },
+  // Specify where to look for test files
+  testMatch: ["**/tests/**/*.spec.[jt]s?(x)", "**/*.spec.[jt]s?(x)", ],
+```
 
 Add script
 ```json
