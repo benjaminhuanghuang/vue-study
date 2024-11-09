@@ -12,6 +12,7 @@ https://gitlab.com/patkennedy79/vue-weather-app
 
     npm i pinia axios
     npm i vitest @vue/test-utils jsdom -D
+    npm i axios-mock-adapter @pinia/testing -D
 ```
 
 script
