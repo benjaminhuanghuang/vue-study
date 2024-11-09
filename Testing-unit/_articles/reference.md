@@ -6,6 +6,13 @@ https://vuejs.org/guide/scaling-up/testing.html
 
 https://test-utils.vuejs.org/guide/
 
+## Articles
+
+Guide to Unit Testing Vue Components(https://testdriven.io/blog/vue-unit-testing/)
+Testing Pinia Data Stores in Vue(https://testdriven.io/blog/vue-pinia-testing/)
+
+
+
 
 ## Courses
 
