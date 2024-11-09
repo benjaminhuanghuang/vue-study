@@ -1,4 +1,4 @@
-import { mount, shallowMount } from '@vue/test-utils';
+import { mount, shallowMount, RouterLinkStub } from '@vue/test-utils';
 import App from '@/App.vue'; 
 import About from '@/views/About.vue';
 
