@@ -8,6 +8,7 @@ import About from '../views/About.vue'
 
 // Define the routes for the application
 const routes = [
+  // $route.params can be {type: 'top|new|...', page: '123'}
   { path: '/:type(top|new|show|ask|job)/:page?', component: ItemList },
   { path: '/', redirect: '/top' },
   { path: '/item/:id(\\d+)', component: ItemView },

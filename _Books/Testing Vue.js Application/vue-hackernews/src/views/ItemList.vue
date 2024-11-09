@@ -1,26 +1,18 @@
 <template>
   <div class="item-list-view">
     <div class="item-list-nav">
-      <router-link
-        v-if="page > 1"
-        :to="'/' + type + '/' + (page - 1)">
+      <router-link v-if="page > 1" :to="'/' + type + '/' + (page - 1)">
         &lt; prev
       </router-link>
       <a v-else>&lt; prev</a>
       <span>{{ page || 1 }}/{{ maxPage }}</span>
-      <router-link
-        v-if="(page || 1) < maxPage"
-        :to="'/' +  type + '/' + ((Number(page) || 1) + 1)">
-          more &gt;
+      <router-link v-if="(page || 1) < maxPage" :to="'/' + type + '/' + ((Number(page) || 1) + 1)">
+        more &gt;
       </router-link>
       <a v-else>more &gt;</a>
     </div>
     <div class="item-list">
-      <item
-        v-for="item in $store.getters.displayItems"
-        :key="item.id"
-        :item="item"
-      />
+      <item v-for="item in $store.getters.displayItems" :key="item.id" :item="item" />
     </div>
   </div>
 </template>
@@ -28,7 +20,7 @@
 <script>
 import Item from '../components/Item.vue'
 
-function capitalizeFirstLetter (string) {
+function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
@@ -36,37 +28,33 @@ export default {
   components: {
     Item
   },
-  beforeMount () {
+  beforeMount() {
     this.loadItems()
   },
-  title () {
+  title() {
     return `${capitalizeFirstLetter(this.$route.params.type)}`
   },
-  asyncData ({ store, route: { params: { type } } }) {
+  asyncData({ store, route: { params: { type } } }) {
     return store.dispatch('fetchListData', { type })
   },
   computed: {
-    type () {
+    type() {
       return this.$route.params.type
     },
-    page () {
+    page() {
       return this.$route.params.page
     },
-    maxPage () {
+    maxPage() {
       return this.$store.getters.maxPage
     }
   },
   methods: {
-    loadItems () {
+    loadItems() {
       this.$bar.start()
       this.$store.dispatch('fetchListData', {
         type: this.type
       }).then(() => {
-        if (this.page &&
-        (this.page > this.maxPage ||
-        this.page <= 0 ||
-        !Number(this.page)
-        )) {
+        if (this.page && (this.page > this.maxPage || this.page <= 0 || !Number(this.page))) {
           this.$router.replace(`/${this.type}/1`)
           return
         }
@@ -84,6 +72,7 @@ export default {
 .item-list-view {
   padding-top: 45px;
 }
+
 .item-list {
   background-color: #fff;
   border-radius: 2px;
@@ -101,12 +90,14 @@ export default {
   left: 0;
   right: 0;
   z-index: 998;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   background-color: #fff;
 }
+
 .item-list-nav a {
   margin: 0 1em;
 }
+
 .item-list-nav .disabled {
   color: #ccc;
 }

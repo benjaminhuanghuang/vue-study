@@ -1,4 +1,9 @@
 # Understanding Vue Router
+
+- Understanding client-side routing
+- Understanding Vue Router
+- Adding Vue Router to a project
+
 When a single-page web app grows large, you might decide to split the UI into different
 views. You can use Vue Router to add client-side routing to handle navigation
 between views without causing a page reload.
@@ -15,3 +20,19 @@ content updates, but the page maintains the same state.
 
 Vue Router matches the path of a URL to a component that it should render. You
 configure the paths that Vue Router should match with a route config objects array.
+
+By default, a RouterLink component renders as an <a> element. When the element
+is clicked, Vue Router prevents the browser from reloading the page, updates the
+URL, and rerenders the RouterView.
+
+## dynamic route matching
+```js
+const routes = [
+{ path: '/item/:id', component: ItemView }
+{ path: '/:type(top|new)/:page?', component: ItemView }    //{type: 'new'|'top', page: '123'}
+]
+
+<template>
+    <p>The ID is {{$route.params.id}}</p>
+</template>
+```

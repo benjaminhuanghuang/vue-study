@@ -2,18 +2,21 @@
 
 ## What should be tested in Vue Router
 
+- DO NOT test route Configuration 
 - test Vue Router instance properties
 - test RouterLink components
 - access Vue Router properties in a store.
 
 ## API
-```
+
+```js
 router.push()                   // Navigate to routes.
 router.currentRoute.value.path; // Get current router path
 await router.isReady();         // Ensure the router is ready before making assertions.
 ```
 
 ## Find the link
+
 ```js
 // get will throw error when element doest not exist
 const profileLink = wrapper.get("#profile");
@@ -23,6 +26,7 @@ expect(wrapper.find('#profile').exists()).toBeTruthy();
 ```
 
 ## Verify the component after navigation
+
 ```js
 it('should render HomePage component for "/" route', async () => {
     // Mount the app with the router
