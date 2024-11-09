@@ -1,0 +1,158 @@
+$whiteColor: #fff;
+$greyColor: #f9fafb;
+$greenColor: #32d3a4;
+$padding-10: 10px;
+$padding-20: 20px;
+
+html,
+body {
+    font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+        'Microsoft YaHei', 'FAXER', Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body,
+input,
+button,
+a,
+textarea,
+select {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: #333;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+}
+
+a:hover {
+    filter: alpha(opacity=90);
+    opacity: .9;
+}
+
+.tc {
+    text-align: center;
+}
+
+.tr {
+    text-align: right;
+}
+
+.tl {
+    text-align: left;
+}
+
+#app,
+.content {
+    color: #333;
+    width: 100%;
+    height: 100vh;
+}
+
+.module {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+
+    .module-left {
+        width: 200px;
+        background: $greyColor;
+
+        .module-menu {
+            .title {
+                margin: $padding-20 0;
+            }
+
+            .menus {
+                &>a {
+                    display: block;
+                    padding: 0 $padding-20;
+                }
+            }
+
+            .active {
+                background-color: $greenColor;
+                color: $whiteColor;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    .module-main {
+        flex: 1;
+        width: 100%;
+        background: $whiteColor;
+    }
+}
+
+.swiper {
+    .swiper-slide {
+        padding-left: 0.625rem;
+        padding-right: 0 .625rem;
+
+        @media (min-width: 1024px) {
+            width: 25%;
+        }
+
+        @media (max-width: 768px) {
+            width: 50%;
+        }
+
+    }
+
+    .banner-image {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+.module-player {
+    position: fixed;
+    bottom: 0;
+    width: 85%;
+    display: flex;
+    border-top: 2px solid $greyColor;
+    padding: 10px;
+    .flex-1{
+        flex: 1 1 0%;
+    }
+    .player-controller{
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        column-gap: 0.75rem;
+        .player-btn {
+            color: $greenColor;
+        }
+    }
+}
+
+.player-song {
+    img {
+        width: 50px;
+    }
+    span {
+        line-height:50px;
+        vertical-align: top;
+    }
+}
+
