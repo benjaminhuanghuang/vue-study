@@ -117,3 +117,45 @@ it('does load the weather data when a successful HTTP GET occurs', async () => {
 
 })
 ```
+
+## Pinia
+
+The Pinia data store contains the global data for the Vue application. Both the WeatherContent and CityList components interact with the Pinia data store to add/retrieve weather data.
+
+Data that's only utilized within a single component is best to remain in that component (to help reduce the scope of that data).
+Data that's shared by >1 component is a good candidate for addition into a data store.
+
+When testing a Vue component that utilizes a Pinia data store, the createTestingPinia plugin should be used to create a Pinia instance that's designed for testing.
+
+When testing the Vue component, we're concerned with how it interacts with the Pinia data store (i.e., is the correct action called?).
+
+```js
+import { createTestingPinia } from '@pinia/testing'
+
+beforeEach(() => {
+  // render the component
+  wrapper = shallowMount(CityList, {
+    global: {
+      plugins: [
+        createTestingPinia({
+          createSpy: vi.fn,   // create a spy on all the actions
+          initialState: {
+            ...
+          }
+        })
+      ]
+    }
+  })
+})
+
+// TEARDOWN - run after each unit test
+afterEach(() => {
+  wrapper.unmount()
+})
+
+```
+
+Sample:
+'calls the correct action when the weather data is cleared'
+'displays city weather from the data store'
+
