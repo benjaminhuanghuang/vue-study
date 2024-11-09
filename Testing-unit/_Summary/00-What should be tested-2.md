@@ -1,4 +1,5 @@
-## What to test in a component test?
+# What to test in a component test?
+
 A Vue.js component typically includes the following to be tested:
 
 Properties (props): Testing how the component behaves when passed different props, and how it handles `missing or invalid` props.
@@ -19,8 +20,15 @@ Integration: Testing how the component interacts with other components, services
 
 Error handling: Testing how the component handles errors, and how it behaves when it encounters unexpected situations.
 
+## Input & output
 
+Inputs: data, props, user interaction, lifecycle methods, data store (Pinia/Vuex), route params, query strings
+
+Outputs: rendered output, events, data results, data store (Pinia/Vuex) updates, dispatches
 
 ## Reference
+
 Vue 3 component testing with Jest
 https://blog.canopas.com/vue-3-component-testing-with-jest-8b80a8a8946b
+
+https://testdriven.io/blog/vue-unit-testing/

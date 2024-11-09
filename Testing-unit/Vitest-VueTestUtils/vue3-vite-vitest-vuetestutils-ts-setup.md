@@ -6,8 +6,9 @@ MAKE SURE node.js > 18.x
 ```sh
 npm inti vite@latest
 ```
- 
-## Setup Vitest + @vue/test-utils 
+
+## Setup Vitest + @vue/test-utils
+
 ```sh
 npm i vitest @vue/test-utils jsdom -D
 ```
