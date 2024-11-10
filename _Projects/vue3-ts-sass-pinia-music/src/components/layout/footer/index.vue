@@ -15,20 +15,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, toRefs } from 'vue';
 import { Play, PauseOne, Next, Prev, Volume, Loop, Random, List } from '@icon-park/vue-next';
+import {useStore} from '../store';
 
-let isPlaying = ref<boolean>(false);
-let audio = new Audio("https://music.163.com/song/media/outer/url?id=1345848098.mp3");
-
-function togglePlay() {
-    isPlaying.value = !isPlaying.value;
-    if (isPlaying.value) {
-        audio.play();
-    } else {
-        audio.pause();
-    }
-}
-
+const {isPlaying, togglePlay} = toRefs(seStore());
+  
 </script>
 <style scoped lang="scss"></style>

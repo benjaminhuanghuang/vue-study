@@ -5,7 +5,7 @@
 ```sh
 npm create vite@latest
 
-npm i vue-router axios
+npm i vue-router axios swiper pinia
 
 npm i sass -D
 
