@@ -13,7 +13,7 @@ npm inti vite@latest
 npm i vitest @vue/test-utils jsdom -D
 ```
 
-Enable Vitest api globally
+Enable Vitest api globally and jsdom
 vite.config.ts
 ```ts
 /// <reference types="vitest" />

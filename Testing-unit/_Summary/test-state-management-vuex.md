@@ -1,21 +1,4 @@
-# Test Vuex
-
-Component dispatch a Vuex action that will call the API to get data and
-use mutation to set data to the store. 
-
-All the store parts are JavaScript functions, so the tests are relatively simple
-
-
-## What needs to be tested
-
-
-## Reference
-https://test-utils.vuejs.org/guide/advanced/vuex.html
-
-
-# Testing Vuex Official doc
-https://test-utils.vuejs.org/guide/advanced/vuex
-
+# Test State management: Vuex
 
 Vuex is a plugin. It is applied to application like
 ```js
