@@ -1,0 +1,152 @@
+:root {
+  --size: 40px;
+  --border-size: 3px;
+
+  --b1: #4FBBBD;
+  --b2: #CDF27F;
+  --b3: #898BFC;
+  --b4: #60B4EE;
+  --b5: #E1E100;
+  --b6: #DAAB00;
+  --b7: #E54D41;
+}
+
+body {
+  background-color: #222;
+  font-family: Impact, sans-serif;
+}
+
+#app {
+  display: flex;    
+  justify-content: center;
+  padding: 50px;
+}
+
+.playfield {
+  width: calc(var(--size) * 10);
+  height: calc(var(--size) * 20);
+  border: 2px solid #666;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: start;
+  position: relative;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(var(--size) * 5);
+  padding: 0 10px;
+}
+
+.block {
+  width: var(--size);
+  height: var(--size);
+  border-width: var(--border-size);
+  border-style: outset;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+.block.b0 {
+  visibility: hidden;
+}
+
+.block.b1{
+  background-color: var(--b1);
+  border-color: var(--b1);
+}
+
+.block.b2{
+  background-color: var(--b2);
+  border-color: var(--b2);
+}
+
+.block.b3{
+  background-color: var(--b3);
+  border-color: var(--b3);
+}
+
+.block.b4{
+  background-color: var(--b4);
+  border-color: var(--b4);
+}
+
+.block.b5{
+  background-color: var(--b5);
+  border-color: var(--b5);
+}
+
+.block.b6{
+  background-color: var(--b6);
+  border-color: var(--b6);
+}
+
+.block.b7{
+  background-color: var(--b7);
+  border-color: var(--b7);
+}
+
+.block.blink {
+  animation: blink 0.1s infinite alternate;
+}
+
+@keyframes blink {
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0.5;
+  }
+}
+
+.nextTetris {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: start;
+  width: calc(var(--size) * 4);
+  height: calc(var(--size) * 4);
+  padding: calc(var(--size) * 0.5);
+  margin-bottom: 3em;
+}
+
+.record {
+  display: flex;
+  justify-content: space-between;
+  color: #fecd67;
+  padding: 0 0.5em;
+}
+
+.controls {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 1em;
+  border-top: 2px solid #444;
+}
+.controls button {
+  min-width: 6em;
+  margin: 0 0.5em;
+  padding: 0.5em;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  background-image: linear-gradient(to top, #cc208e 0%, #6713d2 100%);
+}
+
+.game-over {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #000000CC;
+  text-align: center;
+  color: red;
+  font-size: 24px;
+  padding-top: calc(var(--size) * 8);
+  text-shadow: 0 0 16px yellow;
+}
