@@ -54,11 +54,14 @@ export default class Tetris {
   position = { row: 0, col: 0 };
   blocks: number[][];
 
-  constructor(type: number) {
+  constructor(type: number, rotate: number) {
     this.blocks = BlockUtil.deepCopy(
       TETRIS_TYPE[type],
       (block: any) => block * (type + 1)
     );
+    if (rotate > 0) {
+      this.rotate(rotate);
+    }
   }
 
   move(offsetRow: number, offsetCol: number) {

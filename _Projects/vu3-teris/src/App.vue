@@ -26,10 +26,10 @@ Computed
 const playfieldBlocks = computed(() => {
     if (!curTetris) return playfield.value.blocks
 
-    const pBlock = BlockUtil.deepCopy(playfield.value.blocks as number[][])
+    const pBlock = playfield.value.blocks ? BlockUtil.deepCopy(playfield.value.blocks as number[][]) : []
     const { blocks: tBlocks, position } = curTetris.value || { blocks: null, position: 1 };
-    const { row: offsetRow, col: offsetCol } = position.value;
-    return BlockUtil.merge(pBlock, tBlocks, offsetRow, offsetCol)
+    const { row: offsetRow, col: offsetCol } = position as { row: number, col: number };
+    return tBlocks ? BlockUtil.merge(pBlock, tBlocks, offsetRow, offsetCol) : pBlock
 });
 
 const level = computed<number>(() => Math.floor(score.value / 1000) + 1);
@@ -48,7 +48,7 @@ Methods
 function createNextTetris() {
     const type = Math.floor(Math.random() * TETRIS_TYPE.length)
     const rotate = Math.floor(Math.random() * 3)
-    nextTetris.value = new Tetris(type)
+    nextTetris.value = new Tetris(type, rotate)
 }
 
 function dropTetris() {
