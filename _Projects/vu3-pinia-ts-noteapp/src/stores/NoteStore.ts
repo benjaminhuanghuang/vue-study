@@ -1,8 +1,9 @@
 import { defineStore } from "pinia";
+import { Note } from "@/types/Note";
 
 export const useNoteStore = defineStore("noteStore", {
   state: () => ({
-    notes: [],
+    notes: [] as Note[],
     lastNoteID: "",
   }),
   getters: {
@@ -11,16 +12,16 @@ export const useNoteStore = defineStore("noteStore", {
     },
 
     pinnedNotes: (state) => {
-      return state.notes.filter((note) => note.pinned);
+      return state.notes.filter((note: Note) => note.pinned);
     },
   },
   actions: {
-    addNote(note) {
+    addNote(note: Note) {
       const newNotesArr = [note, ...this.notes];
       this.notes = newNotesArr;
     },
 
-    markedAsPinned(id) {
+    markedAsPinned(id: string) {
       const updateNotes = this.notes.map((item) => {
         if (id === item.id) {
           item.pinned = true;
@@ -33,7 +34,7 @@ export const useNoteStore = defineStore("noteStore", {
       this.notes = updateNotes;
     },
 
-    markedAsUnPinned(id) {
+    markedAsUnPinned(id: string) {
       const updateNotes = this.notes.map((item) => {
         if (id === item.id) {
           item.pinned = false;

@@ -1,4 +1,7 @@
 export interface Note {
-    id: number;
-
+    id: string;
+    pinned: boolean;
+    title: string;
+    content: string;
+    timestamp : number;
 }
