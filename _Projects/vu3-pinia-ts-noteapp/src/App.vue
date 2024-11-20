@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import Toolbar from '@/components/common/Toolbar.vue';
 import ListView from '@/components/list/ListView.vue';
 </script>

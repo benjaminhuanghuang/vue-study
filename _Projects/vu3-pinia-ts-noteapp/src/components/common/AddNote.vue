@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import contenteditable from 'vue-contenteditable';
 import { v4 as uuidv4 } from 'uuid';
@@ -7,8 +7,11 @@ const noteStore = useNoteStore();
 const title = ref( '' );
 const content = ref( '' );
 
-const handleForm = (e) => {
-
+/*
+The type of onSubmit in the FormHTMLAttributes interface expects an event of type Event, 
+which is a more general event that doesn't include properties like submitter.
+*/
+const handleForm = (_e: Event) : void => {
 	let insertId = noteStore.lastNoteID;
 
 	if ( 0 < title.value.length && '' === insertId ) {

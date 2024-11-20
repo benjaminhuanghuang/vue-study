@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import ListItem from '../partials/ListItem.vue';
 import { useNoteStore } from '@/stores/NoteStore';
 const noteStore = useNoteStore();

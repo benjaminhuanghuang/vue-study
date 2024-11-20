@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useNoteStore } from '@/stores/NoteStore';
 const noteStore = useNoteStore();
 const props = defineProps( [ 'notes', 'title', 'icon', 'type' ] );

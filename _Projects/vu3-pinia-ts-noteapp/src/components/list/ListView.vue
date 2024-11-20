@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import Sidebar from '@/components/list/Sidebar.vue';
 import AddNote from '@/components/common/AddNote.vue';
 </script>
