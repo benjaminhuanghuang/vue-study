@@ -1,0 +1,16 @@
+{
+    "events" : [
+        {
+            "id": "1234",
+            "title": "aasdfsad",
+            "time": "12:00",
+            "date":"Feb 22, 2022"
+        },
+        {
+            "id": "2345",
+            "title": "vvvvvv",
+            "time": "6:00",
+            "date":"Feb 1, 2022"
+        }
+    ]
+}
