@@ -1,11 +1,7 @@
 <template>
     <div>
         <h1>Register</h1>
-        <form @submit.prevent="register">
-            <div>
-                <label for="email">Email</label>
-                <input v-model="name" type="email" id="email" />
-            </div>
+        <form @submit.prevent="login">
             <div>
                 <label for="email">Email</label>
                 <input v-model="email" type="email" id="email" />
@@ -15,8 +11,9 @@
                 <input v-model="password"  type="password" id="password" />
             </div>
             <div>
-                <button type="submit">Register</button>
+                <button type="submit">Login</button>
             </div>
+            <router-link to="/register">Register</router-link>
         </form>
     </div>
 </template>
@@ -27,17 +24,15 @@
     import { useRouter } from 'vue-router';
 
 
-
-    const name = ref('');
     const email = ref('');
     const password = ref('');
 
     const store = useStore();
     const router = useRouter();
 
-    function register() {
-        console.log(name.value, email.value, password.value);
-        store.dispatch('register', {name: name.value, email: email.value, password: password.value}).then(() => {
+    function login() {
+        console.log(email.value, password.value);
+        store.dispatch('login', {email: email.value, password: password.value}).then(() => {
             router.push({name: 'dashboard'});
         }).catch((error: any) => {
             console.log('register error', error);
