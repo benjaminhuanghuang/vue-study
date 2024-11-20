@@ -7,5 +7,7 @@ https://github.com/robicse11127/vue-note-yt/tree/main
 ```sh
 npm init vite@latest
 
+npm i -D @types/node 
 
+npm i  pinia vue-contenteditable uuid
 ```
