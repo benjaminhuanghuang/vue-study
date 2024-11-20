@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, reactive, ref } from 'vue';
 import BlockUtil from "./BlockUtil.ts"
 import Playfield, { ROWS as PLAY_FIELD_ROWS, COLS as PLAY_FIELD_COLS } from "./Playfield.ts"
 import Tetris, { TETRIS_TYPE, ROWS as TETRIS_ROWS, COLS as TETRIS_COLS } from "./Tetris.ts"
@@ -10,9 +10,9 @@ let dropTimerCnt = 0
 const MAX_DROP_DELAY = 10
 let dropDelay = MAX_DROP_DELAY
 
-const playfield = ref<Playfield>(new Playfield());
+const playfield = reactive<Playfield>(new Playfield());
 const nextTetris = ref<Tetris|null>(null);
-const curTetris = ref<Tetris|null>(null);
+let curTetris = ref<Tetris|null>(null);
 const clearableLines = ref<number[]>([]);
 const isGameOver = ref<boolean>(false);
 const isPaused = ref<boolean>(false);
@@ -23,10 +23,11 @@ const score = ref<number>(0);
 /*
 Computed    
 */
+// playfieldBlocks = "current tetris blocks" merge "playfield blocks"
 const playfieldBlocks = computed(() => {
-    if (!curTetris) return playfield.value.blocks
+    if (!curTetris) return playfield.blocks
 
-    const pBlock = playfield.value.blocks ? BlockUtil.deepCopy(playfield.value.blocks as number[][]) : []
+    const pBlock = playfield.blocks ? BlockUtil.deepCopy(playfield.blocks as number[][]) : []
     const { blocks: tBlocks, position } = curTetris.value || { blocks: null, position: 1 };
     const { row: offsetRow, col: offsetCol } = position as { row: number, col: number };
     return tBlocks ? BlockUtil.merge(pBlock, tBlocks, offsetRow, offsetCol) : pBlock
@@ -52,7 +53,7 @@ function createNextTetris() {
 }
 
 function dropTetris() {
-    curTetris.value = nextTetris.value
+    curTetris = nextTetris;
     curTetris.value!.position = {
         row: -TETRIS_ROWS,
         col: Math.floor((PLAY_FIELD_COLS - TETRIS_COLS) / 2)
@@ -66,7 +67,7 @@ function dropTetris() {
 }
 
 function isCollided(offsetRow: number, offsetCol: number, rotate: number) {
-    return playfield.value.isCollided(curTetris, offsetRow, offsetCol, rotate)
+    return curTetris.value ? playfield.isCollided(curTetris.value, offsetRow, offsetCol, rotate) : false
 }
 
 function moveTetris(offsetRow: number, offsetCol: number) {
@@ -91,7 +92,7 @@ function addScore(score: number) {
 
 function fixTetris() {
     addScore(50)
-    playfield.value.merge(curTetris)
+    playfield.merge(curTetris.value as Tetris)
 
     if (curTetris.value!.position.row < 0) {
         gameOver()
@@ -104,14 +105,14 @@ function clearLines() {
     const { row: from } = curTetris.value!.position
     const clearLines
         = clearableLines.value
-        = playfield.value.getClearableLines(from, from + TETRIS_ROWS)
+        = playfield.getClearableLines(from, from + TETRIS_ROWS)
 
     if (clearLines.length) {
         // 累计积分. 消除 n 行得到的积分为 (2 ^ n) * 100 
         addScore((2 ** clearLines.length) * 100)
 
         setTimeout(() => {
-            playfield.value.clearLines(clearLines)
+            playfield.clearLines(clearLines)
             clearLines.splice(0)
         }, 400)
     }
@@ -166,10 +167,11 @@ function start() {
     score.value = 0
     dropDelay = MAX_DROP_DELAY
     curTetris.value = null
-    playfield.value.clearAll()
+    playfield.clearAll()
     dropTetris()
     startDropTimer()
 }
+
 function pause() {
     stopDropTimer()
     isPaused.value = true
@@ -180,11 +182,20 @@ function resume() {
     isPaused.value = false
 }
 
-
-
 </script>
 
 <template>
+    <!-- blocks demo, the first on is hidden -->
+    <div>
+        <div class="block b0"></div>
+        <div class="block b1"></div>
+        <div class="block b2"></div>
+        <div class="block b3"></div>
+        <div class="block b4"></div>
+        <div class="block b5"></div>
+        <div class="block b6"></div>
+        <div class="block b7"></div>
+    </div>
     <!-- gave area -->
     <div class="playfield">
         <template v-for="(row, rowIndex) in playfieldBlocks">
@@ -196,7 +207,7 @@ function resume() {
             <h1>GAME OVER</h1>
         </div>
     </div>
-    <!-- side bar -->
+    <!-- right side section -->
     <div class="aside">
         <div>
             <!-- Next tetris -->

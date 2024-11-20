@@ -1,5 +1,6 @@
 :root {
-  --size: 40px;
+  /* block size and border */
+  --size: 40px; 
   --border-size: 3px;
 
   --b1: #4FBBBD;
@@ -51,7 +52,9 @@ body {
 }
 
 .block.b0 {
-  visibility: hidden;
+  /* for texting */
+  border: 1px solid black;
+  /* visibility: hidden; */
 }
 
 .block.b1{

@@ -1,8 +1,10 @@
+// Create a row and fill cells with 0
 function createRow(cols:number) {
     return new Array(cols).fill(0)
 }
 
 function createBlock(rows:number, cols:number) {
+    //  Using .map() ensures that each row is a separate array. Without .map(), all rows would reference the same array.
     return new Array(rows).fill([]).map(() => createRow(cols))
 }
 

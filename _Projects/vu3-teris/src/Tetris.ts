@@ -57,7 +57,7 @@ export default class Tetris {
   constructor(type: number, rotate: number) {
     this.blocks = BlockUtil.deepCopy(
       TETRIS_TYPE[type],
-      (block: any) => block * (type + 1)
+      (block: number) => block * (type + 1)  // value of block will be the color
     );
     if (rotate > 0) {
       this.rotate(rotate);
