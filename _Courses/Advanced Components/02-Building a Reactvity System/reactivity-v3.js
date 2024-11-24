@@ -21,6 +21,9 @@ let quantity = 2;
 let total = 0;
 let target = null;
 
+/*
+  set target, record target, run target, reset target
+*/
 function watcher(myFunc) {
   target = myFunc;
   dep.depend();

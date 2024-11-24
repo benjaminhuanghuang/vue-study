@@ -18,6 +18,8 @@ class Dep {
   }
 }
 
+let deps = new Map();
+
 // Set target, run target, reset target
 function watcher(myFunc) {
   target = myFunc;
@@ -26,24 +28,34 @@ function watcher(myFunc) {
 }
 
 Object.keys(data).forEach((key) => {
-  let internalValue = data[key];
-  const dep = new Dep();
-
-  Object.defineProperty(data, key, {
-    get() {
-      dep.depend(); // remember the target we are running
-      return internalValue;
-    },
-    set(newVal) {
-      internalValue = newVal;
-      dep.notify();  // rerun the target
-    },
-  });
+  deps.set(key, new Dep());
 });
 
+let data_without_proxy = data;
+data = new Proxy(data_without_proxy, {
+  get(obj, key) {
+    deps.get(key).depend();
+    return obj[key];
+  },
+  set(obj, key, newVal) {
+    obj[key] = newVal;
+    deps.get(key).notify();
+    return true;
+  },
+})
+
 watcher(() => (total = data.price * data.quantity));
-watcher(() => (salePrice = data.price * 0.9));
+
 
 console.log(total); // 10
 data.price = 20;
 console.log(total); // 40
+
+
+deps.set('discount', new Dep());
+data['discount'] = 5;
+watcher(() => (salePrice = data.price - data.discount));
+
+console.log(salePrice); // 15
+data['discount'] = 10;
+console.log(salePrice); // 10
