@@ -1,5 +1,7 @@
 # Monorepo + pnpm + esbuild
-1. Setup monorepo
+
+## 1. Setup monorepo
+
 ```sh
 # Install pnpm
 npm i pnpm -g
@@ -13,45 +15,63 @@ touch pnpm-workspace.yaml
 ```
 
 add .npmrc
+
 ```json
 shamefull-hoist=true    # hoist all dependencies to the node_modules of the root directory
 ```  
 
-2. Setup project  
+## 2. Setup project  
+
 Install dependency
+
 ```sh
 pnpm install typescript esbuild minimist -D -w    # -w install dependencies to root 
 ```
+
 minimist: parse the command line parameter
 
 create ts-config
+
 ```sh
 npx tsc --init
 ```
 
 packages relationship in tsconfig.json
+
 ```json
 "baseUrl": "./" /* Base directory to resolve non-absolute module names. */,
 "paths": {
     "@vue/*": ["packages/*/src"]
 }
 ```
-3. Bundle packages
+
+## 3. Bundle packages
 
 ```json
  "dev": "node scripts/dev.js reactivity -f esm"
 ```
 
+## 4. Setup ts
 
-Install package
+Tell TS import the vue in packages
+
+```json
+"baseUrl": "./" /* Base directory to resolve non-absolute module names. */,
+"paths": {
+    "@vue/*": ["packages/*/src"]
+}
+```
+
+## 5. Install shared under current workspace to reactive
+
 ```sh
 pnpm i @vue/shared --workspace --filter @vue/reactivity
 ```
+
 It will update packages/reactive/package.json
+
 ```json
  "dependencies": {
     "@vue/shared": "workspace:*"
 }
 ```
-
-

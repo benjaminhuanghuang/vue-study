@@ -1,3 +1,6 @@
+/*
+    
+*/
 export function effect(fn, options?: any) {
   const _effect = new ReactiveEffect(fn, ()=>{
     _effect.run();
@@ -8,6 +11,7 @@ export function effect(fn, options?: any) {
   return _effect;
 }   
 
+export let activeEffect: ReactiveEffect | null = null;
 
 class ReactiveEffect {
   public active = true;
@@ -20,7 +24,12 @@ class ReactiveEffect {
     if(!this.active) {
       return this.fn();
     }
-
-    return this.fn;
+    try {
+      activeEffect = this;
+      return this.fn();
+    }
+    finally {
+      activeEffect = undefined;
+    }
   }
 }

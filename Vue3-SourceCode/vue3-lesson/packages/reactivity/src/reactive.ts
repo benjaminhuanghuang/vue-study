@@ -9,7 +9,7 @@ function creativeReactiveObject(target: any) {
     return target;
   }
 
-  // target is already a Proxy
+  // target is already a Proxy, will call get() method
   if (target[ReactiveFlags.IS_REACTIVE]) {
     return target;
   }
