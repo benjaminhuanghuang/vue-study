@@ -1,6 +1,6 @@
 # Vue Best Practice
 
-- Vue 3 + TypeScript + Vite 
+- Vue 3 + TypeScript + Vite
 - Tailwind + Google fount + Font-awesome Icon
 - Axios API call
 - Pinia + Router + Auth
@@ -8,6 +8,7 @@
 - Playwright
 
 ## Init Project
+
 MAKE SURE node.js > 18.x
 ```sh
 npm inti vite@latest
@@ -15,16 +16,18 @@ npm inti vite@latest
 
 create src/shims-vue.d.ts to tell TS how to handel the .vue file
 
-
 ## Tailwind + Google Font + Icon
+
 https://v2.tailwindcss.com/docs/guides/vue-3-vite
 
 ### Tailwind
+
 ```sh
 npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
 
 npx tailwindcss init -p
 ```
+
 PostCSS: A tool for transforming CSS with JavaScript
 Autoprefixer is a PostCSS plugin that can be used with Tailwind CSS to automatically 
 adds any necessary vendor prefixes based on the browsers you tell it you need to support.
