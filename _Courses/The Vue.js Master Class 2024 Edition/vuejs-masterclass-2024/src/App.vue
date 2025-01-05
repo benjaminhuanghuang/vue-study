@@ -2,6 +2,8 @@
 </script>
 
 <template>
-  <h1>Test</h1>
+ <main>
+   <router-view />
+  </main>
 </template>
 
