@@ -3,8 +3,12 @@ function effect(fn, options) {
   const _effect = new ReactiveEffect(fn, () => {
     _effect.run();
   });
-  _effect.run();
-  return _effect;
+  if (options) {
+    Object.assign(_effect, options);
+  }
+  const runner = _effect.run.bind(_effect);
+  runner.effect = _effect;
+  return runner;
 }
 var activeEffect = null;
 var ReactiveEffect = class {
@@ -24,11 +28,12 @@ var ReactiveEffect = class {
       return this.fn();
     }
     let lastEffect = activeEffect;
-    preCleanEffects(this);
+    preCleanEffect(this);
     try {
       activeEffect = this;
       return this.fn();
     } finally {
+      postCleanEffect(this);
       activeEffect = lastEffect;
     }
   }
@@ -57,11 +62,23 @@ function triggerEffects(dep) {
     }
   }
 }
-function preCleanEffects(effect2) {
-  for (let i = 0; i < effect2._depsLength; i++) {
-    effect2.deps[i].delete(effect2);
-  }
+function preCleanEffect(effect2) {
   effect2._depsLength = 0;
+  effect2._trackId++;
+}
+function postCleanEffect(effect2) {
+  if (effect2.deps.length > effect2._depsLength) {
+    for (let i = effect2._depsLength; i < effect2.deps.length; i++) {
+      cleanDepEffect(effect2.deps[i], effect2);
+    }
+    effect2.deps.length = effect2._depsLength;
+  }
+}
+function cleanDepEffect(dep, effect2) {
+  dep.delete(effect2);
+  if (dep.size === 0) {
+    dep.cleanup();
+  }
 }
 
 // packages/shared/src/index.ts

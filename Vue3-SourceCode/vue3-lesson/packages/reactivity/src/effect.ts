@@ -9,8 +9,12 @@ export function effect(fn, options?: any) {
     _effect.run();
   });
 
-  _effect.run();
-  return _effect;
+  if(options) {
+    Object.assign(_effect, options);
+  }
+  const runner = _effect.run.bind(_effect);
+  runner.effect = _effect;
+  return runner;
 }
 
 export let activeEffect: ReactiveEffect | null = null;
@@ -33,11 +37,12 @@ class ReactiveEffect {
     }
     let lastEffect = activeEffect;
     // clean up the deps
-    preCleanEffects(this);
+    preCleanEffect(this);
     try {
       activeEffect = this;
       return this.fn();
     } finally {
+      postCleanEffect(this);
       activeEffect = lastEffect;
     }
   }
@@ -65,8 +70,6 @@ export function trackEffect(effect, dep) {
       effect._depsLength++;
     }
   }
-  // dep.set(effect, effect._trackId);
-  // effect.deps[effect._depsLength++] = dep;
 }
 
 export function triggerEffects(dep) {
@@ -77,11 +80,18 @@ export function triggerEffects(dep) {
   }
 }
 
-function preCleanEffects(effect) {
-  for (let i = 0; i < effect._depsLength; i++) {
-    effect.deps[i].delete(effect);
-  }
+function preCleanEffect(effect) {
   effect._depsLength = 0;
+  effect._trackId++;
+}
+
+function postCleanEffect(effect) {
+  if(effect.deps.length > effect._depsLength) {
+    for(let i = effect._depsLength; i < effect.deps.length; i++) {
+     cleanDepEffect(effect.deps[i], effect);
+    }
+    effect.deps.length = effect._depsLength;
+  }
 }
 
 function cleanDepEffect(dep, effect) {
