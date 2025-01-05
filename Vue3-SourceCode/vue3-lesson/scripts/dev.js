@@ -1,10 +1,8 @@
 /* 
-    bundle the source code under packages folder
-    Usage: 
+    Bundle the source code under packages folder, create the js file
     
+    Usage: 
     node scripts/dev.js target -f format
-
-
 */
 import minimist from "minimist";
 import { resolve, dirname } from "path";
@@ -17,7 +15,7 @@ const __dirName = dirname(__fileName);
 const require = createRequire(import.meta.url);
 
 // parse the command line arguments
-const args = minimist(process.argv.slice(2));
+const args = minimist(process.argv.slice(2)); 
 
 const target = args._[0] || "reactivity";
 const format = args.f || "iife";
