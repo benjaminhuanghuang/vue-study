@@ -6,38 +6,126 @@ function effect(fn, options) {
   _effect.run();
   return _effect;
 }
+var activeEffect = null;
 var ReactiveEffect = class {
   constructor(fn, scheduler) {
     this.fn = fn;
     this.scheduler = scheduler;
+    /*
+      如果一个effect依赖多个属性，只收集一次effect，不重复收集
+    */
+    this._trackId = 0;
+    this.deps = [];
+    this._depsLength = 0;
     this.active = true;
   }
   run() {
     if (!this.active) {
       return this.fn();
     }
-    return this.fn;
+    let lastEffect = activeEffect;
+    preCleanEffects(this);
+    try {
+      activeEffect = this;
+      return this.fn();
+    } finally {
+      activeEffect = lastEffect;
+    }
+  }
+  stop() {
+    this.active = false;
   }
 };
+function trackEffect(effect2, dep) {
+  if (dep.get(effect2) !== effect2._trackId) {
+    dep.set(effect2, effect2._trackId);
+    let oldDep = effect2.deps[effect2._depsLength];
+    if (oldDep !== dep) {
+      if (oldDep) {
+        oldDep.delete(effect2);
+      }
+      effect2.deps[effect2._depsLength++] = dep;
+    } else {
+      effect2._depsLength++;
+    }
+  }
+}
+function triggerEffects(dep) {
+  for (const effect2 of dep.keys()) {
+    if (effect2.scheduler) {
+      effect2.scheduler();
+    }
+  }
+}
+function preCleanEffects(effect2) {
+  for (let i = 0; i < effect2._depsLength; i++) {
+    effect2.deps[i].delete(effect2);
+  }
+  effect2._depsLength = 0;
+}
 
 // packages/shared/src/index.ts
 function isObject(value) {
   return typeof value === "object" && value !== null;
 }
 
+// packages/reactivity/src/reactiveEffect.ts
+var targetMap = /* @__PURE__ */ new WeakMap();
+function track(target, key) {
+  if (activeEffect) {
+    console.log(target, key, activeEffect);
+    let depsMap = targetMap.get(target);
+    if (!depsMap) {
+      targetMap.set(target, depsMap = /* @__PURE__ */ new Map());
+    }
+    let dep = depsMap.get(key);
+    if (!dep) {
+      depsMap.set(key, dep = createDep(() => depsMap.delete(key), key));
+    }
+    trackEffect(activeEffect, dep);
+    console.log(targetMap);
+  }
+}
+function trigger(target, key, newValue, oldValue) {
+  const depsMap = targetMap.get(target);
+  if (!depsMap) {
+    return;
+  }
+  const dep = depsMap.get(key);
+  if (dep) {
+    triggerEffects(dep);
+  }
+}
+function createDep(cleanup, key) {
+  const dep = /* @__PURE__ */ new Map();
+  dep.cleanup = cleanup;
+  dep.name = key;
+  return dep;
+}
+
 // packages/reactivity/src/baseHandler.ts
 var mutableHandlers = {
+  /*
+    Collect the dependencies
+  */
   get(target, key, receiver) {
     if (key === "__v_isReactive" /* IS_REACTIVE */) {
       return true;
     }
+    track(target, key);
     const res = Reflect.get(target, key, receiver);
     return res;
   },
+  /*
+    Trigger the rendering 
+  */
   set(target, key, value, receiver) {
-    const res = Reflect.set(target, key, value, receiver);
-    console.log("set", key, value);
-    return res;
+    let oldValue = target[key];
+    const result = Reflect.set(target, key, value, receiver);
+    if (oldValue !== value) {
+      trigger(target, key, value, oldValue);
+    }
+    return result;
   },
   deleteProperty(target, key) {
     const res = Reflect.deleteProperty(target, key);
@@ -47,6 +135,9 @@ var mutableHandlers = {
 };
 
 // packages/reactivity/src/reactive.ts
+function reactive(target) {
+  return creativeReactiveObject(target);
+}
 var reactiveMap = /* @__PURE__ */ new WeakMap();
 function creativeReactiveObject(target) {
   if (!isObject(target)) {
@@ -63,11 +154,11 @@ function creativeReactiveObject(target) {
   reactiveMap.set(target, proxy);
   return proxy;
 }
-function reactive(target) {
-  return creativeReactiveObject(target);
-}
 export {
+  activeEffect,
   effect,
-  reactive
+  reactive,
+  trackEffect,
+  triggerEffects
 };
 //# sourceMappingURL=reactivity.js.map

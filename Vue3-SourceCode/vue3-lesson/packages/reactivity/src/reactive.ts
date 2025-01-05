@@ -1,7 +1,16 @@
 import { isObject } from "@vue/shared";
 import { mutableHandlers, ReactiveFlags } from "./baseHandler";
 
-// reuse the same reactive object for the same original object
+/**
+ *  Convert an object into a reactive object
+ *  1. check if the target is in reactiveMap, if so, reuse reactive object
+ *  2. check if the target is a Proxy , if so, return the target
+ */
+export function reactive(target: any) {
+  return creativeReactiveObject(target);
+}
+
+// Reuse the same reactive object for the same original object
 const reactiveMap = new WeakMap();
 
 function creativeReactiveObject(target: any) {
@@ -21,8 +30,4 @@ function creativeReactiveObject(target: any) {
   const proxy = new Proxy(target, mutableHandlers);
   reactiveMap.set(target, proxy);
   return proxy;
-}
-
-export function reactive(target: any) {
-  return creativeReactiveObject(target);
 }
