@@ -58,3 +58,15 @@ npm i @faker-js/faker -D
 create database/seek.js
 
 Need node v20
+
+
+## Data type
+In the project API Doc -> Introduction -> Generate and download types
+
+Add "database/types.ts" to tsconfig
+
+
+## Tasks
+npx supabase migration new tasks-schema
+npx supabase migration up --linked 
+npm run supabase:types  

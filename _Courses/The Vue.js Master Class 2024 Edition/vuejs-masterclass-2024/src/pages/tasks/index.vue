@@ -3,9 +3,9 @@ import { supabase } from '@/lib/supabaseClient'
 import {ref} from 'vue'
 import type { Tables } from '../../../database/types';
 
-const projects = ref<Tables<'projects'>[] | null>(null)  
+const tasks = ref<Tables<'tasks'>[] | null>(null)  
 
-const getProjects = async () => {
+const getTasks = async () => {
   const { data, error } = await supabase.from('projects').select()
   if (error) {
     console.error(error)
