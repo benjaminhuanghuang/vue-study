@@ -49,3 +49,12 @@ add script
 ```
 "supabase:init": "suabase init"
 ```
+
+
+## Seed db using faker-js
+```
+npm i @faker-js/faker -D
+```
+create database/seek.js
+
+Need node v20

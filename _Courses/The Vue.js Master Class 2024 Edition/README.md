@@ -6,6 +6,8 @@ https://vueschool.io/the-vuejs-3-master-class
 
 https://www.bilibili.com/video/BV1XVrsYvECm
 
+https://www.bilibili.com/video/BV19uqaY2EhF
+
 ## 1 Development Environment Setup
 ESLint Setup for Automated Code Reviews
 Prettier Setup for Fix it and Forget It Code Formatting
