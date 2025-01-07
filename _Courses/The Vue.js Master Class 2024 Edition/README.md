@@ -3,6 +3,7 @@
 by Mostafa 
 
 https://vueschool.io/the-vuejs-3-master-class
+https://github.com/vueschool/vuejs-masterclass-2024-edition
 
 https://www.bilibili.com/video/BV1XVrsYvECm
 
