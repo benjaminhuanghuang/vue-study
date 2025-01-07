@@ -55,5 +55,11 @@ const columns: ColumnDef<Tables<'projects'>>[] = [
 </script>
 
 <template>
-  <DataTable v-if="projects" :columns="columns" :data="projects" />
+  <DataTable v-if="projects" :columns="columns" :data="projects"> 
+    <template #cell-name="{cell}"> 
+      <RouterLink :to="`/projects/${cell.row.original.slug}`" class="text-left font-medium hover:bg-muted block w-full">
+        {{ cell.getValue() }}
+      </RouterLink>
+    </template>
+  </DataTable>
 </template>
