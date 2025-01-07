@@ -6,6 +6,9 @@ Create organization
 
 Create project "pulse" and db password "dba@2025"
 
+https://supabase.com/dashboard/project/gjhmwfbydexmeybhklzn
+
+
 Install 
 https://supabase.com/docs/reference/javascript/installing
 ```
