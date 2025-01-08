@@ -5,17 +5,22 @@ import type { Tables } from '../../../database/types'
 import type { ColumnDef } from '@tanstack/vue-table'
 import DataTable from '@/components/ui/data-table/DataTable.vue'
 import { RouterLink } from 'vue-router'
+import { usePageStore } from '@/stores/page';
+
+usePageStore().pageData.title = 'Projects';
 
 const projects = ref<Tables<'projects'>[] | null>(null)
-  ; (async () => {
-    const { data, error } = await supabase.from('projects').select()
+const getProjects = async () => {
+  const { data, error } = await supabase.from('projects').select()
 
-    if (error) console.log(error)
+  if (error) console.log(error)
 
-    projects.value = data
+  projects.value = data
 
-    console.log('projects: ', projects.value)
-  })()
+  console.log('projects: ', projects.value)
+}
+
+await getProjects();
 
 const columns: ColumnDef<Tables<'projects'>>[] = [
   {
@@ -55,8 +60,8 @@ const columns: ColumnDef<Tables<'projects'>>[] = [
 </script>
 
 <template>
-  <DataTable v-if="projects" :columns="columns" :data="projects"> 
-    <template #cell-name="{cell}"> 
+  <DataTable v-if="projects" :columns="columns" :data="projects">
+    <template #cell-name="{ cell }">
       <RouterLink :to="`/projects/${cell.row.original.slug}`" class="text-left font-medium hover:bg-muted block w-full">
         {{ cell.getValue() }}
       </RouterLink>
