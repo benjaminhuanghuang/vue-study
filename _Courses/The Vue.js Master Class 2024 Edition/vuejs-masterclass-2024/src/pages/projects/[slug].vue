@@ -1,3 +1,18 @@
+<script setup lang="ts">
+import { useRoute } from 'vue-router';
+const route = useRoute();
+const project = ref(null);
+const getProjects = async () => {
+  const { data, error } = await projectsQuery;
+  if (error) console.log(error);
+  project.value = data;
+  console.log('projects: ', project.value);
+};
+
+
+</script>
+
+
 <template>
   <Table>
     <TableRow>
@@ -22,11 +37,7 @@
       <TableHead> Collaborators </TableHead>
       <TableCell>
         <div class="flex">
-          <Avatar
-            class="-mr-4 border border-primary hover:scale-110 transition-transform"
-            v-for="n in 5"
-            :key="n"
-          >
+          <Avatar class="-mr-4 border border-primary hover:scale-110 transition-transform" v-for="n in 5" :key="n">
             <RouterLink class="w-full h-full flex items-center justify-center" to="">
               <AvatarImage src="" alt="" />
               <AvatarFallback> </AvatarFallback>
