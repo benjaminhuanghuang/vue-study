@@ -1,14 +1,25 @@
 <script setup lang="ts">
+  
+import { usePageStore } from '@/stores/page';
+import { projectQuery, type Project } from '@/utils/supaQueries';
 import { useRoute } from 'vue-router';
-const route = useRoute();
-const project = ref(null);
+
+const route = useRoute('/projects/[slug]');
+const project = ref<Project | null>(null);
+
+watch(
+  () => project.value?.name,
+  () => {
+    usePageStore().pageData.title = `Project: ${project.value?.name || ''}`
+  }
+)
+
 const getProjects = async () => {
-  const { data, error } = await projectsQuery;
+  const { data, error } = await projectQuery(route.params.slug as string);
   if (error) console.log(error);
   project.value = data;
   console.log('projects: ', project.value);
 };
-
 
 </script>
 
