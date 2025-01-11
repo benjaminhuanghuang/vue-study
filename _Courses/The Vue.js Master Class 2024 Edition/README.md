@@ -5,7 +5,8 @@ by Mostafa
 https://vueschool.io/the-vuejs-3-master-class
 https://github.com/vueschool/vuejs-masterclass-2024-edition
 
-https://www.bilibili.com/video/BV1XVrsYvECm
+P1 https://www.bilibili.com/video/BV1XVrsYvECm
+P2 https://www.bilibili.com/video/BV15xrWYBEoS
 
 https://www.bilibili.com/video/BV19uqaY2EhF
 
