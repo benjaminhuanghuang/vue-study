@@ -1,9 +1,3 @@
-
-## Database Migration
-npm run db:migrate:new profiles-schema
-
-migrations/20240905083244_profiles-schema.sql
-
 ## Supabase setup
 Select project -> Authentication -> Provider -> Email -> Confirm email = NO -> save
 
@@ -19,7 +13,7 @@ npx shadcn-vue@latest add card
 
 ### Register
 
-
+ 
 ## Store and session
 
 auth.ts

@@ -12,6 +12,7 @@ defineProps<{
   links: LinkProp[]
 }>()
 
+// events
 const emits = defineEmits<{
   actionClicked: [string]
 }>()
@@ -25,6 +26,7 @@ const { menuOpen } = inject(menuKey) as MenuInjectionOptions
 
 <template>
     <template v-for="link in links" :key="link.title">
+    <!-- link has to property -->
     <RouterLink
       v-if="link.to"
       exactActiveClass="text-primary bg-muted"
@@ -39,7 +41,7 @@ const { menuOpen } = inject(menuKey) as MenuInjectionOptions
         >{{ link.title }}</span
       >
     </RouterLink>
-
+    <!-- link does not has to property -->
     <div
       v-else
       class="nav-link cursor-pointer"
