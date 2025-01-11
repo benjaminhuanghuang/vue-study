@@ -1,4 +1,4 @@
-import { fakerEN_US as faker } from '@faker-js/faker'
+import { de, fakerEN_US as faker } from '@faker-js/faker'
 import { createClient } from '@supabase/supabase-js'
 import { describe } from 'node:test'
 
@@ -30,6 +30,7 @@ const seedProjects = async () => {
   await supabase.from('projects').insert({
     name: name,
     slug: name.toLowerCase().replace(/ /g, '-'),
+    description: faker.lorem.paragraph(2),
     status: faker.helpers.arrayElement(['in-progress', 'completed']),
     collaborators: faker.helpers.arrayElements([1, 2, 3])
   })
