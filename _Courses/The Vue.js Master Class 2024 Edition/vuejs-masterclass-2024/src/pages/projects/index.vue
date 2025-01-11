@@ -6,14 +6,15 @@ import { RouterLink } from 'vue-router'
 import { usePageStore } from '@/stores/page';
 import { projectsQuery, type Projects } from '@/utils/supaQueries'
 import { columns } from '@/utils/tableColumns/projectsColumns'
+import { useErrorStore } from '@/stores/error';
 
 usePageStore().pageData.title = 'Projects';
 
 const projects = ref<Projects | null>(null)
 const getProjects = async () => {
-  const { data, error } = await projectsQuery
+  const { data, error, status } = await projectsQuery
 
-  if (error) console.log(error)
+  if (error) useErrorStore().setError({ error, customCode: status })
 
   projects.value = data
 

@@ -7,7 +7,7 @@ import { useErrorStore } from './stores/error';
 const errorStore = useErrorStore()
 
 onErrorCaptured((error: string) => {
-  errorStore.setError({ error, customCode: 400})
+  errorStore.setError({ error})
 })
 </script>
 
