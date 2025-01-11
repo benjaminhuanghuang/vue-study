@@ -19,3 +19,6 @@ npx shadcn-vue@latest add card
 
 ### Register
 
+
+## Store and session
+auth.ts
