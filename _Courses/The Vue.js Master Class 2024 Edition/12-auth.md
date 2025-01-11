@@ -21,4 +21,20 @@ npx shadcn-vue@latest add card
 
 
 ## Store and session
+
 auth.ts
+
+
+## Router guard
+
+src/router/index.ts
+```js
+router.beforeEach
+```
+
+App.vue
+```js
+onMounted(() => {
+  useAuthStore().trackAuthChanges()
+})
+```
