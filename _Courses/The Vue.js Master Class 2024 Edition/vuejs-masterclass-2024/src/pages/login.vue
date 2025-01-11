@@ -1,19 +1,39 @@
 <script setup lang="ts">
 import { login } from '@/utils/supaAuth'
+import { watchDebounced } from '@vueuse/core'
+
 import {Card,CardContent, CardHeader, CardTitle, CardDescription}  from '@/components/ui/card'
 import {Input} from '@/components/ui/input'
 import {Label} from '@/components/ui/label'
 import {Button} from '@/components/ui/button'
+import { useFormErrors } from '@/composables/formErrors'
 
 const formData = ref({
   email: '',
   password: ''
 })
-
+const { serverError, handleServerError, realtimeErrors, handleLoginForm } =
+  useFormErrors()
+  
 const router = useRouter()
+
+
+watchDebounced(
+  formData,
+  () => {
+    handleLoginForm(formData.value)
+  },
+  {
+    debounce: 1000,
+    deep: true
+  }
+)
+
 const signin = async () => {
-  const isLoggedIn = await login(formData.value)
-  if (isLoggedIn) router.push('/')
+  const { error } = await login(formData.value)
+  if (!error) return router.push('/')
+
+  handleServerError(error)
 }
 </script>
 
