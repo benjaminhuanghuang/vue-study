@@ -4,6 +4,7 @@ import AppErrorPage from '@/components/AppError/AppErrorPage.vue'
 import { useErrorStore } from './stores/error';
 import { useAuthStore } from './stores/auth';
 import { storeToRefs } from 'pinia';
+import { useMeta } from 'vue-meta';
 
 const errorStore = useErrorStore()
 
@@ -25,14 +26,14 @@ const GuestLayout = defineAsyncComponent(
   () => import('./components/Layout/main/GuestLayout.vue')
 )
 
-// useMeta({
-//   title: 'Pulse',
-//   description: {
-//     name: 'description',
-//     content:
-//       'Pulse is a project management tool that helps you organize your work.'
-//   }
-// })
+useMeta({
+  title: 'Pulse',
+  description: {
+    name: 'description',
+    content:
+      'Pulse is a project management tool that helps you organize your work.'
+  }
+})
 
 </script>
 
