@@ -49,7 +49,11 @@ npx shadcn-vue@latest add avatar
 npx shadcn-vue@latest add sheet
 ```
 
-## provide and inject APIs in Vue 3
+## Error handling
+
+src/App.vue
+
+## Menu open/close using provide and inject APIs in Vue 3
 
 src/components/Layout/main/AuthLayout.vue
 src/components/Layout/Sidebar.vue

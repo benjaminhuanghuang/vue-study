@@ -27,6 +27,7 @@ const collabs = project.value?.collaborators
 </script>
 
 <template>
+  <!-- To use Transition, wrap all elements in a div -->
   <div>
     <Table v-if="project">
       <TableRow>
