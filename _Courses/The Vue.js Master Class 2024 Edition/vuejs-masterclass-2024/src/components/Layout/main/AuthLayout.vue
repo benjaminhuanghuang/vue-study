@@ -11,7 +11,9 @@ const { pageData } = storeToRefs(usePageStore());
 const taskSheetOpen = ref(false);
 
 const menuOpen = ref(false);
-const toggleMenu = () => (menuOpen.value = !menuOpen.value);
+const toggleMenu = () => {
+  menuOpen.value = !menuOpen.value;
+}
 
 // provide and inject APIs in Vue 3 
 provide(menuKey, {

@@ -27,4 +27,6 @@ provide(menuKey, {
 
 // descendant, Sidebar
 const { menuOpen, toggleMenu } = inject(menuKey) as MenuInjectionOptions
+// descendant, SidebarLinks
+const { menuOpen } = inject(menuKey) as MenuInjectionOptions
 ```
