@@ -1,24 +1,26 @@
 <script setup lang="ts">
+import {Button} from '@/components/ui/button'
+
 const props = defineProps<{
-  message: string
-  customCode: number
-  statusCode: number
-  isCustomError: boolean
-}>()
+  message: string;
+  customCode: number;
+  statusCode: number;
+  isCustomError: boolean;
+}>();
 
 const error = ref({
   code: 500,
-  msg: 'Ops, something went wrong!'
-})
+  msg: "Ops, something went wrong!",
+});
 
 if (props.isCustomError) {
-  error.value.code = props.customCode
-  error.value.msg = props.message
+  error.value.code = props.customCode;
+  error.value.msg = props.message;
 }
 
 if (props.statusCode === 406) {
-  error.value.code = 404
-  error.value.msg = "Sorry, we couldn't find this page"
+  error.value.code = 404;
+  error.value.msg = "Sorry, we couldn't find this page";
 }
 </script>
 

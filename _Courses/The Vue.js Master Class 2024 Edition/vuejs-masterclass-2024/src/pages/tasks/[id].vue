@@ -3,6 +3,8 @@ import { useCollabs } from "@/composables/collabs";
 import { useTasksStore } from "@/stores/loaders/tasks";
 import { usePageStore } from "@/stores/page";
 import { storeToRefs } from "pinia";
+import { Button } from "@/components/ui/button";
+
 const { id } = useRoute("/tasks/[id]").params;
 
 const tasksLoader = useTasksStore();
@@ -34,6 +36,7 @@ const triggerDelete = async () => {
 };
 </script>
 <template>
+  <!-- To use Transition, wrap all elements in a div -->
   <div class="flex flex-col justify-center items-center">
     <Table v-if="task">
       <TableRow>

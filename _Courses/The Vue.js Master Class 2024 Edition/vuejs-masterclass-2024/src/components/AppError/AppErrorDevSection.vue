@@ -1,12 +1,14 @@
 <script setup lang="ts">
+import { Button } from "@/components/ui/button";
+
 defineProps<{
-  message: string
-  customCode: number
-  code: string
-  statusCode: number
-  hint: string | null
-  details: string
-}>()
+  message: string;
+  customCode: number;
+  code: string;
+  statusCode: number;
+  hint: string | null;
+  details: string;
+}>();
 </script>
 
 <template>

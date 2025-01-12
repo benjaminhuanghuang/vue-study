@@ -37,11 +37,13 @@ const GuestLayout = defineAsyncComponent(
 </script>
 
 <template>
-  <AuthLayout>
-    <AppErrorPage v-if="errorStore.activeError" />
- 
-    <RouterView v-slot="{ Component, route }">
-      <Transition name="fade" mode="out-in">
+  <metainfo></metainfo>
+  <Transition name="fade" mode="out-in">
+    <Component :is="user ? AuthLayout : GuestLayout" :key="user?.id">
+      <AppErrorPage v-if="errorStore.activeError" />
+
+      <RouterView v-else v-slot="{ Component, route }">
+        <Transition name="fade" mode="out-in">
           <div class="w-full" :key="route.path">
             <Suspense v-if="Component" :timeout="0">
               <Component :is="Component"></Component>
@@ -58,6 +60,7 @@ const GuestLayout = defineAsyncComponent(
             </Suspense>
           </div>
         </Transition>
-    </RouterView>
-  </AuthLayout>
+      </RouterView>
+    </Component>
+  </Transition>
 </template>

@@ -1,29 +1,29 @@
 <script setup lang="ts">
-import { useCollabs } from '@/composables/collabs'
-import { useProjectsStore } from '@/stores/loaders/projects'
-import { usePageStore } from '@/stores/page'
-import { storeToRefs } from 'pinia'
-  
-const { slug } = useRoute('/projects/[slug]').params
+import { useCollabs } from "@/composables/collabs";
+import { useProjectsStore } from "@/stores/loaders/projects";
+import { usePageStore } from "@/stores/page";
+import { storeToRefs } from "pinia";
 
-const projectsLoader = useProjectsStore()
-const { project } = storeToRefs(projectsLoader)
-const { getProject, updateProject } = projectsLoader
+const { slug } = useRoute("/projects/[slug]").params;
+
+const projectsLoader = useProjectsStore();
+const { project } = storeToRefs(projectsLoader);
+const { getProject, updateProject } = projectsLoader;
 
 watch(
   () => project.value?.name,
   () => {
-    usePageStore().pageData.title = `Project: ${project.value?.name || ''}`
+    usePageStore().pageData.title = `Project: ${project.value?.name || ""}`;
   }
-)
+);
 
-await getProject(slug as string)
+await getProject(slug as string);
 
-const { getProfilesByIds } = useCollabs()
+const { getProfilesByIds } = useCollabs();
 
 const collabs = project.value?.collaborators
   ? await getProfilesByIds(project.value?.collaborators)
-  : []
+  : [];
 </script>
 
 <template>
@@ -49,10 +49,7 @@ const collabs = project.value?.collaborators
       <TableRow>
         <TableHead> Status </TableHead>
         <TableCell>
-          <AppInPlaceEditStatus
-            v-model="project.status"
-            @commit="updateProject"
-          />
+          <AppInPlaceEditStatus v-model="project.status" @commit="updateProject" />
         </TableCell>
       </TableRow>
       <TableRow>
@@ -68,7 +65,7 @@ const collabs = project.value?.collaborators
                 class="w-full h-full flex items-center justify-center"
                 :to="{
                   name: '/users/[username]',
-                  params: { username: collab.username }
+                  params: { username: collab.username },
                 }"
               >
                 <AvatarImage :src="collab.avatar_url || ''" alt="" />
