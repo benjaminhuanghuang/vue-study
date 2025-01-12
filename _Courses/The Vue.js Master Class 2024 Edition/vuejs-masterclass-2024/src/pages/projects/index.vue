@@ -1,28 +1,31 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
 import DataTable from '@/components/ui/data-table/DataTable.vue'
 import { RouterLink } from 'vue-router'
 import { usePageStore } from '@/stores/page';
-import { projectsQuery, type Projects } from '@/utils/supaQueries'
 import { columns } from '@/utils/tableColumns/projectsColumns'
-import { useErrorStore } from '@/stores/error';
+import { useProjectsStore } from '@/stores/loaders/projects';
+import { storeToRefs } from 'pinia';
 
 usePageStore().pageData.title = 'Projects';
 
-const projects = ref<Projects | null>(null)
-const getProjects = async () => {
-  const { data, error, status } = await projectsQuery
-
-  if (error) useErrorStore().setError({ error, customCode: status })
-
-  projects.value = data
-
-  console.log('projects: ', projects.value)
-}
+const projectsLoader = useProjectsStore()
+const { projects } = storeToRefs(projectsLoader)
+const { getProjects } = projectsLoader
 
 await getProjects();
+const { getGroupedCollabs, groupedCollabs } = useCollabs()
 
+getGroupedCollabs(projects.value ?? [])
+
+const columnsWithCollabs = columns(groupedCollabs)
+
+useMeta({
+  title: 'Projects | Pulse',
+  description: {
+    name: 'description',
+    content: 'See all projects in Pulse.'
+  }
+})
 </script>
 
 <template>
