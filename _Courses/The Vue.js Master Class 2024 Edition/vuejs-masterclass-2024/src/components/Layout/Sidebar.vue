@@ -4,6 +4,9 @@ import { menuKey } from '@/utils/injectionKeys'
 import type { MenuInjectionOptions } from '@/utils/injectionKeys'
 import { useWindowSize } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
+import SidebarLinks from './SidebarLinks.vue'
+import {Button} from '@/components/ui/button'
+
 
 const { profile } = storeToRefs(useAuthStore())
 

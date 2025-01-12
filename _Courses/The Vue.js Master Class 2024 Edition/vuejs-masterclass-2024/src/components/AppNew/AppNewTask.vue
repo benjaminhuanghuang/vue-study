@@ -1,10 +1,14 @@
 <script setup lang="ts">
+import { useAuthStore } from '@/stores/auth';
 import type { CreateNewTask } from '@/types/CreateNewForm'
+import { Sheet, SheetContent, SheetHeader, SheetTitle} from '@/components/ui/sheet'
+
 import {
   createNewTaskQuery,
   profilesQuery,
   projectsQuery
 } from '@/utils/supaQueries'
+import { storeToRefs } from 'pinia';
 
 const sheetOpen = defineModel<boolean>()
 
