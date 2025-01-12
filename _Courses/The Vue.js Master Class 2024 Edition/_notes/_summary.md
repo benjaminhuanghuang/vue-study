@@ -49,6 +49,9 @@ npx shadcn-vue@latest add avatar
 npx shadcn-vue@latest add sheet
 ```
 
+## Auth
+
+
 ## Error handling
 
 src/App.vue
