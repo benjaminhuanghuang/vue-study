@@ -1,6 +1,6 @@
 drop table if exists projects;
 drop type if exists current_status;
-create type current_status as enum ('in-progress', ' completed');
+create type current_status as enum ('in-progress', 'completed');
 
 create table
 projects (
@@ -8,7 +8,7 @@ projects (
     created_at timestamp default now() not null,
     name text not null,
     slug text unique not null,
-    description text,
+    description text not null default '',
     status current_status default 'in-progress' null,
     collaborators text array default array[]::varchar[] not null
 );

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const value = defineModel<'in-progress' | 'completed'>()
+const value = defineModel<'in-progress' | 'completed'| null>()
 
 const emit = defineEmits(['commit'])
 
@@ -16,7 +16,7 @@ const toggleValue = () => {
 </script>
 
 <template>
-  <div class="text-2xl cursor-pointer" @click="toggleValue">
+  <div class="text-2xl cursor-pointer" @click="toggleValue"> 
     <Transition name="scale" mode="out-in">
       <iconify-icon
         v-if="value === 'completed'"
@@ -27,3 +27,15 @@ const toggleValue = () => {
     </Transition>
   </div>
 </template>
+
+<style scoped>
+.v-enter-active,
+.v-leave-active{
+  transition: transforms 0.2s;
+}
+
+.v-enter-from,
+.v-leave-to {
+  transform: scale(0.3);
+}
+</style>
