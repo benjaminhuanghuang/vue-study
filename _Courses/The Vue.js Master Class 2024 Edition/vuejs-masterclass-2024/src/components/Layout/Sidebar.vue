@@ -55,6 +55,7 @@ const executeAction = async (linkTitle: string) => {
 
 defineEmits(['taskClicked'])
 
+// use the provide and inject APIs in Vue 3
 const { menuOpen, toggleMenu } = inject(menuKey) as MenuInjectionOptions
 const windowWidth = useWindowSize().width
 

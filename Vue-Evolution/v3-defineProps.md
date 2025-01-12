@@ -1,4 +1,5 @@
 # defineProps in Vue 3
+
 In Vue 3, defineProps is a compiler macro used within the script tag to define the props that a component accepts.
 
 ```ts

@@ -13,6 +13,7 @@ const taskSheetOpen = ref(false);
 const menuOpen = ref(false);
 const toggleMenu = () => (menuOpen.value = !menuOpen.value);
 
+// provide and inject APIs in Vue 3 
 provide(menuKey, {
   menuOpen,
   toggleMenu,

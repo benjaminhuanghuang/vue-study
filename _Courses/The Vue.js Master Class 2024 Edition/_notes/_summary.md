@@ -25,6 +25,16 @@ npm run db:seed
 
 ## shadcn/ui
 
+Install shadcn-vue
+
+```sh
+npx shadcn-vue@latest init
+ TypeScript
+ Vite
+ Default
+ Slate
+```
+
 Add component
 
 ```sh
@@ -38,3 +48,9 @@ npx shadcn-vue@latest add avatar
 
 npx shadcn-vue@latest add sheet
 ```
+
+## provide and inject APIs in Vue 3
+
+src/components/Layout/main/AuthLayout.vue
+src/components/Layout/Sidebar.vue
+src/utils/injectionKeys.ts
