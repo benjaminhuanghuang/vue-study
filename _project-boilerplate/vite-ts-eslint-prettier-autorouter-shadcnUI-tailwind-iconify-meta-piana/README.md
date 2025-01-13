@@ -62,13 +62,22 @@ npm i -D unplugin-vue-router
 ```
 
 modify vite.config.ts
-
 ```js
 import VueRouter form 'unplugin-vue-router/vite'
 
+plugins: [VueRouter(), vue()]
 ```
 
 Modify the router/index.ts
+
+
+
+Modify main.ts
+```js
+import router from './router'
+
+app.use(router)
+```
 
 rename the folder to pages
 
@@ -89,4 +98,80 @@ Fix the ESlint warning
         'vue/multi-word-component-names': ['off']
     }
 }
+```
+
+## shadcn-vue
+https://www.shadcn-vue.com/docs/installation/vite.html
+
+```sh
+npm i -D tailwindcss autoprefixer
+```
+
+Modify vite.config.ts
+
+```js
+css: {
+    postcss: {
+      plugins: [tailwind(), autoprefixer()]
+    }
+  },
+resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  }
+```
+
+Modify tsconfig.app.json
+```json
+ "compilerOptions": {
+  "baseUrl": ".",
+      "paths": {
+        "@/*": ["./src/*"]
+      }
+ }
+```
+
+delete default css  ./src/style.css
+
+```sh
+npx shadcn-vue@latest init
+ TypeScript
+ Vite
+ Default
+ Slate
+```
+
+import css in main.css
+```js
+import './assets/index.css'
+```
+
+Add component
+```sh
+npx shadcn-vue@latest add button
+
+npx shadcn-vue@latest add input
+
+npx shadcn-vue@latest add dropdown-menu
+
+npx shadcn-vue@latest add avatar
+
+```
+
+## iconify
+
+```sh
+npm i iconify-icon
+```
+import 'iconify-icon'
+
+modify vite.config.ts
+```ts
+ vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: tag => tag.startsWith('iconify-icon')
+        }}
+    }),
 ```
