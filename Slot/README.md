@@ -31,7 +31,7 @@ The content passed between the opening and closing tags of the ChildComponent wi
 </template>
 ```
 
-## Named slot / scoped slot
+## Named slot
 
 provide a way to have multiple slots within a component and give them distinct names. This allows the parent component to selectively inject content into specific slots. 
 
@@ -147,5 +147,8 @@ By using the v-slot directive, we can capture the childData in the parent compon
   </ChildComponent>
 </template>
 ```
+
+
 ## Reference
+
 https://enterprisevue.dev/blog/slots-in-vue-deep-dive/
