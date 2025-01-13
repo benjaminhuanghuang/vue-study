@@ -73,7 +73,7 @@ set default formatter for VS code in .setting.json
 
 ```json
 {
-    "editor. formatOnSave": true,
+    "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
 ```
