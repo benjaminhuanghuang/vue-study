@@ -3,8 +3,12 @@ import { ref, provide } from "vue";
 import { menuKey } from "@/utils/injectionKeys";
 import Sidebar from "./Sidebar.vue";
 import TopNavbar from "./TopNavbar.vue";
+import { storeToRefs } from "pinia";
+import { usePageStore } from "@/stores/page";
 
+const { pageData } = storeToRefs(usePageStore());
 
+const taskSheetOpen = ref(false);
 const menuOpen = ref(false);
 const toggleMenu = () => {
   menuOpen.value = !menuOpen.value;

@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import  from './components/HelloWorld.vue'
+import AppLayout from '@/layout/AppLayout.vue';
+import { RouterView } from 'vue-router';
 </script>
 
 <template>
+  <RouterView>
+    <AppLayout></AppLayout>
+  </RouterView>
 </template>
 
 <style scoped>
