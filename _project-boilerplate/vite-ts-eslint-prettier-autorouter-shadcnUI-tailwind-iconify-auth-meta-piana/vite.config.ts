@@ -8,7 +8,16 @@ import autoprefixer from 'autoprefixer'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue(), VueRouter()],
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => tag.startsWith('iconify-icon')
+        }
+      }
+    }),
+    VueRouter()
+  ],
   css: {
     postcss: {
       plugins: [tailwind(), autoprefixer()]

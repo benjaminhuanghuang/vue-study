@@ -158,6 +158,7 @@ npx shadcn-vue@latest add dropdown-menu
 
 npx shadcn-vue@latest add avatar
 
+npx shadcn-vue@latest add sheet
 ```
 
 ## iconify

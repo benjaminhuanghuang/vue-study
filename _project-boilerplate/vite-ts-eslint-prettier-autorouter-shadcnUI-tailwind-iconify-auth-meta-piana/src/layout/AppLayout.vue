@@ -6,6 +6,7 @@ import TopNavbar from "./TopNavbar.vue";
 import { storeToRefs } from "pinia";
 import { usePageStore } from "@/stores/page";
 
+import AppNewTask from "@/components/Dialog/AppNewTask.vue";
 const { pageData } = storeToRefs(usePageStore());
 
 const taskSheetOpen = ref(false);
