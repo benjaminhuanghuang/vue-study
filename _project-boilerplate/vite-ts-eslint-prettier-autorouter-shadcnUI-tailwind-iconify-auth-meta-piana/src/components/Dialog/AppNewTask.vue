@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineModel } from 'vue'
-
+// Components
+import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetHeader, SheetTitle} from '@/components/ui/sheet'
 
 const sheetOpen = defineModel<boolean>()
@@ -15,7 +16,7 @@ const sheetOpen = defineModel<boolean>()
       </SheetHeader>
 
       <h1>Add new task</h1>
-      <button @click="sheetOpen = false">Close</button>
+      <Button @click="sheetOpen = false">Close</Button>
     </SheetContent>
   </Sheet>
 </template>

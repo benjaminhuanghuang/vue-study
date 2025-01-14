@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import { defineProps, defineEmits, inject } from 'vue'
+import { RouterLink } from 'vue-router'
 import { menuKey, type MenuInjectionOptions } from '@/utils/injectionKeys'
 
 interface LinkProp {

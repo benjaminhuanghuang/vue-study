@@ -170,7 +170,7 @@ npm i iconify-icon
 Modify main.ts
 ```js
 import 'iconify-icon'
-````
+```
 
 modify vite.config.ts
 ```ts
