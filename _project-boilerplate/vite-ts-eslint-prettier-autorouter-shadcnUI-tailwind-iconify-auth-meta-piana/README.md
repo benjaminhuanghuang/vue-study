@@ -64,14 +64,25 @@ npm i -D unplugin-vue-router
 
 modify vite.config.ts
 ```js
-import VueRouter form 'unplugin-vue-router/vite'
+import VueRouter form 'unplugin-vue-router/vite' 
 
 plugins: [VueRouter(), vue()]
 ```
 
+Add router type to the tsconfig.app.json
+```json
+"include": [
+  "typed-touter.d.ts",
+],
+"moduleResolution": "bundler",
+```
+
 Modify the router/index.ts
+```js
+import { createRouter, createWebHistory } from 'vue-router/auto' // use auto routes
+import {routes} from 'vue-router/auto-routes'
 
-
+```
 
 Modify main.ts
 ```js

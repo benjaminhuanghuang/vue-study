@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router' // use auto routes
+import { createRouter, createWebHistory } from 'vue-router/auto' // use auto routes
 import {routes} from 'vue-router/auto-routes'
 
 

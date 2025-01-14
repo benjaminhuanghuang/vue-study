@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { computed, defineEmits, inject, watchEffect } from 'vue'
+import { computed, inject, watchEffect } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { menuKey } from '@/utils/injectionKeys'
 import type { MenuInjectionOptions } from '@/utils/injectionKeys'
