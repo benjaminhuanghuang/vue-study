@@ -1,4 +1,8 @@
-import { isObject } from "@vue/shared";   // need config in tsconfig.json
+export {
+  reactive,
+  shallowReactive,
+  shallowReadonly,
+  readonly,
+} from "./reactiveApi";
 
-console.log(isObject);
-
+export { effect } from "./effect";
