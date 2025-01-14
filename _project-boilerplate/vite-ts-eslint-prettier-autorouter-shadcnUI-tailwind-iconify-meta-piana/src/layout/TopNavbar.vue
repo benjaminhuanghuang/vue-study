@@ -12,13 +12,17 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 // 
 import { useDark, useToggle } from '@vueuse/core'
-import { storeToRefs } from 'pinia'
-import { useAuthStore } from '@/stores/auth'
+// import { storeToRefs } from 'pinia'
+// import { useAuthStore } from '@/stores/auth'
 
-const { profile } = storeToRefs(useAuthStore())
+// const { profile } = storeToRefs(useAuthStore())
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
+const profile = {
+  avatar_url: 'https://avatars.githubusercontent.com/u/4723114?v=4',
+  full_name: 'Cristian'
+}
 
 </script>
 
@@ -37,7 +41,8 @@ const toggleDark = useToggle(isDark)
         </Transition>
       </Button>
       <div class="w-8">
-        <DropdownMenu v-if="profile">
+        <!-- TODO: if profile -->
+        <DropdownMenu>
           <DropdownMenuTrigger>
             <Avatar>
               <AvatarImage :src="profile.avatar_url || ''" :alt="`${profile.full_name} profile picture`" />
@@ -50,7 +55,7 @@ const toggleDark = useToggle(isDark)
             <DropdownMenuItem>
               <RouterLink :to="{
                 name: '/users/[username]',
-                params: { username: profile.username }
+                params: {}
               }" class="w-full h-full">
                 Profile
               </RouterLink>

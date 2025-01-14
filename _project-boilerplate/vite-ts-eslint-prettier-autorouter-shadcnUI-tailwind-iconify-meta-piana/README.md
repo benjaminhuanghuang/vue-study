@@ -58,6 +58,7 @@ set default formatter for VS code in .setting.json
 ## Auto Router
 
 ```sh
+npm i vue-router
 npm i -D unplugin-vue-router
 ```
 

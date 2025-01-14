@@ -1,12 +1,11 @@
-
 <script setup lang='ts'>
 import { defineProps, defineEmits, inject } from 'vue'
 import { menuKey, type MenuInjectionOptions } from '@/utils/injectionKeys'
 
 interface LinkProp {
-    to?: string;
-    icon: string;
-    title: string;
+  to?: string;
+  icon: string;
+  title: string;
 }
 
 defineProps<{
@@ -26,35 +25,18 @@ const { menuOpen } = inject(menuKey) as MenuInjectionOptions
 </script>
 
 <template>
-    <template v-for="link in links" :key="link.title">
+  <template v-for="link in links" :key="link.title">
     <!-- link has to property -->
-    <RouterLink
-      v-if="link.to"
-      exactActiveClass="text-primary bg-muted"
-      :to="link.to"
-      class="nav-link"
-      :class="{ 'justify-normal': menuOpen, 'justify-center': !menuOpen }"
-    >
+    <RouterLink v-if="link.to" exactActiveClass="text-primary bg-muted" :to="link.to" class="nav-link"
+      :class="{ 'justify-normal': menuOpen, 'justify-center': !menuOpen }">
       <iconify-icon :icon="link.icon"></iconify-icon>
-      <span
-        class="text-nowrap"
-        :class="{ block: menuOpen, hidden: !menuOpen }"
-        >{{ link.title }}</span
-      >
+      <span class="text-nowrap" :class="{ block: menuOpen, hidden: !menuOpen }">{{ link.title }}</span>
     </RouterLink>
     <!-- link does not has to property -->
-    <div
-      v-else
-      class="nav-link cursor-pointer"
-      :class="{ 'justify-normal': menuOpen, 'justify-center': !menuOpen }"
-      @click="emitActionClicked(link.title)"
-    >
+    <div v-else class="nav-link cursor-pointer" :class="{ 'justify-normal': menuOpen, 'justify-center': !menuOpen }"
+      @click="emitActionClicked(link.title)">
       <iconify-icon :icon="link.icon"></iconify-icon>
-      <span
-        class="text-nowrap"
-        :class="{ block: menuOpen, hidden: !menuOpen }"
-        >{{ link.title }}</span
-      >
+      <span class="text-nowrap" :class="{ block: menuOpen, hidden: !menuOpen }">{{ link.title }}</span>
     </div>
   </template>
 </template>

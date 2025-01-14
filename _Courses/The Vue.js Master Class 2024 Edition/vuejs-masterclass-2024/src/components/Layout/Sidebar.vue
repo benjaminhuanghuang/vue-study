@@ -5,7 +5,7 @@ import type { MenuInjectionOptions } from '@/utils/injectionKeys'
 import { useWindowSize } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
 import SidebarLinks from './SidebarLinks.vue'
-import {Button} from '@/components/ui/Button'
+import {Button} from '@/components/ui/button'
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from '@/components/ui/dropdown-menu'
 
 const { profile } = storeToRefs(useAuthStore())

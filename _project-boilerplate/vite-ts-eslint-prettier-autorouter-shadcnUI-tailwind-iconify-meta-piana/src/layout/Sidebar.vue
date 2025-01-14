@@ -1,13 +1,13 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import { computed, defineEmits, inject, watchEffect } from 'vue'
-
 import { useAuthStore } from '@/stores/auth'
 import { menuKey } from '@/utils/injectionKeys'
 import type { MenuInjectionOptions } from '@/utils/injectionKeys'
 import { useWindowSize } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
 import SidebarLinks from './SidebarLinks.vue'
-import {Button} from '@/components/ui/Button'
+import {Button} from '@/components/ui/button'
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from '@/components/ui/dropdown-menu'
 
 const { profile } = storeToRefs(useAuthStore())
@@ -48,10 +48,9 @@ const router = useRouter()
 
 const executeAction = async (linkTitle: string) => {
   if (linkTitle === 'Sign Out') {
-    const { logout } = await import('@/utils/supaAuth')
-    const isLoggedOut = await logout()
+    // Logout
 
-    if (isLoggedOut) router.push('/login')
+    // Redirect to login
   }
 }
 
