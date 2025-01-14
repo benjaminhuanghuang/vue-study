@@ -1,4 +1,4 @@
-import { isObject } from "@vue/shared";
+import { isObject, extend } from "@vue/shared";
 import { readonly, reactive } from "./reactiveApi";
 
 const get = createGetter();
