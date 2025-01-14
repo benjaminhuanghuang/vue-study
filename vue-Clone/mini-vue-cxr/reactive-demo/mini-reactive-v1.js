@@ -1,5 +1,10 @@
-let currentEffect;
+/*
+  Implement reactive for single value
+*/
 
+/*
+  Record the value and the effects that depend on it
+*/
 class Dep {
   constructor(val) {
     this.effects = new Set();
@@ -30,11 +35,13 @@ class Dep {
   }
 }
 
+let currentEffect;
 // Collect the active effect
+// effect is a function defines how to update b when a changes
 function effectWatch(effect) {
   currentEffect = effect;
-  effect();
-  dep.depend(); // Collect the active effect
+  effect();   // update b for the first time
+  dep.depend(); // Save teh effect to the Dep.effects
   currentEffect = null;
 }
 
@@ -44,8 +51,10 @@ const dep = new Dep(1);
 let b;
 // create a changing rule (effect) for b
 effectWatch(() => {
-  b = dep.value + 10;
+  b = dep.value*2;
   console.log(b);
 });
 
 dep.value = 2;
+
+dep.value = 3;

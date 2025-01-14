@@ -1,15 +1,21 @@
-let currentEffect;
+/*
+  Implement reactive for object
+*/
+
+/*
+  Record the value and the effects that depend on it
+*/
 const targetMap = new Map();
 
 function getDep(target, key) {
   let depsMap = targetMap.get(target);
-  if(!depsMap) {
+  if (!depsMap) {
     depsMap = new Map();
     targetMap.set(target, depsMap);
   }
 
-  let dep = depsMap.get(key); 
-  if(!dep) {
+  let dep = depsMap.get(key);
+  if (!dep) {
     dep = new Dep();
     depsMap.set(key, dep);
   }
@@ -30,7 +36,7 @@ function reactive(raw) {
       // trigger the dependency
       dep.notify();
       return result;
-    }
+    },
   });
 }
 class Dep {
@@ -65,6 +71,7 @@ class Dep {
 }
 
 // Collect the active effect
+let currentEffect;
 function effectWatch(effect) {
   currentEffect = effect;
   effect(); // Collect the active effect
@@ -73,14 +80,15 @@ function effectWatch(effect) {
 
 // create reactive object
 const user = reactive({
-  age: 10
+  age: 1,
 });
 
 let double;
 effectWatch(() => {
-  console.log('--reactivity--'); 
+  console.log("--reactivity--");
   double = user.age * 2;
   console.log(double);
 });
 
-user.age = 11;
+user.age = 2;
+user.age = 3;
