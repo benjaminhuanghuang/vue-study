@@ -6,7 +6,7 @@
   "type": "module",
   "packageManager": "pnpm@9.12.0",
   "scripts": {
-    "build": "node scripts/build.js reactivity -f esm"
+    "build": "node scripts/build.js"
   },
   "devDependencies": {
     "@rollup/plugin-json": "^6.1.0",

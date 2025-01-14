@@ -32,13 +32,22 @@ yarn add -D typescript -W
 npx tsc --init
 ```
 
+Modify tsconfig.json
+
+```json
+  "target": "esnext",                            
+  "module": "esnext",     
+  "sourceMap": true,                             
+```
+
 Setup rollup for whole workspace
+
 ```sh
 pnpm add rollup rollup-plugin-typescript2 @rollup/plugin-node-resolve @rollup/plugin-json execa -D -w
 ```
 execa: Run build in parallel
 
-Add script into the package.json
+Write scripts/build.js and add command into the package.json
 ```json
 "scripts": {
     "build": "node script/build.js",
@@ -47,7 +56,7 @@ Add script into the package.json
 
 Add buildOptions for each package in package.json, define package name for format
 
-Write scripts/build.js
+
 
 Create rollup.config.js
 

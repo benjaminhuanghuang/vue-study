@@ -2,15 +2,16 @@
     node build.js <package> -f <format>
 */
 import minimist from "minimist";
-import { resolve, dirname } from "path";
+import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { createRequire } from "module";
-import esbuild from "esbuild";
+import fs from "fs";
+import { execa } from "execa";
 
 // Get all packages
-const fs = require("fs");
-const dirs = fs.readdirSync('packages').filter((fs) => {
-  return !fs.statSync(`packages/${p}`).isDirectory();
+
+const dirs = fs.readdirSync("packages").filter((p) => {
+  return fs.statSync(`packages/${p}`).isDirectory();
 });
 
 // Build
@@ -22,10 +23,14 @@ const __dirname = dirname(__filename);
 const require = createRequire(import.meta.url);
 
 async function build(target) {
-  await execArgv("rollup", ["-c", "--environment", `TARGET:${target}`]);
+  console.log(`Building ${target}...`);
+  // -c use the config file
+  // --environment pass the environment variables
+  // stdio: "inherit": child process will print output to parent process's console
+  await execa("rollup", ["-c", "--environment", `TARGET:${target}`], {stdio: "inherit"});
 }
 
-async function runParallel(dirs, buildFn) {
+async function runParallel(targets, buildFn) {
   const ps = [];
   for (const target of targets) {
     ps.push(buildFn(target));
@@ -34,9 +39,6 @@ async function runParallel(dirs, buildFn) {
   await Promise.all(ps);
 }
 
-runParallel(
-  dirs,
-  build.then(() => {
-    console.log("Build successfully");
-  })
-);
+runParallel(dirs, build).then(() => {
+  console.log("Build completed");
+});
