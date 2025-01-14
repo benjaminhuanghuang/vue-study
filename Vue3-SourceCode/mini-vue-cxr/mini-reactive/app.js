@@ -1,4 +1,4 @@
-import { effectWatch, reactive } from "./mini-reactive-v3.js";
+import { effectWatch, reactive } from "./mini-reactive.js";
 
 const App = {
   render(context) {

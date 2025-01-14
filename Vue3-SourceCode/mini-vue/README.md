@@ -2,11 +2,9 @@
 
 https://www.bilibili.com/video/BV1R341177P7
 
-https://www.bilibili.com/video/BV1Rt4y1B7sC
-
 https://github.com/cuixiaorui/mini-vue
 
-https://github.com/devBiongo/MINI-VUE/
+
 
 ## Setup
 
