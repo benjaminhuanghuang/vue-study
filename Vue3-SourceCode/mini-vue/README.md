@@ -1,6 +1,8 @@
 # Vue3 源码实战课 | 构建你自己的 Vue3 | 掌握源码最有效的学习方法就是手写一遍！
 
-https://www.bilibili.com/video/BV1R341177P7/?spm_id_from=autoNext&vd_source=b7025abbc1efd8b7631e43fa506ade3a
+https://www.bilibili.com/video/BV1R341177P7
+
+https://www.bilibili.com/video/BV1Rt4y1B7sC
 
 https://github.com/cuixiaorui/mini-vue
 
