@@ -9,6 +9,7 @@ class ReactiveEffect {
     this._fn();
   }
 }
+
 const targetMap = new Map();
 
 export function track(target: any, key: any) {
