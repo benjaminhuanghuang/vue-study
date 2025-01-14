@@ -38,6 +38,7 @@ function effectWatch(effect) {
   currentEffect = null;
 }
 
+// create reactive object
 const dep = new Dep(1);
 
 let b;
