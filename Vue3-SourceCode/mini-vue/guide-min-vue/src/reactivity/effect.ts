@@ -13,6 +13,7 @@ class ReactiveEffect {
 const targetMap = new Map();
 
 export function track(target: any, key: any) {
+  // target -> key -> dep
   if (!targetMap.has(target)) {
     targetMap.set(target, new Map());
   }
