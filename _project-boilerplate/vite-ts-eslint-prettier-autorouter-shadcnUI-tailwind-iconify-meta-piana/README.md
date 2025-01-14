@@ -165,7 +165,11 @@ npx shadcn-vue@latest add avatar
 ```sh
 npm i iconify-icon
 ```
+
+Modify main.ts
+```js
 import 'iconify-icon'
+````
 
 modify vite.config.ts
 ```ts
