@@ -1,3 +1,8 @@
+/**
+ *  1. tag changed
+ *  2. props changed
+ *  3. children changed
+ */
 export function diff(n1, n2) {
     if (n1.tag !== n2.tag) {
       const newElement = document.createElement(n2.tag);
