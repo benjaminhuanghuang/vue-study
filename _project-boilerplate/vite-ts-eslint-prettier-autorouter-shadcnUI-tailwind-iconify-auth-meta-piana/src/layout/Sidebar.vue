@@ -34,7 +34,7 @@ const accountLinks = computed(() => {
   return [
     {
       title: 'Profile',
-      to: `/users/${profile.value?.username}`,
+      to: ``, ///users/${profile.value?.username}
       icon: 'lucide:user'
     },
     {

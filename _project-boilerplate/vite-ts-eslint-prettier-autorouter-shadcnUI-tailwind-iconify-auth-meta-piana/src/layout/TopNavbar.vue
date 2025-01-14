@@ -54,7 +54,7 @@ const profile = {
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <RouterLink :to="{
-                name: '/users/[username]',
+                name: '',
                 params: {}
               }" class="w-full h-full">
                 Profile
