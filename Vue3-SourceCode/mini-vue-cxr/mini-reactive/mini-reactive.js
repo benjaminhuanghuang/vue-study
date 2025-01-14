@@ -1,21 +1,3 @@
-let currentEffect;
-const targetMap = new Map();
-
-function getDep(target, key) {
-  let depsMap = targetMap.get(target);
-  if(!depsMap) {
-    depsMap = new Map();
-    targetMap.set(target, depsMap);
-  }
-
-  let dep = depsMap.get(key); 
-  if(!dep) {
-    dep = new Dep();
-    depsMap.set(key, dep);
-  }
-  return dep;
-}
-
 export function reactive(raw) {
   return new Proxy(raw, {
     get(target, key) {
@@ -30,9 +12,35 @@ export function reactive(raw) {
       // trigger the dependency
       dep.notify();
       return result;
-    }
+    },
   });
 }
+
+// Collect the active effect
+export function effectWatch(effect) {
+  currentEffect = effect;
+  effect(); // Collect the active effect
+  currentEffect = null;
+}
+
+let currentEffect;
+const targetMap = new Map();
+
+function getDep(target, key) {
+  let depsMap = targetMap.get(target);
+  if (!depsMap) {
+    depsMap = new Map();
+    targetMap.set(target, depsMap);
+  }
+
+  let dep = depsMap.get(key);
+  if (!dep) {
+    dep = new Dep();
+    depsMap.set(key, dep);
+  }
+  return dep;
+}
+
 class Dep {
   constructor(val) {
     this.effects = new Set();
@@ -63,24 +71,3 @@ class Dep {
     });
   }
 }
-
-// Collect the active effect
-export function effectWatch(effect) {
-  currentEffect = effect;
-  effect(); // Collect the active effect
-  currentEffect = null;
-}
-
-// create reactive object
-const user = reactive({
-  age: 10
-});
-
-let double;
-effectWatch(() => {
-  console.log('--reactivity--'); 
-  double = user.age * 2;
-  console.log(double);
-});
-
-user.age = 11;
