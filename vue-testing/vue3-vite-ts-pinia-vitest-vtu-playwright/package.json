@@ -25,6 +25,8 @@
     "typescript": "^5.7.3",
     "vite": "^6.0.7",
     "vitest": "^2.1.8",
-    "vue-tsc": "^2.2.0"
+    "vue-tsc": "^2.2.0",
+    "@playwright/experimental-ct-vue": "^1.41.1",
+    "@playwright/test": "^1.40.1"
   }
 }

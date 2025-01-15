@@ -8,6 +8,7 @@ For testing component not whole page or application
 
 ```sh
 npm init playwright@latest -- --ct
+npm i -D @playwright/experimental-ct-vue
 ```
 
 --ct flag in the command above will direct the Playwright CLI to set up the test
