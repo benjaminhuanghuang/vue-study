@@ -1,8 +1,5 @@
-import { mount, VueWrapper } from "@vue/test-utils";
+```js
 import { createTestingPinia } from "@pinia/testing";
-
-import Progress from "./Progress.vue";
-import { useProgressStore } from "../stores/progress";
 
 describe("Progress vue", () => {
   let wrapper: VueWrapper;
@@ -19,10 +16,6 @@ describe("Progress vue", () => {
     });
   });
 
-  test("displays the percentage correctly", () => {
-    expect(wrapper.find("#percentage").text()).toBe("0%");
-  });
-
   test("increments action in the store should be called", () => {
     const progress = useProgressStore();
 
@@ -31,3 +24,4 @@ describe("Progress vue", () => {
     expect(progress.increment).toHaveBeenCalled();
   });
 });
+```

@@ -11,12 +11,13 @@ https://test-utils.vuejs.org/guide/
 Guide to Unit Testing Vue Components(https://testdriven.io/blog/vue-unit-testing/)
 Testing Pinia Data Stores in Vue(https://testdriven.io/blog/vue-pinia-testing/)
 
-
-
+Unlock the power of visual testing with Vitest by Maya Shavin
+https://www.youtube.com/watch?v=lP7Op-K6ajk
 
 ## Courses
 
 - Vue.js: Testing and Debugging [Linkedin]
+
   - https://www.linkedin.com/learning/vue-js-testing-and-debugging/testing-vue-applications?resume=false&u=2099546
   - https://github.com/LinkedInLearning/vue-js-testing-and-debugging-2399300
 

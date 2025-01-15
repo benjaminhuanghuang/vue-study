@@ -3,7 +3,7 @@
 ```sh
 npm i -g npm-check-updates
 
-ncu  # figure out which package need upgrade
+npx npm-check-updates  # figure out which package need upgrade
 
-ncu --upgrade vue vue-tsc    # Upgrade packages
+npx npm-check-updates  --upgrade vue vue-tsc    # Upgrade packages
 ```
