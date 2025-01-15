@@ -1,8 +1,6 @@
 /*
 Test the router
-
 */
-import { describe, test, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
 import router from '../router';
 import TheHeader from './Header.vue';
