@@ -1,8 +1,7 @@
 <template>
-    <div>Welcome</div>
-    <Button>Click me</Button>
+    <sn-button type="primary">Test Button</sn-button>
 </template>
 
 <script lang="ts" setup>
-import { Button } from "@myuilib/components";
+
 </script>
