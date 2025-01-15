@@ -13,7 +13,9 @@ npx tsc --init
 
 ```
 
-setup play application base on vite to test the component library
+## Setup the test app (/play)
+
+Setup play application base on vite to test the component library
 
 ```sh
 cd play
@@ -27,9 +29,15 @@ touch vite.config.ts
 
 @vitejs/plugin-vue will load the index.html under the play directory by default.
 
-## Add packages into workspace
+Add dev command for test app
 
-Modify the pnpm-workspace.yaml file as follows:
+```json
+"scripts": {
+    "dev": "vite"
+},
+```
+
+Add play into workspace, change the pnpm-workspace.yaml file as follows:
 
 ```yaml
 packages:
@@ -37,22 +45,10 @@ packages:
   - play
 ```
 
-At this point, the play project can install the packages from the local packages directory.
-
-```sh
-pnpm add @myuilib/components
-```
-
-add dependency
+Add dependency for the test app
 
 ```json
-  "dependencies": {
-    "@myuilib/shared": "workspace:*"
-  },
-```
-
-## Start play project
-
-```sh
-pnpm run dev
+"dependencies": {
+    "@myuilib/components": "workspace:*"
+},
 ```

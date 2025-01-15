@@ -5,9 +5,17 @@
   "main": "index.ts",
   "type": "module",
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@myuilib/utils": "workspace:^"
+  },
+  "devDependencies": {
+    "@vitest/coverage-c8": "^0.29.2"
+  }
 }
