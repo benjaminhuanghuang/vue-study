@@ -11,7 +11,6 @@ export default mergeConfig(
       globals: true,
       environment: 'jsdom',
       exclude: [...configDefaults.exclude],
-      root: fileURLToPath(new URL('./', import.meta.url)),
       coverage: {
         provider: 'istanbul'
       },
