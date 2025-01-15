@@ -2,10 +2,14 @@
 
 PlaywrightJS is an open-source E2E testing framework that is cross-browser, cross-platform and cross-language, making it a great choice for any modern applications.
 
+For testing component not whole page or application
+
 ## Setup
+
 ```sh
 npm init playwright@latest -- --ct
 ```
+
 --ct flag in the command above will direct the Playwright CLI to set up the test
 
 The above command will perform the following:
@@ -17,6 +21,7 @@ Add playwright folder for runtime configuration, such as adding routing.
 Create an e2e folder with test suites ready to go.
 
 ## Test
+
 ```json
 "test:application:playwright": "npx playwright test",
 ```
@@ -28,17 +33,18 @@ npm run test-ct --debug
 ```
 
 ## Sample
-```js
-import { test, expect } from '@playwright/experimental-ct-vue';
-import Counter from './Counter.vue';
 
-test('Counter increments correctly', async ({ mount }) => {
+```js
+import { test, expect } from "@playwright/experimental-ct-vue";
+import Counter from "./Counter.vue";
+
+test("Counter increments correctly", async ({ mount }) => {
   const component = await mount(Counter);
 
-  await expect(component.locator('.count')).toHaveText('0');
+  await expect(component.locator(".count")).toHaveText("0");
 
-  await component.locator('.increment-button').click();
+  await component.locator(".increment-button").click();
 
-  await expect(component.locator('.count')).toHaveText('1');
+  await expect(component.locator(".count")).toHaveText("1");
 });
 ```

@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
-    "test:unit": "vitest"
+    "test:unit": "vitest",
+    "test:update": "vitest -u",
+    "test:coverage": "vitest --coverage"
   },
   "dependencies": {
     "pinia": "^2.3.0",
