@@ -3,7 +3,7 @@ import { mount, VueWrapper, DOMWrapper } from "@vue/test-utils";
 import { createTestingPinia } from "@pinia/testing";
 
 import Progress from "./Progress.vue";
-import { useProgressStore } from "../store/progress";
+import { useProgressStore } from "../../../vue3-vite-vitest-pinia-demo/src/store/progress";
 
 describe("Progress vue", () => {
   let wrapper: VueWrapper;

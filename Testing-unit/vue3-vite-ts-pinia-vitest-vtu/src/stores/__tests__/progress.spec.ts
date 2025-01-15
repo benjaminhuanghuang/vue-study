@@ -1,5 +1,5 @@
 import { createPinia, setActivePinia } from "pinia";
-import { useProgressStore } from "../progressStore";
+import { useProgressStore } from "../progress";
 
 describe("ProgressStore", () => {
   beforeEach(() => {
@@ -7,13 +7,13 @@ describe("ProgressStore", () => {
   });
   it("progress starts at 0", () => {
     const progress = useProgressStore();
-    expect(progress.counter).toBe(0);
+    expect(progress.count).toBe(0);
   });
 
   it("the counter increments by 1", () => {
     const progress = useProgressStore();
     progress.increment();
-    expect(progress.counter).toBe(1);
+    expect(progress.count).toBe(1);
   });
 
   it("the percentage is returned", () => {
