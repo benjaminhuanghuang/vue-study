@@ -1,25 +1,24 @@
-import { describe, it, expect, vi } from "vitest";
-import { mount } from "@vue/test-utils";
-import TheFormVue from "./TheForm.vue";
+import { mount } from '@vue/test-utils';
+import TheFormVue from './TheForm.vue';
 
 function mountTheForm() {
   const wrapper = mount(TheFormVue, { props: {} });
   return wrapper;
 }
 
-describe("The Form", () => {
-  it("Mounts properly", () => {
+describe('The Form', () => {
+  it('Mounts properly', () => {
     expect(mountTheForm()).toBeTruthy();
     // Check the submit button mounts
-    expect(mountTheForm().text()).toContain("Submit");
+    expect(mountTheForm().text()).toContain('Submit');
   });
 
-  it("click the submit button", async () => {
-    const form = mountTheForm().find("form");
+  it('click the submit button', async () => {
+    const form = mountTheForm().find('form');
     // The spyOn function will report if the element
     // has been clicked.
-    const spyOnForm = vi.spyOn(form, "trigger");
-    await form.trigger("click");
+    const spyOnForm = vi.spyOn(form, 'trigger');
+    await form.trigger('click');
 
     // ❌wrong
     // expect(spyOnForm).toHaveBeenCalledTimes(2)
@@ -28,13 +27,13 @@ describe("The Form", () => {
     expect(spyOnForm).toHaveBeenCalledOnce();
   });
 
-  it("Renders the input value", async () => {
-    const input = mountTheForm().find("input");
+  it('Renders the input value', async () => {
+    const input = mountTheForm().find('input');
     // input renders with an empty value
-    expect(input.text()).toContain("");
+    expect(input.text()).toContain('');
     // fill the input
-    await input.setValue("jane@doe.com");
+    await input.setValue('jane@doe.com');
     // Check the input has a value
-    expect(input.element.value).toEqual("jane@doe.com");
+    expect(input.element.value).toEqual('jane@doe.com');
   });
 });

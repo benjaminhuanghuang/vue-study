@@ -1,6 +1,8 @@
 # Playwright update
 
 ```sh
+npx playwright install
+
 npm i -D @playwright/test @playwright/experimental-ct-vue
 ```
 

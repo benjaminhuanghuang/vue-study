@@ -1,7 +1,7 @@
-import { fileURLToPath, URL } from "node:url";
+import { fileURLToPath, URL } from 'node:url';
 
-import { configDefaults, defineConfig, mergeConfig } from "vitest/config";
-import viteConfig from "./vite.config";
+import { configDefaults, defineConfig, mergeConfig } from 'vitest/config';
+import viteConfig from './vite.config';
 
 // https://vitejs.dev/config
 export default mergeConfig(
@@ -9,14 +9,14 @@ export default mergeConfig(
   defineConfig({
     test: {
       globals: true,
-      environment: "jsdom",
+      environment: 'jsdom',
       exclude: [...configDefaults.exclude],
-      root: fileURLToPath(new URL("./", import.meta.url)),
+      root: fileURLToPath(new URL('./', import.meta.url)),
       coverage: {
-        provider: "istanbul",
+        provider: 'istanbul'
       },
-      dir: "./src",
-    },
+      dir: './src'
+    }
   })
 );
 

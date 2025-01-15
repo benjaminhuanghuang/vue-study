@@ -1,22 +1,22 @@
-import { test, expect } from '@playwright/experimental-ct-vue'
+import { test, expect } from '@playwright/experimental-ct-vue';
 
-import Cart from '../src/components/Cart.vue'
-import { useCart } from '../src/composables/useCart'
+import Cart from '../src/components/Cart.vue';
+import { useCart } from '../src/composables/useCart';
 
 test('should toggle cart display', async ({ mount }) => {
-  const component = await mount(Cart)
+  const component = await mount(Cart);
 
-  await expect(component).toContainText('Cart')
+  await expect(component).toContainText('Cart');
 
-  await expect(component.getByText('No item in cart')).not.toBeVisible()
+  await expect(component.getByText('No item in cart')).not.toBeVisible();
 
-  await component.getByRole('button').click()
+  await component.getByRole('button').click();
 
-  await expect(component).toContainText('No item in cart')
-})
+  await expect(component).toContainText('No item in cart');
+});
 
 test.skip('should display with items', async ({ mount }) => {
-  const cart = useCart()
+  const cart = useCart();
 
   cart.add({
     id: '1',
@@ -26,15 +26,15 @@ test.skip('should display with items', async ({ mount }) => {
     image:
       'https://res.cloudinary.com/mayashavin/image/upload/v1643005556/Demo/pina_colada_pizza.jpg',
     quantity: 1
-  })
+  });
 
-  const component = await mount(Cart)
+  const component = await mount(Cart);
 
-  await expect(component).toContainText('Cart')
+  await expect(component).toContainText('Cart');
 
-  await component.getByRole('button').click()
+  await component.getByRole('button').click();
 
-  await expect(component).toContainText('In your cart:')
-})
+  await expect(component).toContainText('In your cart:');
+});
 
-test.skip('shoud remove items', () => {})
+test.skip('shoud remove items', () => {});
