@@ -4,7 +4,7 @@ https://www.vuemastery.com/blog/getting-started-with-vitest/#running-the-tests
 import { mount } from '@vue/test-utils';
 import notification from '../notification.vue';
 
-describe('notification.vue', () => {
+describe('notification component', () => {
   test('renders the correct style for error', () => {
     const type = 'error';
     const wrapper = mount(notification, {
