@@ -22,13 +22,13 @@ export default {
   },
 
   // Collect code coverage
-  collectCoverage: true,
-  collectCoverageFrom: [
-    "src/**/*.{js,vue}",
-    "!src/main.js", // Exclude main.js
-    "!src/router/index.js", // Exclude router
-  ],
-  coverageDirectory: "<rootDir>/coverage",
+  //   collectCoverage: true,
+  //   collectCoverageFrom: [
+  //     "src/**/*.{js,vue}",
+  //     "!src/main.js", // Exclude main.js
+  //     "!src/router/index.js", // Exclude router
+  //   ],
+  //   coverageDirectory: "<rootDir>/coverage",
 
   // Test files to include
   testMatch: [
