@@ -80,6 +80,12 @@ transform: {
 },
 
 testMatch: ["**/tests/**/*.spec.[jt]s?(x)", "**/__tests__/*.[jt]s?(x)", "**/*.spec.[jt]s?(x)"],
+
+// For vue-test-utils to work with Jest 29
+// https://test-utils.vuejs.org/migration/#test-runners-upgrade-notes
+testEnvironmentOptions: {
+  customExportConditions: ["node", "node-addons"],
+},
 ```
 
 ## Troubleshooting

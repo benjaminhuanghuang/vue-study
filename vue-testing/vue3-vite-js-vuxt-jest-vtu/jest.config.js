@@ -44,6 +44,8 @@ export default {
   verbose: true,
 
   // Fix error jest ReferenceError: Vue is not defined
+  // For vue-test-utils to work with Jest 29
+  // https://test-utils.vuejs.org/migration/#test-runners-upgrade-notes
   testEnvironmentOptions: {
     customExportConditions: ["node", "node-addons"],
   },
