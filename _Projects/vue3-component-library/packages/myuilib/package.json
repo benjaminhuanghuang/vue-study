@@ -1,0 +1,28 @@
+{
+  "name": "myuilib",
+  "version": "1.0.4",
+  "main": "lib/index.js",
+  "module": "es/index.mjs",
+  "files": [
+    "es",
+    "lib"
+  ],
+  "keywords": [
+    "myuilib",
+    "Vue 3 Component Library"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "author": "markliu2013",
+  "license": "MIT",
+  "description": "",
+  "typings": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/markliu2013/stellarnovaui"
+  },
+  "dependencies": {
+    "@myuilib/utils": "workspace:^"
+  }
+}
