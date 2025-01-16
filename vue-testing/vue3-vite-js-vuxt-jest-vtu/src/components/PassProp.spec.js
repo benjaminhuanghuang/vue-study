@@ -14,10 +14,14 @@ describe("PassProp.vue", () => {
       },
     });
     const input = wrapper.find('input[type="password"]');
-    await input.setValue("123");
+    await input.setValue("123456");
     expect(wrapper.find("div").text()).toBe(
       "Password must be at least 10 characters"
     );
+    expect(wrapper.find("[data-test='error']").exists()).toBe(true);
+
+    await wrapper.setProps({ minLength: 5 });
+    expect(wrapper.find("[data-test='error']").exists()).toBe(false);
   });
 
   it("does not show error message when password meets length requirement", async () => {
