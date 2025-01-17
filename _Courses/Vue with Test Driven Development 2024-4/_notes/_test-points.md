@@ -21,6 +21,11 @@ it("has password type for password repeat input", () => {
 
 ## Submit and API
 
+- API should be called
+- Does not allow click button when api call ongoing
+- Clear the mock status
+- Extract code to a setup function
+
 ```js
 import { render, screen, waitFor } from "@testing-library/vue";
 import userEvent from "@testing-library/user-event";

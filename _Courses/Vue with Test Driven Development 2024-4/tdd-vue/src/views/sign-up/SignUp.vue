@@ -23,7 +23,7 @@
                         v-model="formState.passwordRepeat" />
                 </div>
                 <div class="text-center">
-                    <button class="btn btn-primary" :disabled="isDisabled">Sign Up</button>
+                    <button class="btn btn-primary" :disabled="isDisabled || apiProgress">Sign Up</button>
                 </div>
             </div>
         </form>
@@ -41,6 +41,8 @@ const formState = reactive({
     passwordRepeat: ''
 })
 
+const apiProgress = ref(false);
+
 const isDisabled = computed(() => {
     return (formState.password || formState.passwordRepeat)
         ? formState.password !== formState.passwordRepeat
@@ -48,6 +50,7 @@ const isDisabled = computed(() => {
 })
 
 const submit = () => {
+    apiProgress.value = true;
     const { passwordRepeat, ...body } = formState;
     axios.post('/api/v1/users', body)
 }   
