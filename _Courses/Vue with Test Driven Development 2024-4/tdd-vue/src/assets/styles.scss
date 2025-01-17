@@ -1,4 +1,4 @@
 // Override Bootstrap variables here
-$primary: #818;
+// $primary: #818;
 
-@import 'bootstrap/scss/bootstrap';
+@use 'bootstrap' as *;

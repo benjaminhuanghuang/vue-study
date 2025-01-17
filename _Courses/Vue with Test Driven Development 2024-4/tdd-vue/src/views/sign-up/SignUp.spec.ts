@@ -4,7 +4,7 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import { HttpResponse, http } from 'msw';
+import { HttpResponse, http, delay } from 'msw';
 import { setupServer } from 'msw/node';
 
 // Component to test
@@ -17,13 +17,15 @@ const server = setupServer(
   http.post('/api/v1/users', async ({ request }) => {
     requestBody = await request.json();
     counter++;
-    return HttpResponse.json({});
+    // await delay(); // to match the test for displays spinner, but not recommended
+    return HttpResponse.json({ message: 'User created successfully' });
   })
 );
 beforeAll(() => server.listen());
 afterAll(() => server.close());
 beforeEach(() => {
   counter = 0;
+  server.resetHandlers(); // reset the settings in "displays spinner" test
 });
 
 const setup = async () => {
@@ -97,6 +99,11 @@ describe('SignUp', () => {
     expect(screen.getByRole('button', { name: 'Sign Up' })).toBeDisabled();
   });
 
+  it('doest not display spinner', () => {
+    render(SignUp);
+    expect(screen.getByRole('status')).not.toBeInTheDocument();
+  });
+
   describe('when user sets same value for password inputs', () => {
     it('enable button', async () => {
       const {
@@ -141,6 +148,47 @@ describe('SignUp', () => {
 
       await waitFor(() => {
         expect(counter).toBe(1);
+      });
+    });
+    it('display spinner', async () => {
+      server.use(
+        http.post('/api/v1/users', async ({ request }) => {
+          await delay('infinite');
+          return HttpResponse.json({ message: 'User created successfully' });
+        })
+      );
+      const {
+        user,
+        elements: { button }
+      } = await setup();
+
+      await user.click(button);
+      expect(screen.getByRole('status')).toBeInTheDocument();
+    });
+
+    describe('when success response is received', () => {
+      it('display message received from backend', async () => {
+        const {
+          user,
+          elements: { button }
+        } = await setup();
+
+        await user.click(button);
+        const text = await screen.findByText('User created successfully');
+        expect(text).toBeInTheDocument();
+      });
+
+      it('hides sign up form', async () => {
+        const {
+          user,
+          elements: { button }
+        } = await setup();
+
+        const form = screen.getByTestId('form-sign-up');
+        await user.click(button);
+        await waitFor(() => {
+          expect(form).not.toBeInTheDocument();
+        });
       });
     });
   });

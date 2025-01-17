@@ -1,6 +1,6 @@
 <template>
     <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
-        <form class="card" @submit.prevent="submit">
+        <form v-if="!successMessage" class="card" @submit.prevent="submit" data-testid="form-sign-up">
             <div class="card-header text-center">
                 <h1>Sign Up</h1>
             </div>
@@ -23,10 +23,17 @@
                         v-model="formState.passwordRepeat" />
                 </div>
                 <div class="text-center">
-                    <button class="btn btn-primary" :disabled="isDisabled || apiProgress">Sign Up</button>
+                    <button class="btn btn-primary" :disabled="isDisabled || apiProgress">
+                        <span v-if="apiProgress" class="spinner-border spinner-border-sm" role="status">
+                        </span>
+                        Sign Up
+                    </button>
                 </div>
             </div>
         </form>
+        <div v-if="successMessage" class="alert alert-success">
+            {{ successMessage }}
+        </div>
     </div>
 </template>
 
@@ -42,6 +49,7 @@ const formState = reactive({
 })
 
 const apiProgress = ref(false);
+const successMessage = ref('');
 
 const isDisabled = computed(() => {
     return (formState.password || formState.passwordRepeat)
@@ -49,9 +57,11 @@ const isDisabled = computed(() => {
         : true;
 })
 
-const submit = () => {
+const submit = async () => {
     apiProgress.value = true;
     const { passwordRepeat, ...body } = formState;
-    axios.post('/api/v1/users', body)
+    const response = await axios.post('/api/v1/users', body);
+    successMessage.value = response.data.message;
+
 }   
 </script>

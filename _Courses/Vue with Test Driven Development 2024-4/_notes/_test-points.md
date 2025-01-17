@@ -19,12 +19,20 @@ it("has password type for password repeat input", () => {
 });
 ```
 
+v-if: element is not added to DOM
+.toBeInTheDocument();
+
+v-show: element in DOM and hidden
+.toBeVisible();
+
 ## Submit and API
 
 - API should be called
 - Does not allow click button when api call ongoing
 - Clear the mock status
 - Extract code to a setup function
+- Server response message, await delay('infinite');
+- Use data-testid="form-sign-up"
 
 ```js
 import { render, screen, waitFor } from "@testing-library/vue";

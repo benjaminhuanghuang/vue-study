@@ -39,34 +39,39 @@ const setup = async () => {
   };
 };
 describe('SignUp', () => {
-  describe('when user submit form', () => {
-    it('sends username, email, password to backend', async () => {
-      const {
-        user,
-        elements: { button }
-      } = await setup();
+  describe('when user set same value for password inputs', () => {
+    describe('when user submit form', () => {
+      it('sends username, email, password to backend', async () => {
+        (axios.post as jest.MockedFunction<typeof axios.post>).mockResolvedValue({
+          data: { message: 'User created successfully' }
+        });
+        const {
+          user,
+          elements: { button }
+        } = await setup();
 
-      await user.click(button);
+        await user.click(button);
 
-      expect(axios.post).toHaveBeenCalledWith('/api/signup', {
-        username: 'user1',
-        email: 'user1@mail.com',
-        password: '12345'
+        expect(axios.post).toHaveBeenCalledWith('/api/signup', {
+          username: 'user1',
+          email: 'user1@mail.com',
+          password: '12345'
+        });
       });
     });
-  });
 
-  describe('when user there is an ongoing api call', () => {
-    it('does not allow click button', async () => {
-      const {
-        user,
-        elements: { button }
-      } = await setup();
+    describe('when user there is an ongoing api call', () => {
+      it('does not allow click button', async () => {
+        const {
+          user,
+          elements: { button }
+        } = await setup();
 
-      await user.click(button);
-      await user.click(button);
+        await user.click(button);
+        await user.click(button);
 
-      expect(axios.post).toHaveBeenCalledTimes(1);
+        expect(axios.post).toHaveBeenCalledTimes(1);
+      });
     });
   });
 });
