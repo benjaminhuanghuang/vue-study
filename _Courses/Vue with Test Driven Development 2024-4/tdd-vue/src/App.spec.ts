@@ -1,5 +1,8 @@
+import { vi } from 'vitest';
 import { render, router, screen, waitFor } from 'test/helper';
 import App from '@/App.vue';
+
+vi.mock('@/views/activation/Activation.vue');
 
 const setup = async (path: string) => {
   router.push(path);
@@ -16,6 +19,14 @@ describe('Routing', () => {
     {
       path: '/signup',
       pageId: 'home-page'
+    },
+    {
+      path: '/activation/123',
+      pageId: 'activation-page'
+    },
+    {
+      path: '/activation/abc',
+      pageId: 'activation-page'
     }
   ])('when path is $path', ({ path, pageId }) => {
     it(`display ${pageId}`, async () => {
