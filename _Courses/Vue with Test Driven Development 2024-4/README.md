@@ -1,7 +1,10 @@
-# Vue with Test Driven Development 2024-4
+# Udemy - Vue with Test Driven Development 2024-4
+
+By Basar Buyukkahraman
+
+Learn Vue 3 by applying test driven development (using vitest, testing-library/vue)
 
 Bootstrap + @testing-library/vue
-Udemy - Vue with Test Driven Development 2024-4
 
 https://www.bilibili.com/list/watchlater?bvid=BV1AJ4m1w7Y3&oid=1254896556
 
