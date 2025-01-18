@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import LanguageSelector from './components/LanguageSelector.vue';
+import { Navbar, LanguageSelector } from './components';
 </script>
 
 <template>
+  <Navbar />
   <main class="container">
     <LanguageSelector />
     <RouterView />

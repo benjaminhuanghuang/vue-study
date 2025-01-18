@@ -13,8 +13,9 @@ const customRender = (component: any, options?: any) => {
     },
     ...options
   });
-  return { ...result, user };
+  return { result, user };
 };
 
 export * from '@testing-library/vue';
 export { customRender as render }; // replace render with customRender
+export { router };

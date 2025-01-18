@@ -1,5 +1,7 @@
 <template>
-    <h1></h1>
+    <div data-testid="home-page">
+        <h1>Home page</h1>
+    </div>
 </template>
 
 <script setup lang='ts'>

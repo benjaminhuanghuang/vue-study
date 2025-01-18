@@ -1,5 +1,5 @@
 <template>
-    <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
+    <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2" data-testid="signup-page">
         <form v-if="!successMessage" class="card" @submit.prevent="submit" data-testid="form-sign-up">
             <div class="card-header text-center">
                 <h1>Sign Up</h1>
@@ -9,7 +9,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="username">Username</label>
                     <input class="form-control" id="username" v-model="formState.username" />
-                    <div>{{ errors.username }}</div>
+                    <div>{{ errors.username }}</div> 
                 </div> 
                 -->
                 <AppInput :id="username" label="User name" :help="errors.username" v-model="formState.username" />
