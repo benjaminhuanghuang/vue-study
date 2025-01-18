@@ -38,9 +38,8 @@
 
 <script setup>
 import { computed, reactive, ref, watch } from 'vue';
-import axios from 'axios';
 import { AppInput } from '@/components/';
-import { useI18n } from 'vue-i18n';
+import { signUp } from './api/signUp';
 
 const { t } = useI18();
 
@@ -83,11 +82,7 @@ const submit = async () => {
     errorMessages.value = undefined;
     const { passwordRepeat, ...body } = formState;
     try {
-        const response = await axios.post('/api/v1/users', body, {
-            headers: {
-                'Accept-Language': locale.value
-            }
-        });
+        const response = await signUp(body);
         successMessage.value = response.data.message;
     } catch (apiError) {
         console.error(error);

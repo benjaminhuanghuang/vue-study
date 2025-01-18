@@ -1,7 +1,7 @@
 /*
     In unit-tests, we mock the axios library to prevent the actual API call.
 */
-vi.mock('axios');
+vi.mock('./api.ts');
 vi.mock('vue-i18n');
 
 import { vi, describe, it, expect, beforeEach } from 'vitest';
@@ -10,15 +10,13 @@ import userEvent from '@testing-library/user-event';
 import axios from 'axios';
 import { useI18n } from 'vue-i18n';
 import en from '@/locales/translations/en.json';
+import { signUp } from './api';
 
 // Component to test
 import SignUp from './SignUp.vue';
 
 vi.mocked(useI18n).mockReturnValue({
-  t: (key) => en[key],
-  locale: {
-    value: 'ab'
-  }
+  t: (key) => en[key]
 });
 
 beforeEach(() => {
@@ -66,8 +64,8 @@ describe('SignUp', () => {
   describe('when user set same value for password inputs', () => {
     describe('when user submit form', () => {
       it('sends username, email, password to backend', async () => {
-        (axios.post as jest.MockedFunction<typeof axios.post>).mockResolvedValue({
-          data: { message: 'User created successfully' }
+        signUp.mockResolvedValue({
+          data: {}
         });
         const {
           user,
@@ -76,19 +74,11 @@ describe('SignUp', () => {
 
         await user.click(button);
 
-        expect(axios.post).toHaveBeenCalledWith(
-          '/api/signup',
-          {
-            username: 'user1',
-            email: 'user1@mail.com',
-            password: '12345'
-          },
-          {
-            headers: {
-              'Accept-Language': 'ab'
-            }
-          }
-        );
+        expect(signUp).toHaveBeenCalledWith({
+          username: 'user1',
+          email: 'user1@mail.com',
+          password: '12345'
+        });
       });
     });
 
