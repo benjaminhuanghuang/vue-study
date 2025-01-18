@@ -1,9 +1,9 @@
-import { shallowMount, VueWrapper } from '@vue/test-utils';
+import { flushPromises, shallowMount, VueWrapper } from '@vue/test-utils';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 // Component to test
-import ToDoList from '../components/ToDoList.vue';
+import ToDoList from '@/components/ToDoList.vue';
 
 const axiosMock = new MockAdapter(axios);
 axiosMock.onGet('https://jsonplaceholder.typicode.com/todos').reply(200, [
@@ -13,14 +13,16 @@ axiosMock.onGet('https://jsonplaceholder.typicode.com/todos').reply(200, [
 ]);
 
 describe('ToDoList.vue', () => {
-  let wrapper: VueWrapper<any>;
-  beforeEach(async () => {
+  let wrapper: VueWrapper<InstanceType<typeof ToDoList>>;
+
+  beforeEach(() => {
     wrapper = shallowMount(ToDoList);
   });
+
   test('fetches items and displays them', async () => {
+    await flushPromises();
     // ensure API call is made
     expect(axiosMock.history.get.length).toBe(1);
-    console.log(wrapper.html());
     expect(wrapper.findAll('[data-test="todo-item"]').length).toBe(3);
   });
 });

@@ -1,24 +1,22 @@
 <template>
-    <div v-for="item in todoItems" :key="item.id" data-test="todo-item">
-        {{ item.title }}
-    </div>
+    <ToDoItemComponent v-for="item in todoItems" :key="item.id" data-test="todo-item" :data="item">
+    </ToDoItemComponent>
 </template>
 
 <script setup lang='ts'>
 import { onMounted, ref } from 'vue'
-import axios from 'axios'
-import { type TodoItem } from './todo.types'
+import ToDoItemComponent from './ToDoItem.vue';
+import { useToDoList } from '@/composables/useToDoList';
+import { type ToDoItem } from '@/types';
 
-const todoItems = ref<TodoItem[]>([])
+const todoItems = ref<ToDoItem[]>([]);
 
-async function fetchTodoItems() {
-    //object destructuring
-    const { data } = await axios.get<TodoItem[]>('https://jsonplaceholder.typicode.com/todos')
-    todoItems.value = data
-}
-onMounted(() => {
-    fetchTodoItems()
+const { fetchItems } = useToDoList();
+
+onMounted(async () => {
+    todoItems.value = await fetchItems();
 });
+
 </script>
 
 <style></style>
