@@ -42,12 +42,28 @@ describe('Activation', () => {
   describe.each([
     {
       activationToken: '123'
+    },
+    {
+      activationToken: 'abc'
     }
   ])('when token is $token', ({ activationToken }) => {
     it('send  token in request', async () => {
       await setup(`/activation/${activationToken}`);
       await waitFor(() => {
         expect(token).toBe(activationToken);
+      });
+    });
+  });
+  describe('when token is changed', () => {
+    it('send  token in request', async () => {
+      await setup('/activation/123');
+      await waitFor(() => {
+        expect(token).toBe('123');
+      });
+      // change token
+      router.push('/activation/abc');
+      await waitFor(() => {
+        expect(token).toBe('abc');
       });
     });
   });

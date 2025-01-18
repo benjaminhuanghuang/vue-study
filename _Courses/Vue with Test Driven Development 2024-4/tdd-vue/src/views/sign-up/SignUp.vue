@@ -18,21 +18,20 @@
                     v-model="formState.password" />
                 <AppInput :id="passwordRepeat" type="password" label="E-mail" :help="passwordMismatchError"
                     v-model="formState.passwordRepeat" />
-                <div v-if="errorMessages" class="alert alert-success">
+                <Alert v-if="errorMessages" variant="danger">
                     {{ errorMessages }}
-                </div>
+                </Alert>
                 <div class="text-center">
                     <button class="btn btn-primary" :disabled="isDisabled || apiProgress">
-                        <span v-if="apiProgress" class="spinner-border spinner-border-sm" role="status">
-                        </span>
+                        <Spinner v-if="apiProgress" />
                         Sign Up
                     </button>
                 </div>
             </div>
         </form>
-        <div v-if="successMessage" class="alert alert-success">
+        <Alert v-else>
             {{ successMessage }}
-        </div>
+        </Alert>
     </div>
 </template>
 
@@ -40,6 +39,8 @@
 import { computed, reactive, ref, watch } from 'vue';
 import { AppInput } from '@/components/';
 import { signUp } from './api';
+import Spinner from '@/components/Spinner.vue';
+import Alert from '@/components/Alert.vue';
 
 const { t } = useI18();
 
@@ -51,8 +52,8 @@ const formState = reactive({
 })
 
 const apiProgress = ref(false);
-const successMessage = ref('');
-const errorMessages = ref('');
+const successMessage = ref();
+const errorMessages = ref();
 const errors = reactive({});
 
 const isDisabled = computed(() => {
