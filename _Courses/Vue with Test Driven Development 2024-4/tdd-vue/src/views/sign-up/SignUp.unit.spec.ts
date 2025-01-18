@@ -9,13 +9,16 @@ import { render, screen, waitFor } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import axios from 'axios';
 import { useI18n } from 'vue-i18n';
-import en from '@/locales/en.json';
+import en from '@/locales/translations/en.json';
 
 // Component to test
 import SignUp from './SignUp.vue';
 
 vi.mocked(useI18n).mockReturnValue({
-  t: (key) => en[key]
+  t: (key) => en[key],
+  locale: {
+    value: 'ab'
+  }
 });
 
 beforeEach(() => {
@@ -25,7 +28,16 @@ beforeEach(() => {
 
 const setup = async () => {
   const user = userEvent.setup();
-  const result = render(SignUp);
+  const result = render(SignUp, {
+    global: {
+      mocks: {
+        $t: (key: string) => en[key],
+        $i18n: {
+          locale: 'ab'
+        }
+      }
+    }
+  });
 
   const usernameInput = screen.getByLabelText('Username');
   const emailInput = screen.getByLabelText('E-mail');
@@ -64,11 +76,19 @@ describe('SignUp', () => {
 
         await user.click(button);
 
-        expect(axios.post).toHaveBeenCalledWith('/api/signup', {
-          username: 'user1',
-          email: 'user1@mail.com',
-          password: '12345'
-        });
+        expect(axios.post).toHaveBeenCalledWith(
+          '/api/signup',
+          {
+            username: 'user1',
+            email: 'user1@mail.com',
+            password: '12345'
+          },
+          {
+            headers: {
+              'Accept-Language': 'ab'
+            }
+          }
+        );
       });
     });
 

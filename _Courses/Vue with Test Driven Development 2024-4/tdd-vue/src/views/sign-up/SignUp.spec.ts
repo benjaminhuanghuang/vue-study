@@ -10,6 +10,7 @@ import { setupServer } from 'msw/node';
 import SignUp from '@/views/sign-up/SignUp.vue';
 import { beforeEach } from 'node:test';
 import i18n from '@/locales';
+import { a } from 'vitest/dist/chunks/suite.BJU7kdY9.js';
 
 let requestBody: any;
 let counter = 0;
@@ -160,6 +161,32 @@ describe('SignUp', () => {
       });
     });
   });
+
+  describe.each([{ language: 'tr' }, { language: 'en' }])(
+    'when language is $language',
+    ({ language }) => {
+      it('sends expected language in accept language header', async () => {
+        let acceptLanguage: string;
+        server.use(
+          http.post('/api/v1/users', async ({ request }) => {
+            acceptLanguage = request.headers.get('Accept-Language') as string;
+            await delay('infinite');
+            return HttpResponse.json({});
+          })
+        );
+        const {
+          user,
+          elements: { button }
+        } = await setup();
+        i18n.global.locale = language;
+        await user.click(button);
+        await waitFor(() => {
+          expect(acceptLanguage).toBe(language);
+        });
+      });
+    }
+  );
+
   describe('when user there is an ongoing api call', () => {
     it('does not allow click button', async () => {
       const {

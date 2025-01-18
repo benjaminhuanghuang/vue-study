@@ -83,7 +83,11 @@ const submit = async () => {
     errorMessages.value = undefined;
     const { passwordRepeat, ...body } = formState;
     try {
-        const response = await axios.post('/api/v1/users', body);
+        const response = await axios.post('/api/v1/users', body, {
+            headers: {
+                'Accept-Language': locale.value
+            }
+        });
         successMessage.value = response.data.message;
     } catch (apiError) {
         console.error(error);
