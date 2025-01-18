@@ -1,0 +1,13 @@
+{
+  "signUp": "注册",
+  "username": "用户名",
+  "email": "电子邮件",
+  "password": "密码",
+  "passwordRepeat": "重复密码",
+  "passwordMismatchValidation": "密码不匹配",
+  "accountActivationNotification": "请检查您的电子邮件以激活您的帐户",
+  "users": "用户",
+  "nextPage": "下一页 >",
+  "previousPage": "< 上一页",
+  "login": "登录"
+}

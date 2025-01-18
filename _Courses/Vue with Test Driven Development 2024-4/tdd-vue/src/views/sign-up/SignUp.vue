@@ -37,9 +37,12 @@
 </template>
 
 <script setup>
-import { computed, reactive, ref } from 'vue';
+import { computed, reactive, ref, watch } from 'vue';
 import axios from 'axios';
 import { AppInput } from '@/components/';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18();
 
 const formState = reactive({
     username: '',
@@ -60,7 +63,19 @@ const isDisabled = computed(() => {
 })
 
 const passwordMismatchError = computed(() => {
-    return formState.password !== formState.passwordRepeat ? 'Password mismatch' : undefined;
+    return formState.password !== formState.passwordRepeat ? t('passwordMismatch') : undefined;
+});
+
+watch(() => formState.username, () => {
+    delete errors.value.username
+});
+
+watch(() => formState.email, () => {
+    delete errors.value.email
+});
+
+watch(() => formState.password, () => {
+    delete errors.value.password
 });
 
 const submit = async () => {
@@ -75,7 +90,7 @@ const submit = async () => {
         if (apiError.response?.status === 400) {
             errors.value = apiError.response.data.validationErrors;
         } else {
-            errorMessages.value = 'Unexpected error occurred, please try again later';
+            errorMessages.value = t('genericError');
         }
     } finally {
         apiProgress.value = false;

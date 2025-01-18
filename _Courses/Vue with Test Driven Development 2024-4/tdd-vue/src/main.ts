@@ -3,7 +3,9 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import { createPinia } from 'pinia';
 import router from './router';
+import i18n from './locales/i18n';
+
 // Styles
 import './assets/styles.scss';
 
-createApp(App).use(createPinia()).use(router).mount('#app');
+createApp(App).use(createPinia()).use(router).use(i18n).mount('#app');

@@ -34,7 +34,11 @@ const setup = async () => {
     ...result,
     user,
     elements: {
-      button
+      button,
+      usernameInput,
+      emailInput,
+      passwordInput,
+      passwordRepeatInput
     }
   };
 };
@@ -156,6 +160,57 @@ describe('SignUp', () => {
           expect(error).toBeInTheDocument();
         });
       });
+    });
+  });
+
+  describe.each([
+    {
+      field: 'username',
+      message: 'Username cannot be null'
+    },
+    {
+      field: 'password',
+      message: 'Password cannot be null'
+    }
+  ])(`when $field is invalid`, ({ field, message }) => {
+    it(`displays ${message}`, async () => {
+      (axios.post as jest.MockedFunction<typeof axios.post>).mockRejectedValue({
+        response: {
+          status: 400,
+          data: {
+            validationErrors: { [field]: message }
+          }
+        }
+      });
+      const {
+        user,
+        elements: { button }
+      } = await setup();
+
+      await user.click(button); // trigger error
+      const error = await screen.findByText(message);
+      expect(error).toBeInTheDocument();
+    });
+
+    it(`clear error after user updates ${field}`, async () => {
+      (axios.post as jest.MockedFunction<typeof axios.post>).mockRejectedValue({
+        response: {
+          status: 400,
+          data: {
+            validationErrors: { [field]: message }
+          }
+        }
+      });
+      const {
+        user,
+        elements
+      }: { user: ReturnType<typeof userEvent.setup>; elements: { [key: string]: HTMLElement } } =
+        await setup();
+
+      await user.click(elements.button); // trigger error
+      const error = await screen.findByText(message);
+      await user.type(elements[`${field}Input`], 'updated');
+      expect(error).not.toBeInTheDocument();
     });
   });
 });

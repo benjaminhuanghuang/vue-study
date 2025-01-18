@@ -8,7 +8,7 @@ import { HttpResponse, http, delay } from 'msw';
 import { setupServer } from 'msw/node';
 
 // Component to test
-import SignUp from './SignUp.vue';
+import SignUp from '@/views/sign-up/SignUp.vue';
 import { beforeEach } from 'node:test';
 import { pipeToWebWritable } from 'vue/server-renderer';
 
@@ -49,6 +49,8 @@ const setup = async () => {
     user,
     elements: {
       button,
+      usernameInput,
+      emailInput,
       passwordInput,
       passwordRepeatInput
     }
@@ -307,6 +309,28 @@ describe('SignUp', () => {
 
         const error = await screen.findByText(message);
         expect(error).toBeInTheDocument();
+      });
+
+      it(`clear error after user updates ${field}`, async () => {
+        server.use(
+          http.post('/api/v1/users', () => {
+            return HttpResponse.json(
+              {
+                validationError: {
+                  [field]: message
+                }
+              },
+              { status: 400 }
+            );
+          })
+        );
+        const { user, elements } = await setup();
+
+        await user.click(elements.button); // trigger error
+        const error = await screen.findByText(message);
+
+        //await user.type(elements[`${field}Input`], 'updated');
+        expect(error).not.toBeInTheDocument();
       });
     });
   });
