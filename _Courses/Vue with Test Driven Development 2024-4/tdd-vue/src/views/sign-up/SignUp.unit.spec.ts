@@ -1,14 +1,22 @@
 /*
     In unit-tests, we mock the axios library to prevent the actual API call.
 */
+vi.mock('axios');
+vi.mock('vue-i18n');
+
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-vi.mock('axios');
 import axios from 'axios';
+import { useI18n } from 'vue-i18n';
+import en from '@/locales/en.json';
 
 // Component to test
 import SignUp from './SignUp.vue';
+
+vi.mocked(useI18n).mockReturnValue({
+  t: (key) => en[key]
+});
 
 beforeEach(() => {
   // clear all mock history

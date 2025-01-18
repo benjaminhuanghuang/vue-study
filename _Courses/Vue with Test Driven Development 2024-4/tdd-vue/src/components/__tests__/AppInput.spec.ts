@@ -1,6 +1,5 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/vue';
-import userEvent from '@testing-library/user-event';
 // Component to test
 import AppInput from '../AppInput.vue';
 

@@ -2,15 +2,14 @@
   In integration tests, we use msw to mock the backend server behavior and test the actual API call.
 */
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/vue';
-import userEvent from '@testing-library/user-event';
+import { render, screen, waitFor } from 'test/helper';
 import { HttpResponse, http, delay } from 'msw';
 import { setupServer } from 'msw/node';
 
 // Component to test
 import SignUp from '@/views/sign-up/SignUp.vue';
 import { beforeEach } from 'node:test';
-import { pipeToWebWritable } from 'vue/server-renderer';
+import i18n from '@/locales/i18n';
 
 let requestBody: any;
 let counter = 0;
@@ -29,9 +28,12 @@ beforeEach(() => {
   server.resetHandlers(); // reset the settings in "displays spinner" test
 });
 
+afterEach(() => {
+  i18n.global.locale = 'en';
+});
+
 const setup = async () => {
-  const user = userEvent.setup();
-  const result = render(SignUp);
+  const { user, result } = render(SignUp);
 
   const usernameInput = screen.getByLabelText('Username');
   const emailInput = screen.getByLabelText('E-mail');
@@ -59,7 +61,11 @@ const setup = async () => {
 
 describe('SignUp', () => {
   it('has Signup header', () => {
-    render(SignUp);
+    render(SignUp, {
+      global: {
+        plugins: [i18n]
+      }
+    });
     const header = screen.getByRole('heading', { name: 'Sign Up' });
     expect(header).toBeInTheDocument();
   });
