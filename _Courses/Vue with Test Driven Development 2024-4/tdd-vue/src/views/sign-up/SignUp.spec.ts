@@ -1,5 +1,5 @@
 /*
-  In integration tests, we use msw to mock the backend server and test the actual API call.
+  In integration tests, we use msw to mock the backend server behavior and test the actual API call.
 */
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/vue';
@@ -10,6 +10,7 @@ import { setupServer } from 'msw/node';
 // Component to test
 import SignUp from './SignUp.vue';
 import { beforeEach } from 'node:test';
+import { pipeToWebWritable } from 'vue/server-renderer';
 
 let requestBody: any;
 let counter = 0;
@@ -47,7 +48,9 @@ const setup = async () => {
     ...result,
     user,
     elements: {
-      button
+      button,
+      passwordInput,
+      passwordRepeatInput
     }
   };
 };
@@ -104,6 +107,19 @@ describe('SignUp', () => {
     expect(screen.getByRole('status')).not.toBeInTheDocument();
   });
 
+  describe('when passwords to not match', () => {
+    it('displays error', async () => {
+      const {
+        user,
+        elements: { passwordInput, passwordRepeatInput }
+      } = await setup();
+
+      await user.type(passwordInput, '123');
+      await user.type(passwordRepeatInput, '456');
+      expect(screen.getByText('Password mismatch')).toBeInTheDocument();
+    });
+  });
+
   describe('when user sets same value for password inputs', () => {
     it('enable button', async () => {
       const {
@@ -152,7 +168,7 @@ describe('SignUp', () => {
     });
     it('display spinner', async () => {
       server.use(
-        http.post('/api/v1/users', async ({ request }) => {
+        http.post('/api/v1/users', async () => {
           await delay('infinite');
           return HttpResponse.json({ message: 'User created successfully' });
         })
@@ -189,6 +205,108 @@ describe('SignUp', () => {
         await waitFor(() => {
           expect(form).not.toBeInTheDocument();
         });
+      });
+    });
+
+    describe('when network failure occurs', () => {
+      it('display generic error message', async () => {
+        server.use(
+          http.post('/api/v1/users', async () => {
+            return HttpResponse.error();
+          })
+        );
+        const {
+          user,
+          elements: { button }
+        } = await setup();
+
+        await user.click(button);
+        const text = await screen.findByText('Unexpected error occurred, please try again.');
+        expect(text).toBeInTheDocument();
+      });
+
+      it('hides spinner', async () => {
+        server.use(
+          http.post('/api/v1/users', async () => {
+            return HttpResponse.error();
+          })
+        );
+        const {
+          user,
+          elements: { button }
+        } = await setup();
+
+        await user.click(button);
+
+        await waitFor(() => {
+          // hide t spinner
+          expect(screen.getByRole('status')).not.toBeInTheDocument();
+        });
+      });
+      it('when user submits again', () => {
+        it('hides error when api request is progress', async () => {
+          let processedFirstRequest = false;
+          server.use(
+            http.post('/api/v1/users', async () => {
+              if (!processedFirstRequest) {
+                processedFirstRequest = true;
+                return HttpResponse.error();
+              } else {
+                return HttpResponse.json({
+                  message: 'User created successfully'
+                });
+              }
+            })
+          );
+          const {
+            user,
+            elements: { button }
+          } = await setup();
+          const text = await screen.findByText('Unexpected error occurred, please try again.');
+          await user.click(button);
+          await waitFor(() => {
+            // hide t spinner
+            expect(text).not.toBeInTheDocument();
+          });
+        });
+      });
+    });
+
+    /*
+      Repeat test using vitest describe.each 
+    */
+    describe.each([
+      {
+        field: 'username',
+        message: 'Username cannot be null'
+      },
+      {
+        field: 'password',
+        message: 'Password cannot be null'
+      }
+    ])(`when $field is invalid`, ({ field, message }) => {
+      it(`displays ${message}`, async () => {
+        server.use(
+          http.post('/api/v1/users', () => {
+            return HttpResponse.json(
+              {
+                validationError: {
+                  [field]: message
+                }
+              },
+              { status: 400 }
+            );
+          })
+        );
+        const {
+          user,
+          elements: { button }
+        } = await setup();
+
+        await user.click(button);
+
+        const error = await screen.findByText(message);
+        expect(error).toBeInTheDocument();
       });
     });
   });

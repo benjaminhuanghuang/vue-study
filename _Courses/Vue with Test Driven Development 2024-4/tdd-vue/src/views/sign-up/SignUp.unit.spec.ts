@@ -2,7 +2,7 @@
     In unit-tests, we mock the axios library to prevent the actual API call.
 */
 import { vi, describe, it, expect, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/vue';
+import { render, screen, waitFor } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 vi.mock('axios');
 import axios from 'axios';
@@ -62,6 +62,15 @@ describe('SignUp', () => {
 
     describe('when user there is an ongoing api call', () => {
       it('does not allow click button', async () => {
+        (axios.post as jest.MockedFunction<typeof axios.post>).mockImplementation(
+          () =>
+            new Promise((resolve) => {
+              setTimeout(() => {
+                resolve({ data: { message: 'User created successfully' } });
+              }, 1000);
+            })
+        );
+
         const {
           user,
           elements: { button }
@@ -71,6 +80,81 @@ describe('SignUp', () => {
         await user.click(button);
 
         expect(axios.post).toHaveBeenCalledTimes(1);
+      });
+
+      it('display spinner', async () => {
+        server.use(
+          http.post('/api/v1/users', async () => {
+            await delay('infinite');
+            return HttpResponse.json({ message: 'User created successfully' });
+          })
+        );
+        const {
+          user,
+          elements: { button }
+        } = await setup();
+
+        await user.click(button);
+        expect(screen.getByRole('status')).toBeInTheDocument();
+      });
+    });
+
+    describe('when success response is received', () => {
+      beforeEach(() => {
+        (axios.post as jest.MockedFunction<typeof axios.post>).mockResolvedValue({
+          data: { message: 'User created successfully' }
+        });
+      });
+
+      it('display message received from backend', async () => {
+        const {
+          user,
+          elements: { button }
+        } = await setup();
+
+        await user.click(button);
+        const text = await screen.findByText('User created successfully');
+        expect(text).toBeInTheDocument();
+      });
+      describe('when use submits again', () => {
+        it('hides error when api request is progress', async () => {
+          (axios.post as jest.MockedFunction<typeof axios.post>).mockResolvedValue({
+            data: {}
+          });
+          const {
+            user,
+            elements: { button }
+          } = await setup();
+
+          await user.click(button);
+          const text = await screen.findByText('Unexpected error occurred, please try again.');
+          await user.click(button);
+          await waitFor(() => {
+            expect(text).toBeInTheDocument();
+          });
+        });
+      });
+
+      describe('when use username is invalid', () => {
+        it('displays validation error', async () => {
+          (axios.post as jest.MockedFunction<typeof axios.post>).mockRejectedValue({
+            response: {
+              status: 400,
+              data: {
+                validationErrors: { username: 'Username cannot be null' }
+              }
+            }
+          });
+          const {
+            user,
+            elements: { button }
+          } = await setup();
+
+          await user.click(button);
+
+          const error = await screen.findByText('Username cannot be null');
+          expect(error).toBeInTheDocument();
+        });
       });
     });
   });

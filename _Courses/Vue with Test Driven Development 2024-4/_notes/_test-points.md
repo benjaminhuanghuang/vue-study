@@ -27,12 +27,14 @@ v-show: element in DOM and hidden
 
 ## Submit and API
 
+- Validation error
 - API should be called
 - Does not allow click button when api call ongoing
 - Clear the mock status
 - Extract code to a setup function
 - Server response message, await delay('infinite');
 - Use data-testid="form-sign-up"
+- Repeat test using vitest describe.each
 
 ```js
 import { render, screen, waitFor } from "@testing-library/vue";

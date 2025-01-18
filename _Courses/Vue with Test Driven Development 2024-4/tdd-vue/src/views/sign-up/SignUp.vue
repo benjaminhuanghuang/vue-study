@@ -5,22 +5,21 @@
                 <h1>Sign Up</h1>
             </div>
             <div class="card-body">
+                <!-- 
                 <div class="mb-3">
                     <label class="form-label" for="username">Username</label>
                     <input class="form-control" id="username" v-model="formState.username" />
-                </div>
-                <div class="mb-3">
-                    <label for="email">E-mail</label>
-                    <input class="form-control" id="email" v-model="formState.email" />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="password">Password</label>
-                    <input class="form-control" id="password" type="password" v-model="formState.password" />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="passwordRepeat">Password Repeat</label>
-                    <input class="form-control" id="passwordRepeat" type="password"
-                        v-model="formState.passwordRepeat" />
+                    <div>{{ errors.username }}</div>
+                </div> 
+                -->
+                <AppInput :id="username" label="User name" :help="errors.username" v-model="formState.username" />
+                <AppInput :id="email" label="E-mail" :help="errors.email" v-model="formState.email" />
+                <AppInput :id="password" type="password" label="Password" :help="errors.password"
+                    v-model="formState.password" />
+                <AppInput :id="passwordRepeat" type="password" label="E-mail" :help="passwordMismatchError"
+                    v-model="formState.passwordRepeat" />
+                <div v-if="errorMessages" class="alert alert-success">
+                    {{ errorMessages }}
                 </div>
                 <div class="text-center">
                     <button class="btn btn-primary" :disabled="isDisabled || apiProgress">
@@ -40,6 +39,7 @@
 <script setup>
 import { computed, reactive, ref } from 'vue';
 import axios from 'axios';
+import { AppInput } from '@/components/';
 
 const formState = reactive({
     username: '',
@@ -50,6 +50,8 @@ const formState = reactive({
 
 const apiProgress = ref(false);
 const successMessage = ref('');
+const errorMessages = ref('');
+const errors = reactive({});
 
 const isDisabled = computed(() => {
     return (formState.password || formState.passwordRepeat)
@@ -57,11 +59,26 @@ const isDisabled = computed(() => {
         : true;
 })
 
+const passwordMismatchError = computed(() => {
+    return formState.password !== formState.passwordRepeat ? 'Password mismatch' : undefined;
+});
+
 const submit = async () => {
     apiProgress.value = true;
+    errorMessages.value = undefined;
     const { passwordRepeat, ...body } = formState;
-    const response = await axios.post('/api/v1/users', body);
-    successMessage.value = response.data.message;
-
+    try {
+        const response = await axios.post('/api/v1/users', body);
+        successMessage.value = response.data.message;
+    } catch (apiError) {
+        console.error(error);
+        if (apiError.response?.status === 400) {
+            errors.value = apiError.response.data.validationErrors;
+        } else {
+            errorMessages.value = 'Unexpected error occurred, please try again later';
+        }
+    } finally {
+        apiProgress.value = false;
+    }
 }   
 </script>
