@@ -9,7 +9,7 @@ import { setupServer } from 'msw/node';
 // Component to test
 import SignUp from '@/views/sign-up/SignUp.vue';
 import { beforeEach } from 'node:test';
-import i18n from '@/locales/i18n';
+import i18n from '@/locales';
 
 let requestBody: any;
 let counter = 0;
