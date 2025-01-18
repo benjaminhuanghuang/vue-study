@@ -36,10 +36,10 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, reactive, ref, watch } from 'vue';
 import { AppInput } from '@/components/';
-import { signUp } from './api/signUp';
+import { signUp } from './api';
 
 const { t } = useI18();
 
