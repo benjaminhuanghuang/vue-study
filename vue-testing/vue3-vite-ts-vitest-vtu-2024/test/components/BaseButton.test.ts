@@ -1,19 +1,19 @@
-import { shallowMount } from '@vue/test-utils'
-import { expect, it } from 'vitest'
-import BaseButton from '../../src/components/BaseButton.vue'
-import { ButtonType } from '../../src/types'
+import { shallowMount } from '@vue/test-utils';
+import { expect, it } from 'vitest';
+import BaseButton from '@/components/BaseButton.vue';
+import { ButtonType } from '@/types';
 
 it("renders 'primary' button by default", () => {
-  const label = 'Label'
-  const primaryButtonClasses = 'bg-purple-500 enabled:hover:bg-purple-600 text-white'
+  const label = 'Label';
+  const primaryButtonClasses = 'bg-purple-500 enabled:hover:bg-purple-600 text-white';
 
   const wrapper = shallowMount(BaseButton, {
     slots: { default: label }
-  })
+  });
 
-  expect(wrapper.text()).toContain(label)
-  expect(wrapper.classes()).toEqual(expect.arrayContaining(primaryButtonClasses.split(' ')))
-})
+  expect(wrapper.text()).toContain(label);
+  expect(wrapper.classes()).toEqual(expect.arrayContaining(primaryButtonClasses.split(' ')));
+});
 
 it.each([
   {
@@ -37,13 +37,13 @@ it.each([
     classes: 'bg-gray-100 enabled:hover:bg-gray-200'
   }
 ])('renders $type button with label', ({ type, classes }) => {
-  const label = 'Label'
+  const label = 'Label';
 
   const wrapper = shallowMount(BaseButton, {
     props: { type },
     slots: { default: label }
-  })
+  });
 
-  expect(wrapper.text()).toContain(label)
-  expect(wrapper.classes()).toEqual(expect.arrayContaining(classes.split(' ')))
-})
+  expect(wrapper.text()).toContain(label);
+  expect(wrapper.classes()).toEqual(expect.arrayContaining(classes.split(' ')));
+});
