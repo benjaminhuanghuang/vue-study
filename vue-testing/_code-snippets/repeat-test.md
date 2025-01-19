@@ -1,4 +1,21 @@
-## it.each
+# test.each
+
+https://jestjs.io/docs/api#testeachtablename-fn-timeout
+
+## it.each, array of array
+
+```js
+it.each([
+  ["America/Los_Angeles", "en-US", "9/16/2024"],
+  ["America/Los_Angeles", "en-UK", "16/09/2024"],
+  ["America/Los_Angeles", "zh-CN", "2024/9/16"],
+])(
+  "To user in %s using language %s, the output should be %s",
+  (timezone, lan, expectedResult) => {}
+);
+```
+
+## it.each, array of object
 
 ```js
 it.each([

@@ -4,3 +4,5 @@
 4. Testing Vue.js Applications by Edd Yerburgh
 5. Vue.js 3 Cookbook by Heitor Ramon Ribeiro
 6. Mastering Vue.js 3 by Pedro Martins
+
+Vue.js 3 Design Patterns and Best Practices
